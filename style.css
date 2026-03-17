@@ -1,7 +1,7 @@
 :root {
     --main-color: #d3ad7f;
-    --black: #13131a;
-    --bg: #010103;
+    --black: #e2ffe0;
+    --bg: #e2ffe0;
     --border: 0.1rem solid rgba(255,255,255,0.3);
     font-size: 10px;
 }
@@ -62,4 +62,14 @@ section {
     border-bottom: 0.1rem solid var(--main-color);
     padding-bottom: 0.5rem;
     font-size: 1.3rem;
+}
+
+.icons img {
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.icons img:hover {
+    width: 40px;
+    height: 40px;
 }
