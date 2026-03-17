@@ -1,3 +1,11 @@
+: :root {
+    --main-color: #d3ad7f;
+    --black: #13131a;
+    --bg: #13131a;
+    --border: 0.1rem solid #d3ad7f;
+    font-size: 10px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,15 +18,8 @@
 }
 
 body {
-    background: var(--bg);
+    background-color: var(--bg);
 }
-
-section {
-    padding: 3rem 2rem;
-    margin: 0 auto;
-    max-width: 1200px;
-}
-
 
 .header {
     position: fixed;
