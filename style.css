@@ -43,3 +43,9 @@ body {
     padding-bottom: 1.rem;
 }
 
+.navbar a {
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    color: #fff;
+    cursor: pointer;
+}
