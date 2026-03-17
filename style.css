@@ -26,6 +26,12 @@ body {
     background-color: var(--bg);
 }
 
+section {
+    padding: 3rem 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
 .header {
     position: fixed;
     top: 0;
@@ -48,4 +54,10 @@ body {
     font-size: 1.8rem;
     color: #fff;
     cursor: pointer;
+}
+
+.navbar a:hover {
+    color: var(--main-color);
+    border-bottom: 0.1rem solid var(--main-color);
+    padding-bottom: 0.5rem;
 }
