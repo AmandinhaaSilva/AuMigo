@@ -32,3 +32,11 @@ header {
     border-bottom: 3px solid #f7802b;
 }
 
+#mobile_btn {
+    display: none;
+}
+
+#mobile_menu {
+    display: none;
+}
+
