@@ -41,28 +41,13 @@ header {
 }
 
 @media screen and (max-width: 1170px) {
-    #nav_list {
+    #nav_list, 
+    #navbar .btn-default {
         display: none;
     }
 
     #mobile_btn {
         display: block;
-        font-size: 24px;
-        color: #f7802b;
-        cursor: pointer;
-    }
-
-    #mobile_menu {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        position: absolute;
-        top: 80px;
-        right: 8%;
-        background-color: #fff;
-        padding: 16px;
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
 }
 
