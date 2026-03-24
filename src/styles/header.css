@@ -21,7 +21,7 @@ header {
     gap: 48px;
 }
 
-.nav_list a {
+.nav-item a {
     text-decoration: none;
     color: #01020c;
     font-weight: 600;
