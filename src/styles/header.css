@@ -53,5 +53,10 @@ header {
         font-size: 1.5rem;
         cursor: pointer;
     }
+
+    #mobile_menu.active {
+        display: flex;
+    }
+
 }
 
