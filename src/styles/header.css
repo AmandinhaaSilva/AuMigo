@@ -27,7 +27,7 @@ header {
     font-weight: 600;
 }
 
-.nav_list a:hover {
+.nav-item.active a {
     color: #f7802b;
     border-bottom: 3px solid #f7802b;
 }
