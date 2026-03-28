@@ -9,6 +9,10 @@ body {
     background-color: #f1e9c6;
 }
 
+section {
+    padding: 28px 8%;
+}
+
 .btn-default {
     border: none;
     display: flex;
