@@ -10,3 +10,12 @@
     gap: 28px;
     margin-top: 5%;
 }
+
+#cta .title {
+    font-size: 4rem;
+    color: black;
+}
+
+#cta .title span {
+    color: coral;
+}
