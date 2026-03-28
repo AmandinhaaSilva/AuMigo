@@ -19,3 +19,17 @@
 #cta .title span {
     color: coral;
 }
+
+#cta .description {
+    font-size: 1.2rem;
+}
+
+#cta_buttons {
+    display: flex;
+    gap: 24px;
+}
+
+#cta_buttons a {
+    text-decoration: none;
+    color: black;
+}
