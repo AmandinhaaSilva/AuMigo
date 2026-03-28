@@ -2,3 +2,11 @@
     display:flex;
     min-height: calc(100vh - 91px);;
 }
+
+#cta {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 5%;
+}
