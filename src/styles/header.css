@@ -23,14 +23,12 @@ header {
     font-size: 1.1rem;
 }
 
-/* 🔥 ITEM ATIVO (linha embaixo tipo sua home) */
 .nav-item.active a {
     color: #1d1d1d;
     border-bottom: 3px solid #f7802b;
     padding-bottom: 4px;
 }
 
-/* 🔥 GARANTE que nenhum link fique azul */
 a {
     text-decoration: none;
     color: inherit;
