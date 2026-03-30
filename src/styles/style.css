@@ -36,14 +36,13 @@ section {
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    text-decoration: none; /* tira o sublinhado */
-    color: black; /* tira o azul do link */
+    text-decoration: none;
+    color: black;
 }
 
 .btn-default:hover {
     background-color: #ed953c;
     color: black;
-    text-decoration: none;
 }
 
 .social_media_buttons {
@@ -65,22 +64,12 @@ section {
     box-shadow: 0px 0px 12px 4px rgba(5, 5, 5, 0.921);
 }
 
-.social_media_buttons a:hover {
-    box-shadow: 0px 0px 12px 4px rgba(5, 5, 5, 0.921);
-}
-
 #phone_button{
     display: flex;
     align-items: center;
     gap: 8px;
     text-decoration: none;
     color: black;
-}
-
-#phone_button button{
-    background-color: #fc8106;
-    border: none;
-    box-shadow: 0px 0px 10px 2px rgba(5, 5, 5, 0.921);
 }
 
 #mobile_menu {
@@ -101,39 +90,58 @@ section {
     padding: 60px 8%;
 }
 
-#sobre_page h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-#sobre_page h2 {
-    margin-top: 30px;
-    color: #fc8106;
-}
-
-#sobre_page p {
-    max-width: 700px;
-    margin-bottom: 15px;
+.sobre-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
 }
 
 .sobre-texto{
-    width: 55%;
+    width: 50%;
+}
+
+.title{
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.title span{
+    color: #fc8106;
+}
+
+.description{
+    margin-top: 15px;
+    max-width: 500px;
+}
+
+.sobre-info{
+    margin-top: 80px;
+}
+
+#sobre_page h2 {
+    margin-top: 20px;
+    color: #fc8106;
 }
 
 .sobre-imagens{
-    width: 45%;
+    width: 50%;
     position: relative;
+    height: 400px;
 }
 
 .sobre-imagens img{
     width: 200px;
     border-radius: 50%;
     position: absolute;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+    border: 4px solid #fc8106;
 }
 
 .sobre-imagens img:nth-child(1){
     top: 0;
-    right: 50px;
+    right: 60px;
 }
 
 .sobre-imagens img:nth-child(2){
@@ -144,9 +152,4 @@ section {
 .sobre-imagens img:nth-child(3){
     top: 260px;
     right: 80px;
-}
-
-.sobre-imagens img{
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
-    border: 4px solid #fc8106;
 }
