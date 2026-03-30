@@ -86,3 +86,52 @@ section {
     gap: 12px;
     list-style: none;
 }
+
+#sobre_page {
+    padding: 60px 8%;
+}
+
+#sobre_page h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#sobre_page h2 {
+    margin-top: 30px;
+    color: #fc8106;
+}
+
+#sobre_page p {
+    max-width: 700px;
+    margin-bottom: 15px;
+}
+
+.sobre-texto{
+    width: 55%;
+}
+
+.sobre-imagens{
+    width: 45%;
+    position: relative;
+}
+
+.sobre-imagens img{
+    width: 200px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.sobre-imagens img:nth-child(1){
+    top: 0;
+    right: 50px;
+}
+
+.sobre-imagens img:nth-child(2){
+    top: 120px;
+    right: 0;
+}
+
+.sobre-imagens img:nth-child(3){
+    top: 260px;
+    right: 80px;
+}

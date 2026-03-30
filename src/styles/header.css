@@ -10,11 +10,6 @@ header {
     justify-content: space-between;
 }
 
-#nav_Logo {
-    font-size: 200px;
-    color: #f7802b;
-}
-
 #nav_list {
     display: flex;
     list-style: none;
@@ -23,13 +18,20 @@ header {
 
 .nav-item a {
     text-decoration: none;
-    color: #01020c;
+    color: #1d1d1d;
     font-weight: 600;
+    font-size: 1.1rem;
 }
 
 .nav-item.active a {
-    color: #100701;
+    color: #1d1d1d;
     border-bottom: 3px solid #f7802b;
+    padding-bottom: 4px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 #mobile_btn {
@@ -71,8 +73,4 @@ header {
         list-style: none;
         text-align: center;
     }
-
-
-
 }
-
