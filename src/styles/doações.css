@@ -1,0 +1,39 @@
+.doacao-card{
+    background: white;
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
+    width:300px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.1);
+}
+
+.itens-container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.item{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    width:200px;
+    text-align:center;
+    box-shadow:0px 5px 10px rgba(0,0,0,0.1);
+}
+
+.form-doacao{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-width:300px;
+    margin-top:20px;
+}
+
+.form-doacao input,
+.form-doacao select{
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
