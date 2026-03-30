@@ -81,3 +81,22 @@ section {
     gap: 12px;
     list-style: none;
 }
+
+#sobre_page {
+    padding: 60px 8%;
+}
+
+#sobre_page h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#sobre_page h2 {
+    margin-top: 30px;
+    color: #fc8106;
+}
+
+#sobre_page p {
+    max-width: 700px;
+    margin-bottom: 15px;
+}
