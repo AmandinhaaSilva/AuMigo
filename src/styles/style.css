@@ -141,15 +141,15 @@ section {
 
 .sobre-imagens img:nth-child(1){
     top: 0;
-    right: 60px;
+    right: 80px;
 }
 
 .sobre-imagens img:nth-child(2){
-    top: 120px;
+    top: 170px;
     right: 0;
 }
 
 .sobre-imagens img:nth-child(3){
-    top: 260px;
-    right: 80px;
+    top: 340px;
+    right: 100px;
 }
