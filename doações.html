@@ -1,124 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doações Aumigo</title>
 
-    
     <link rel="stylesheet" href="src/styles/style.css">
     <link rel="stylesheet" href="src/styles/header.css">
     <link rel="stylesheet" href="src/styles/home.css">
     <link rel="stylesheet" href="src/styles/doacoes.css">
-
-    <header>
-    <nav id="navbar">
-        <img width="50" height="50" src="logo.png" alt="logo" />
-
-        <ul id="nav_list">
-            <li class="nav-item">
-                <a href="index.html">Início</a>
-            </li>
-            <li class="nav-item">
-                <a href="sobre.html">Sobre</a>
-            </li>
-            <li class="nav-item active">
-                <a href="doacoes.html">Doações</a>
-            </li>
-            <li class="nav-item">
-                <a href="adocoes.html">Adoções</a>
-            </li>
-            <li class="nav-item">
-                <a href="veterinario.html">Veterinário</a>
-            </li>
-            <li class="nav-item">
-                <a href="loja.html">Loja</a>
-            </li>
-        </ul>
-
-        <button class="btn-default">Login</button>
-    </nav>
-</header>
-
 </head>
 <body>
-    
-<section id="doacoes">
 
-<h1 class="title">
-    Ajude com uma
-    <span>Doação</span>
-</h1>
+    <header>
+        <nav id="navbar">
+            <img width="50" height="50" src="logo.png" alt="logo" />
 
-<p class="description">
-    Cada contribuição faz a diferença na vida de um animal que precisa de ajuda. 
+            <ul id="nav_list">
+                <li class="nav-item">
+                    <a href="index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sobre.html">Sobre</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="doações.html">Doações</a>
+                </li>
+                <li class="nav-item">
+                    <a href="adocoes.html">Adoções</a>
+                </li>
+                <li class="nav-item">
+                    <a href="veterinario.html">Veterinário</a>
+                </li>
+                <li class="nav-item">
+                    <a href="loja.html">Loja</a>
+                </li>
+            </ul>
 
-No Instituto AuMigo, trabalhamos todos os dias para resgatar, cuidar e dar uma nova chance aos 
-bichinhos abandonados. Com a sua ajuda, conseguimos oferecer alimento, cuidados veterinários, abrigo e,
- principalmente, muito amor.
+            <button class="btn-default">Login</button>
+        </nav>
+    </header>
 
-Ao doar, você não está apenas ajudando financeiramente — você está dando esperança, carinho e a 
-oportunidade de um futuro melhor para esses animais.
+    <main>
+        <section id="doacoes">
+            <h1 class="title">
+                Ajude com uma
+                <span>Doação❤️</span>
+            </h1>
 
-Seja com dinheiro, ração, roupas ou qualquer outro item, toda ajuda é bem-vinda e faz um impacto real.
+            <p class="description">
+                Sua contribuição ajuda a salvar vidas e garantir cuidado aos nossos animais.
+            </p>
 
-Junte-se a nós nessa missão de transformar vidas.
-Porque todo bichinho merece ser amado!
-</p>
+            <p class="doacao-texto">
+                Além das doações em dinheiro, você também pode contribuir com ração,
+                produtos de higiene, roupinhas, cobertores e outros itens importantes
+                para o bem-estar dos nossos animais.
+            </p>
 
-<div class="doacao-card">
-    <h3>Doação via Pix</h3>
-    <p><strong>Chave Pix:</strong> aumigo@email.com</p>
-    <button class="btn-default">Copiar chave</button>
-</div>
+            <form class="form-doacao">
+                <h2>Quero doar</h2>
 
-<h2> Doação de itens</h2>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome">
+                </div>
 
-<div class="itens-container">
+                <div class="form-group">
+                    <label for="email">Endereço de email</label>
+                    <input type="email" id="email" placeholder="Digite o e-mail">
+                    <small>Nunca compartilharemos seu e-mail com ninguém.</small>
+                </div>
 
-<div class="item">
-    <h3>🥫 Ração</h3>
-    <p>Ajuda na alimentação dos animais</p>
-</div>
+                <div class="form-group">
+                    <label for="tipo">Tipo de doação</label>
+                    <select id="tipo">
+                        <option>Selecione</option>
+                        <option>Dinheiro</option>
+                        <option>Ração</option>
+                        <option>Produtos de higiene</option>
+                        <option>Roupinhas</option>
+                        <option>Cobertores</option>
+                        <option>Outros</option>
+                    </select>
+                </div>
 
-<div class="item">
-    <h3>🧼 Produtos de higiene</h3>
-    <p>Shampoo, sabonete, etc.</p>
-</div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade ou valor</label>
+                    <input type="text" id="quantidade" placeholder="Ex: R$50 ou 2 sacos de ração">
+                </div>
 
-<div class="item">
-    <h3>👕 Roupinhas</h3>
-    <p>Principalmente para dias frios</p>
-</div>
+                <div class="form-group">
+                    <label for="entrega">Forma de entrega</label>
+                    <select id="entrega">
+                        <option>Selecione</option>
+                        <option>Vou entregar no local</option>
+                        <option>Preciso que busquem</option>
+                        <option>A combinar</option>
+                    </select>
+                </div>
 
-<div class="item">
-    <h3>🛏️ Cobertores</h3>
-    <p>Para aquecer os animais resgatados</p>
-</div>
-
-</div>
-
-<h2>Quero doar</h2>
-
-<form class="form-doacao">
-
-<input type="text" placeholder="Seu nome" required>
-
-<select>
-    <option>Tipo de doação</option>
-    <option>Dinheiro</option>
-    <option>Ração</option>
-    <option>Roupas</option>
-    <option>Produtos de higiene</option>
-</select>
-
-<input type="text" placeholder="Quantidade ou valor">
-
-<button class="btn-default">Enviar</button>
-
-</form>
-
-</section>
+                <button type="submit" class="btn-enviar-doacao">Enviar</button>
+            </form>
+        </section>
+    </main>
 
 </body>
 </html>
