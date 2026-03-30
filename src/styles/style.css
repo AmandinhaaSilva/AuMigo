@@ -128,7 +128,7 @@ section {
 .sobre-imagens{
     width: 50%;
     position: relative;
-    height: 500px; /* 🔥 aumentei altura pra caber melhor */
+    height: 500px; 
 }
 
 .sobre-imagens img{
