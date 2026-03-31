@@ -1,0 +1,73 @@
+.mel-page{
+    padding: 50px 8%;
+}
+
+.voltar{
+    text-decoration: none;
+    color: #3b0010;
+    font-weight: 600;
+}
+
+.mel-container{
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.mel-imagens{
+    width: 55%;
+}
+
+.imagem-principal{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.miniaturas{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.miniaturas img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.mel-info{
+    width: 45%;
+}
+
+.mel-info h1{
+    font-size: 32px;
+    color: #3b0010;
+}
+
+.sexo{
+    color: #888;
+}
+
+.mel-info p{
+    margin-top: 10px;
+}
+
+.btn-adotar{
+    display: inline-block;
+    margin-top: 20px;
+    color: #16b5a6;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.infos{
+    margin-top: 20px;
+}
+
+@media (max-width: 900px){
+    .mel-container{
+        flex-direction: column;
+    }
+}
