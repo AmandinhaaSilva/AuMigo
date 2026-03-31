@@ -1,75 +1,88 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adote o Max</title>
+.max-page{
+    padding: 50px 8%;
+}
 
-    <link rel="stylesheet" href="src/styles/style.css">
-    <link rel="stylesheet" href="src/styles/header.css">
-    <link rel="stylesheet" href="src/styles/max.css">
-</head>
-<body>
+.voltar{
+    text-decoration: none;
+    color: #3b0010;
+    font-weight: 600;
+}
 
-<header>
-    <nav id="navbar">
-        <img width="50" height="50" src="logo.png" alt="logo" />
+.max-container{
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    align-items: flex-start;
+}
 
-        <ul id="nav_list">
-            <li class="nav-item"><a href="index.html">Início</a></li>
-            <li class="nav-item"><a href="sobre.html">Sobre</a></li>
-            <li class="nav-item"><a href="doacoes.html">Doações</a></li>
-            <li class="nav-item active"><a href="adocoes.html">Adoções</a></li>
-        </ul>
+.max-imagens{
+    width: 55%;
+}
 
-        <button class="btn-default">Login</button>
-    </nav>
-</header>
+.imagem-principal{
+    width: 100%;
+    border-radius: 10px;
+}
 
-<main class="max-page">
+.miniaturas{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
 
-    <a href="adocoes.html" class="voltar">← Voltar</a>
+.miniaturas img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
-    <div class="max-container">
+.max-info{
+    width: 45%;
+}
 
-        <div class="max-imagens">
-            <img src="img/max1.jpg" class="imagem-principal" alt="Max">
+.max-info h1{
+    font-size: 32px;
+    color: #3b0010;
+}
 
-            <div class="miniaturas">
-                <img src="img/max1.jpg" alt="Max 1">
-                <img src="img/max2.jpg" alt="Max 2">
-                <img src="img/max3.jpg" alt="Max 3">
-            </div>
-        </div>
+.sexo{
+    color: #888;
+}
 
-        <div class="max-info">
-            <h1>Adote o Max</h1>
-            <span class="sexo">Macho</span>
+.max-info h3{
+    margin-top: 20px;
+}
 
-            <h3>Oi, eu sou o Max 🐾</h3>
+.max-info p{
+    margin-top: 10px;
+    line-height: 1.6;
+}
 
-            <p>
-                Eu fui resgatado e, no começo, estava muito desconfiado e assustado.
-                Com carinho, cuidados e paciência, fui aprendendo a confiar novamente.
-            </p>
+.btn-adotar{
+    display: inline-block;
+    margin-top: 20px;
+    color: #16b5a6;
+    font-weight: 700;
+    text-decoration: none;
+}
 
-            <p>
-                Hoje sou um cachorro muito companheiro, alegre e cheio de energia.
-                Estou pronto para encontrar uma família que me dê amor, atenção e um lar seguro.
-            </p>
+.infos{
+    margin-top: 20px;
+}
 
-            <a href="#" class="btn-adotar">QUERO ADOTAR O MAX</a>
+.infos p{
+    margin-top: 5px;
+}
 
-            <div class="infos">
-                <p><strong>Idade:</strong> 3 anos</p>
-                <p><strong>Porte:</strong> Médio</p>
-                <p><strong>Sexo:</strong> Macho</p>
-            </div>
-        </div>
+@media (max-width: 900px){
+    .max-container{
+        flex-direction: column;
+    }
 
-    </div>
-
-</main>
-
-</body>
-</html>
+    .max-imagens,
+    .max-info{
+        width: 100%;
+    }
+}
