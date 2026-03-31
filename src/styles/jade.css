@@ -1,4 +1,4 @@
-.pingo-page{
+.jade-page{
     padding: 50px 8%;
 }
 
@@ -8,14 +8,14 @@
     font-weight: 600;
 }
 
-.pingo-container{
+.jade-container{
     display: flex;
     gap: 40px;
     margin-top: 30px;
     align-items: flex-start;
 }
 
-.pingo-imagens{
+.jade-imagens{
     width: 55%;
 }
 
@@ -38,11 +38,11 @@
     cursor: pointer;
 }
 
-.pingo-info{
+.jade-info{
     width: 45%;
 }
 
-.pingo-info h1{
+.jade-info h1{
     font-size: 32px;
     color: #3b0010;
 }
@@ -51,11 +51,11 @@
     color: #888;
 }
 
-.pingo-info h3{
+.jade-info h3{
     margin-top: 20px;
 }
 
-.pingo-info p{
+.jade-info p{
     margin-top: 10px;
     line-height: 1.6;
 }
@@ -77,12 +77,12 @@
 }
 
 @media (max-width: 900px){
-    .pingo-container{
+    .jade-container{
         flex-direction: column;
     }
 
-    .pingo-imagens,
-    .pingo-info{
+    .jade-imagens,
+    .jade-info{
         width: 100%;
     }
 }
