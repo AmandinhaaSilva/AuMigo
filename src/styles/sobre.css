@@ -233,6 +233,10 @@ section {
     grid-column: 4 / 6;
 }
 
+.membro:nth-child(6) {
+    grid-column: 6 / 8;
+}
+
 .membro {
     text-align: center;
 }
