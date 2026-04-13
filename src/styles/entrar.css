@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #f3e7db, #d6b79c);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.entrar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.entrar-box {
+    background-color: #efe3d7;
+    width: 100%;
+    max-width: 550px;
+    padding: 40px 30px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.logo {
+    width: 70px;
+    margin-bottom: 10px;
+}
+
+.entrar-box h1 {
+    font-size: 22px;
+    color: #7a4b2f;
+    margin-bottom: 5px;
+}
+
+.entrar-box p {
+    color: #9a755d;
+    margin-bottom: 25px;
+}
+
+form {
+    text-align: left;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    color: #7a4b2f;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+form input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 18px;
+    border: none;
+    background-color: #f7efe8;
+    font-size: 15px;
+    outline: none;
+}
+
+form input::placeholder {
+    color: #b0907b;
+}
+
+form button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    border-radius: 18px;
+    border: none;
+    background: linear-gradient(to right, #9b6a43, #c98d56);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    transform: scale(1.03);
+    opacity: 0.95;
+}
+
+.esqueci {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.esqueci a {
+    font-size: 13px;
+    color: #7a4b2f;
+    text-decoration: none;
+}
+
+.esqueci a:hover {
+    text-decoration: underline;
+}
+
+.cadastro {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #7a4b2f;
+}
+
+.cadastro a {
+    font-weight: bold;
+    color: #7a4b2f;
+    text-decoration: underline;
+}
+
+a {
+    text-decoration: none;
+    color: #7a4b2f;
+}
