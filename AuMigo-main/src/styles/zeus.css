@@ -1,0 +1,24 @@
+.pet-page{
+    padding:50px 8%;
+}
+
+.pet-container{
+    display:flex;
+    gap:40px;
+}
+
+.pet-imagens{
+    width:55%;
+}
+
+.pet-info{
+    width:45%;
+}
+
+.imagem-principal{
+    width:100%;
+}
+
+.miniaturas img{
+    width:80px;
+}
