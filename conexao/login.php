@@ -1,46 +1,21 @@
-<?php
-session_start();
-include("conexao.php");
+$sql = "SELECT * FROM usuarios 
+        WHERE email = '$email' AND senha = '$senha'";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST["email"] ?? "");
-    $senha = $_POST["senha"] ?? "";
+$result = $conn->query($sql);
 
-    if (empty($email) || empty($senha)) {
-        die("Preencha e-mail e senha.");
-    }
+if ($result->num_rows > 0) {
 
-    $sql = "SELECT id, nome, senha, tipo_usuario FROM usuarios WHERE email = ?";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
+    $usuario = $result->fetch_assoc();
+    $usuario_id = $usuario['id']; // pega o ID
 
-    if ($resultado->num_rows == 1) {
-        $usuario = $resultado->fetch_assoc();
+    $sqlHistorico = "INSERT INTO historico_login (usuario_id)
+                     VALUES ('$usuario_id')";
 
-        if (password_verify($senha, $usuario["senha"])) {
-            $_SESSION["usuario_id"] = $usuario["id"];
-            $_SESSION["usuario_nome"] = $usuario["nome"];
-            $_SESSION["tipo_usuario"] = $usuario["tipo_usuario"];
+    $conn->query($sqlHistorico);
 
-            $sqlHistorico = "INSERT INTO historico_login (usuario_id) VALUES (?)";
-            $stmtHistorico = $conexao->prepare($sqlHistorico);
-            $stmtHistorico->bind_param("i", $usuario["id"]);
-            $stmtHistorico->execute();
-            $stmtHistorico->close();
+    echo "Login realizado com sucesso!";
 
-            echo "Login realizado com sucesso!";
-        } else {
-            echo "Senha incorreta!";
-        }
-    } else {
-        echo "Usuário não encontrado!";
-    }
-
-    $stmt->close();
-    $conexao->close();
 } else {
-    echo "Acesso inválido.";
+    echo "Usuário ou senha incorretos!";
 }
 ?>
