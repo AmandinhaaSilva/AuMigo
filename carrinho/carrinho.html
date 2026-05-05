@@ -1,152 +1,54 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Carrinho AuMigo</title>
+<section id="carrinho" class="carrinho-cadastro">
+  <img src="img/logo.png" alt="AuMigo" class="logo-carrinho">
   <link rel="stylesheet" href="style.css">
-</head>
 
-<body>
+  <h2>Meu Carrinho 🐾</h2>
+  <p class="subtitulo-carrinho">Confira seus produtos antes de finalizar</p>
 
-  <!-- CARRINHO AO LADO DO LOGIN -->
-  <div class="area-login-carrinho">
-    <a href="#carrinho" class="btn-carrinho">
-      🛒
-      <span id="contadorCarrinho">0</span>
-    </a>
-
-    <button class="btn-login">Login</button>
+  <div id="listaCarrinho">
+    <p class="carrinho-vazio">Seu carrinho está vazio 🐶</p>
   </div>
 
-
-  <!-- PRODUTOS (exemplo) -->
-  <div class="produtos">
-    <button onclick="adicionarCarrinho('Ração Premium', 89.90)">Comprar Ração</button>
-    <button onclick="adicionarCarrinho('Brinquedo Mordedor', 24.90)">Comprar Brinquedo</button>
-    <button onclick="adicionarCarrinho('Coleira Ajustável', 35.90)">Comprar Coleira</button>
+  <div class="total-carrinho">
+    <span>Total da compra:</span>
+    <strong>R$ <span id="totalCarrinho">0,00</span></strong>
   </div>
 
+  <div class="pagamento-carrinho">
+    <h3>Forma de pagamento</h3>
 
-  <!-- CARRINHO -->
-  <section id="carrinho" class="carrinho-container">
-    <h2>Meu Carrinho 🛒</h2>
+    <label>
+      <input type="radio" name="formaPagamento" value="Pix" onclick="mostrarPagamento()">
+      Pix
+    </label>
 
-    <div id="listaCarrinho"></div>
+    <label>
+      <input type="radio" name="formaPagamento" value="Débito" onclick="mostrarPagamento()">
+      Cartão de Débito
+    </label>
 
-    <div class="total-carrinho">
-      <h3>Total: R$ <span id="totalCarrinho">0,00</span></h3>
+    <label>
+      <input type="radio" name="formaPagamento" value="Crédito" onclick="mostrarPagamento()">
+      Cartão de Crédito
+    </label>
+  </div>
+
+  <div id="pixBox" class="box-pagamento">
+    <p>Chave Pix:</p>
+    <strong>aumigo@pet.com</strong>
+  </div>
+
+  <div id="cartaoBox" class="box-pagamento">
+    <input type="text" placeholder="Nome impresso no cartão">
+    <input type="text" placeholder="Número do cartão">
+
+    <div class="linha-cartao">
+      <input type="text" placeholder="Validade">
+      <input type="text" placeholder="CVC">
     </div>
+  </div>
 
-    <div class="pagamento">
-      <h3>Forma de pagamento</h3>
-
-      <label>
-        <input type="radio" name="pagamento" value="Pix"> Pix
-      </label>
-
-      <label>
-        <input type="radio" name="pagamento" value="Crédito"> Cartão de Crédito
-      </label>
-
-      <label>
-        <input type="radio" name="pagamento" value="Débito"> Cartão de Débito
-      </label>
-    </div>
-
-    <button class="btn-finalizar" onclick="finalizarCompra()">
-      Finalizar compra
-    </button>
-  </section>
-
-
-  <!-- JAVASCRIPT -->
-  <script>
-    let carrinho = [];
-
-    function adicionarCarrinho(nome, preco) {
-      const produto = carrinho.find(item => item.nome === nome);
-
-      if (produto) {
-        produto.quantidade++;
-      } else {
-        carrinho.push({ nome, preco, quantidade: 1 });
-      }
-
-      atualizarCarrinho();
-    }
-
-    function aumentarQuantidade(i) {
-      carrinho[i].quantidade++;
-      atualizarCarrinho();
-    }
-
-    function diminuirQuantidade(i) {
-      if (carrinho[i].quantidade > 1) {
-        carrinho[i].quantidade--;
-      } else {
-        carrinho.splice(i, 1);
-      }
-      atualizarCarrinho();
-    }
-
-    function excluirItem(i) {
-      carrinho.splice(i, 1);
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      const lista = document.getElementById("listaCarrinho");
-      const totalEl = document.getElementById("totalCarrinho");
-      const contador = document.getElementById("contadorCarrinho");
-
-      lista.innerHTML = "";
-
-      let total = 0;
-      let qtdTotal = 0;
-
-      carrinho.forEach((item, i) => {
-        total += item.preco * item.quantidade;
-        qtdTotal += item.quantidade;
-
-        lista.innerHTML += `
-          <div class="item-carrinho">
-            <div class="item-info">
-              <strong>${item.nome}</strong><br>
-              R$ ${item.preco.toFixed(2).replace(".", ",")} x ${item.quantidade}
-            </div>
-
-            <div class="controles-carrinho">
-              <button onclick="diminuirQuantidade(${i})">-</button>
-              <button onclick="aumentarQuantidade(${i})">+</button>
-              <button class="excluir" onclick="excluirItem(${i})">Excluir</button>
-            </div>
-          </div>
-        `;
-      });
-
-      totalEl.innerText = total.toFixed(2).replace(".", ",");
-      contador.innerText = qtdTotal;
-    }
-
-    function finalizarCompra() {
-      const pagamento = document.querySelector('input[name="pagamento"]:checked');
-
-      if (carrinho.length === 0) {
-        alert("Carrinho vazio!");
-        return;
-      }
-
-      if (!pagamento) {
-        alert("Escolha uma forma de pagamento!");
-        return;
-      }
-
-      alert("Compra finalizada com sucesso!\nPagamento: " + pagamento.value);
-
-      carrinho = [];
-      atualizarCarrinho();
-    }
-  </script>
-
-</body>
-</html>
+  <button class="btn-finalizar" onclick="finalizarCompra()">
+    Finalizar compra
+  </button>
+</section>

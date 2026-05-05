@@ -1,89 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
-<link rel="stylesheet" href="src/styles/style.css">
-<link rel="stylesheet" href="src/styles/header.css">
-<link rel="stylesheet" href="src/styles/home.css">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/header.css">
+    <link rel="stylesheet" href="src/styles/home.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<title>AuMigo</title>
+    <title>AuMigo</title>
 </head>
+
 <body>
 
     <header>
-    <nav id="navbar">
-        <img src="logo.png" alt="logo"/>
-        <ul id="nav_list">
-            <li class="nav-item">
-                <a href="sobre.html">Sobre</a>
-            </li>
+        <nav id="navbar">
+            <img src="logo.png" alt="logo" />
+            <ul id="nav_list">
+                <li class="nav-item">
+                    <a href="sobre.html">Sobre</a>
+                </li>
 
-            <li class="nav-item">
-                <a href="doações.html">Doações</a>
-            </li>
+                <li class="nav-item">
+                    <a href="doações.html">Doações</a>
+                </li>
 
-            <li class="nav-item">
-                <a href="adoções.html">Adoções</a>
-            </li>
+                <li class="nav-item">
+                    <a href="adoções.html">Adoções</a>
+                </li>
 
-            <li class="nav-item">
-                <a href="loja.html">Loja</a>
-            </li>
-        </ul>
+                <li class="nav-item">
+                    <a href="loja.html">Loja</a>
+                </li>
 
-        <a href="./login.html" class="btn-default">Login</a>
+                <li class="nav-item">
+                    <a href="carrinho/carrinho.html">Carrinho</a>
+                </li>
 
-        <button id="mobile_btn">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-            
-    </nav>
 
-    <div id="mobile_menu">
-        <ul id="nav_list">
-            <li class="nav-item">
-                <a href="sobre.html">Sobre</a>
-            </li>
+            </ul>
 
-            <li class="nav-item">
-                <a href="doações.html">Doações</a>
-            </li>
+            <a href="./login.html" class="btn-default">Login</a>
 
-            <li class="nav-item">
-                <a href="adoções.html">Adoções</a>
-            </li>
+            <button id="mobile_btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-            <li class="nav-item">
-                <a href="loja.html">Loja</a>
-            </li>
-        </ul>
+        </nav>
 
-        <a href="./login.html" class="btn-default">Login</a>
-    </div>
-</header>
+        <div id="mobile_menu">
+            <ul id="nav_list">
+                <li class="nav-item">
+                    <a href="sobre.html">Sobre</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="doações.html">Doações</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="adoções.html">Adoções</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="loja.html">Loja</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="carrinho/carrinho.html">Carrinho</a>
+                </li>
+            </ul>
+
+            <a href="./login.html" class="btn-default">Login</a>
+        </div>
+    </header>
 
     <main id="content">
         <section id="home">
             <div id="cta">
                 <h1 class="title">
-    Um novo lar começa com um gesto de
-    <span>Amor 🐾</span>
-</h1>
+                    Um novo lar começa com um gesto de
+                    <span>Amor 🐾</span>
+                </h1>
 
-<p class="description">
-    AuMigo: porque cada bicho merece um amigo de verdade!
-</p>
+                <p class="description">
+                    AuMigo: porque cada bicho merece um amigo de verdade!
+                </p>
 
                 <div id="cta_buttons">
                     <a href="doações.html" class="btn-default">
@@ -91,14 +104,14 @@
                     </a>
 
                     <a href="tel:+5517991529098" class="btn-default" id="phone_button">
-                    <i class="fa-solid fa-phone"></i>
-                    (17) 99152-9090
+                        <i class="fa-solid fa-phone"></i>
+                        (17) 99152-9090
                     </a>
 
 
                 </div>
 
-                
+
             </div>
 
             <div id="banner">
@@ -111,6 +124,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="src/javascript/script.js"></script>
-    
+
 </body>
+
 </html>
