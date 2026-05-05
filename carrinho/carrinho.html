@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrinho AuMigo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- CARRINHO AO LADO DO LOGIN -->
+  <div class="area-login-carrinho">
+    <a href="#carrinho" class="btn-carrinho">
+      🛒
+      <span id="contadorCarrinho">0</span>
+    </a>
+
+    <button class="btn-login">Login</button>
+  </div>
+
+
+  <!-- PRODUTOS (exemplo) -->
+  <div class="produtos">
+    <button onclick="adicionarCarrinho('Ração Premium', 89.90)">Comprar Ração</button>
+    <button onclick="adicionarCarrinho('Brinquedo Mordedor', 24.90)">Comprar Brinquedo</button>
+    <button onclick="adicionarCarrinho('Coleira Ajustável', 35.90)">Comprar Coleira</button>
+  </div>
+
+
+  <!-- CARRINHO -->
+  <section id="carrinho" class="carrinho-container">
+    <h2>Meu Carrinho 🛒</h2>
+
+    <div id="listaCarrinho"></div>
+
+    <div class="total-carrinho">
+      <h3>Total: R$ <span id="totalCarrinho">0,00</span></h3>
+    </div>
+
+    <div class="pagamento">
+      <h3>Forma de pagamento</h3>
+
+      <label>
+        <input type="radio" name="pagamento" value="Pix"> Pix
+      </label>
+
+      <label>
+        <input type="radio" name="pagamento" value="Crédito"> Cartão de Crédito
+      </label>
+
+      <label>
+        <input type="radio" name="pagamento" value="Débito"> Cartão de Débito
+      </label>
+    </div>
+
+    <button class="btn-finalizar" onclick="finalizarCompra()">
+      Finalizar compra
+    </button>
+  </section>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+    let carrinho = [];
+
+    function adicionarCarrinho(nome, preco) {
+      const produto = carrinho.find(item => item.nome === nome);
+
+      if (produto) {
+        produto.quantidade++;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
+
+      atualizarCarrinho();
+    }
+
+    function aumentarQuantidade(i) {
+      carrinho[i].quantidade++;
+      atualizarCarrinho();
+    }
+
+    function diminuirQuantidade(i) {
+      if (carrinho[i].quantidade > 1) {
+        carrinho[i].quantidade--;
+      } else {
+        carrinho.splice(i, 1);
+      }
+      atualizarCarrinho();
+    }
+
+    function excluirItem(i) {
+      carrinho.splice(i, 1);
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      const lista = document.getElementById("listaCarrinho");
+      const totalEl = document.getElementById("totalCarrinho");
+      const contador = document.getElementById("contadorCarrinho");
+
+      lista.innerHTML = "";
+
+      let total = 0;
+      let qtdTotal = 0;
+
+      carrinho.forEach((item, i) => {
+        total += item.preco * item.quantidade;
+        qtdTotal += item.quantidade;
+
+        lista.innerHTML += `
+          <div class="item-carrinho">
+            <div class="item-info">
+              <strong>${item.nome}</strong><br>
+              R$ ${item.preco.toFixed(2).replace(".", ",")} x ${item.quantidade}
+            </div>
+
+            <div class="controles-carrinho">
+              <button onclick="diminuirQuantidade(${i})">-</button>
+              <button onclick="aumentarQuantidade(${i})">+</button>
+              <button class="excluir" onclick="excluirItem(${i})">Excluir</button>
+            </div>
+          </div>
+        `;
+      });
+
+      totalEl.innerText = total.toFixed(2).replace(".", ",");
+      contador.innerText = qtdTotal;
+    }
+
+    function finalizarCompra() {
+      const pagamento = document.querySelector('input[name="pagamento"]:checked');
+
+      if (carrinho.length === 0) {
+        alert("Carrinho vazio!");
+        return;
+      }
+
+      if (!pagamento) {
+        alert("Escolha uma forma de pagamento!");
+        return;
+      }
+
+      alert("Compra finalizada com sucesso!\nPagamento: " + pagamento.value);
+
+      carrinho = [];
+      atualizarCarrinho();
+    }
+  </script>
+
+</body>
+</html>

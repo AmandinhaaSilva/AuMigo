@@ -1,0 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5e6c8;
+}
+
+/* TOPO */
+.area-login-carrinho {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding: 20px;
+}
+
+/* BOTÃO CARRINHO */
+.btn-carrinho {
+  position: relative;
+  background-color: #ff7a00;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 22px;
+  text-decoration: none;
+  color: black;
+}
+
+#contadorCarrinho {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #3b2450;
+  color: white;
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 50%;
+}
+
+/* CARRINHO */
+.carrinho-container {
+  width: 80%;
+  margin: 30px auto;
+  background: #fffaf0;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.item-carrinho {
+  display: flex;
+  justify-content: space-between;
+  background: #fff4dc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.controles-carrinho button {
+  margin: 2px;
+  background: #ff7a00;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.excluir {
+  background: #3b2450;
+  color: white;
+}
+
+.total-carrinho {
+  text-align: right;
+  margin-top: 15px;
+}
+
+.pagamento {
+  margin-top: 20px;
+}
+
+.btn-finalizar {
+  width: 100%;
+  margin-top: 15px;
+  background: #ff7a00;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
