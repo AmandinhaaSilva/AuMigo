@@ -1,7 +1,9 @@
-let carrinho = [];
+// ===== CARRINHO =====
+let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
+// ===== ADICIONAR PRODUTO =====
 function adicionarCarrinho(nome, preco) {
-  const item = carrinho.find(produto => produto.nome === nome);
+  const item = carrinho.find(p => p.nome === nome);
 
   if (item) {
     item.quantidade++;
@@ -13,12 +15,16 @@ function adicionarCarrinho(nome, preco) {
     });
   }
 
+  salvarCarrinho();
   atualizarCarrinho();
 }
 
+// ===== ATUALIZAR TELA =====
 function atualizarCarrinho() {
   const lista = document.getElementById("listaCarrinho");
-  const totalCarrinho = document.getElementById("totalCarrinho");
+  const totalSpan = document.getElementById("totalCarrinho");
+
+  if (!lista || !totalSpan) return;
 
   lista.innerHTML = "";
 
@@ -48,11 +54,13 @@ function atualizarCarrinho() {
     `;
   });
 
-  totalCarrinho.innerText = total.toFixed(2).replace(".", ",");
+  totalSpan.innerText = total.toFixed(2).replace(".", ",");
 }
 
+// ===== CONTROLES =====
 function aumentarItem(index) {
   carrinho[index].quantidade++;
+  salvarCarrinho();
   atualizarCarrinho();
 }
 
@@ -63,27 +71,48 @@ function diminuirItem(index) {
     carrinho.splice(index, 1);
   }
 
+  salvarCarrinho();
   atualizarCarrinho();
 }
 
 function removerItem(index) {
   carrinho.splice(index, 1);
+  salvarCarrinho();
   atualizarCarrinho();
 }
 
-function mostrarPagamento() {
-  const forma = document.querySelector('input[name="formaPagamento"]:checked').value;
-
-  document.getElementById("pixBox").style.display = "none";
-  document.getElementById("cartaoBox").style.display = "none";
-
-  if (forma === "Pix") {
-    document.getElementById("pixBox").style.display = "block";
-  } else {
-    document.getElementById("cartaoBox").style.display = "block";
-  }
+// ===== SALVAR NO NAVEGADOR =====
+function salvarCarrinho() {
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
+// ===== PAGAMENTO =====
+function configurarPagamento() {
+  const radios = document.querySelectorAll('input[name="formaPagamento"]');
+
+  radios.forEach(radio => {
+    radio.addEventListener("change", function () {
+
+      const pix = document.getElementById("pixBox");
+      const cartao = document.getElementById("cartaoBox");
+
+      if (!pix || !cartao) return;
+
+      pix.style.display = "none";
+      cartao.style.display = "none";
+
+      if (this.value === "Pix") {
+        pix.style.display = "block";
+      }
+
+      if (this.value === "Debito" || this.value === "Credito") {
+        cartao.style.display = "block";
+      }
+    });
+  });
+}
+
+// ===== FINALIZAR =====
 function finalizarCompra() {
   const forma = document.querySelector('input[name="formaPagamento"]:checked');
 
@@ -93,12 +122,23 @@ function finalizarCompra() {
   }
 
   if (!forma) {
-    alert("Escolha uma forma de pagamento.");
+    alert("Escolha uma forma de pagamento!");
     return;
   }
 
-  alert("Compra finalizada com sucesso!");
+  if (forma.value === "Pix") {
+    alert("Finalize o pagamento via Pix usando a chave exibida.");
+  } else {
+    alert("Pagamento com cartão realizado com sucesso!");
+  }
 
   carrinho = [];
+  salvarCarrinho();
   atualizarCarrinho();
 }
+
+// ===== INICIAR =====
+window.onload = function () {
+  atualizarCarrinho();
+  configurarPagamento();
+};
