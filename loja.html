@@ -105,25 +105,25 @@
 
                 <aside class="filtros">
                     <h3>Filtros</h3>
-
+                        <button id="mostrar-todos">Mostrar Todos</button>
                     <div class="filtro-bloco">
                         <h4>Categorias</h4>
                         <ul>
-                            <li><a href="#">🍖 Ração</a></li>
-                            <li><a href="#">🦴 Petiscos</a></li>
-                            <li><a href="#">🦮 Acessórios</a></li>
-                            <li><a href="#">🛁 Higiene</a></li>
-                            <li><a href="#">👕 Roupinhas</a></li>
-                            <li><a href="#">🎾 Brinquedos</a></li>
+                            <li><button class="filtro-categoria" data-categoria="racao">🍖 Ração</button></li>
+                            <li><button class="filtro-categoria" data-categoria="petiscos">🦴 Petiscos</button></li>
+                            <li><button class="filtro-categoria" data-categoria="acessorios">🦮 Acessórios</button></li>
+                            <li><button class="filtro-categoria" data-categoria="higiene">🛁 Higiene</button></li>
+                            <li><button class="filtro-categoria" data-categoria="roupinhas">👕 Roupinhas</button></li>
+                            <li><button class="filtro-categoria" data-categoria="brinquedos">🎾 Brinquedos</button></li>
                         </ul>
                     </div>
 
                     <div class="filtro-bloco">
                         <h4>Faixa de preço</h4>
                         <ul>
-                            <li><a href="#">Até R$ 30</a></li>
-                            <li><a href="#">De R$ 30 a R$ 80</a></li>
-                            <li><a href="#">Acima de R$ 80</a></li>
+                            <li><button class="filtro-preco" data-faixa="30">Até R$ 30</button></li>
+                            <li><button class="filtro-preco" data-faixa="30-80">De R$ 30 a R$ 80</button></li>
+                            <li><button class="filtro-preco" data-faixa="80">Acima de R$ 80</button></li>
                         </ul>
                     </div>
                 </aside>
@@ -135,7 +135,7 @@
 
                     <div class="produtos-container">
 
-                        <div class="produto-card">
+                        <div class="produto-card" data-categoria="racao" data-preco="89.90">
                             <span class="tag-produto">Mais vendido</span>
                             <img src="img/RaçãoPremium.jpg" alt="Ração Premium">
                             <div class="produto-info">
@@ -152,7 +152,7 @@
                             </div>
                         </div>
 
-                        <div class="produto-card">
+                        <div class="produto-card" data-categoria="brinquedos" data-preco="24.90">
                             <span class="tag-produto">Promoção</span>
                             <img src="img/brinquedo mordedor.jpg" alt="Brinquedo Mordedor">
                             <div class="produto-info">
@@ -169,7 +169,7 @@
                             </div>
                         </div>
 
-                        <div class="produto-card">
+                        <div class="produto-card" data-categoria="acessorios" data-preco="35.90">
                             <span class="tag-produto">Destaque</span>
                             <img src="img/coleira.jpg" alt="Coleira Ajustável">
                             <div class="produto-info">
@@ -186,7 +186,7 @@
                             </div>
                         </div>
 
-                        <div class="produto-card">
+                        <div class="produto-card" data-categoria="higiene" data-preco="19.90">
                             <span class="tag-produto">Oferta</span>
                             <img src="img/shampoo.jpg" alt="Shampoo Pet">
                             <div class="produto-info">
@@ -203,7 +203,7 @@
                             </div>
                         </div>
 
-                        <div class="produto-card">
+                        <div class="produto-card" data-categoria="acessorios" data-preco="119.90">
                             <span class="tag-produto">Conforto</span>
                             <img src="img/caminha fofinha.jpg" alt="Caminha para cachorro">
                             <div class="produto-info">
@@ -220,7 +220,7 @@
                             </div>
                         </div>
 
-                        <div class="produto-card">
+                        <div class="produto-card" data-categoria="petiscos" data-preco="16.90">
                             <span class="tag-produto">Novo</span>
                             <img src="img/pestiscos.jpg" alt="Petisco Natural">
                             <div class="produto-info">
@@ -237,6 +237,19 @@
                             </div>
                         </div>
 
+                        <div class="produto-card" data-categoria="roupinhas" data-preco="49.90">
+                            <span class="tag-produto">Fofo</span>
+                            <img src="img/roupafemea.png" alt="Roupinha de Inverno">
+                            <div class="produto-info">
+                                <span class="marca">AuMigo Pet</span>
+                                <h3>Roupinha</h3>
+                                <p>Roupinha confortável e quentinha.</p>
+                                <span class="preco-antigo">R$ 59,90</span>
+                                <span class="preco">R$ 49,90</span>
+                                <span class="parcelamento">ou 2x de R$ 24,95</span>
+                                <a href="#" class="btn-default">Comprar</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
