@@ -48,6 +48,26 @@
     margin-bottom: 24px;
 }
 
+/* BOTÃO MOSTRAR TODOS */
+#mostrar-todos {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 14px;
+    background-color: #fc8106;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 24px;
+    transition: 0.3s ease;
+}
+
+#mostrar-todos:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
 .filtro-bloco {
     margin-bottom: 30px;
     padding-bottom: 22px;
@@ -76,15 +96,20 @@
     margin-bottom: 12px;
 }
 
-.filtro-bloco ul li a {
+/* BOTÕES DOS FILTROS */
+.filtro-bloco ul li button {
+    background: none;
+    border: none;
     text-decoration: none;
     color: #5c4033;
     font-size: 16px;
     transition: 0.3s ease;
     display: inline-block;
+    cursor: pointer;
+    padding: 0;
 }
 
-.filtro-bloco ul li a:hover {
+.filtro-bloco ul li button:hover {
     color: #fc8106;
     transform: translateX(4px);
 }
