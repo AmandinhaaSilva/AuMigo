@@ -1,74 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Carrinho AuMigo</title>
-
-  <link rel="stylesheet" href="../src/styles/style.css">
-  <link rel="stylesheet" href="../src/styles/header.css">
+    <meta charset="UTF-8">
+    <title>Carrinho AuMigo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <section id="carrinho" class="carrinho-cadastro">
-
+<section class="carrinho-container">
     <img src="img/logo.png" alt="AuMigo" class="logo-carrinho">
 
-    <h2>Meu Carrinho 🐾</h2>
-    <p class="subtitulo-carrinho">Confira seus produtos antes de finalizar</p>
+    <h1>Meu Carrinho 🐾</h1>
+    <p class="subtitulo">Confira seus produtos e ajude nossos doguinhos 💗</p>
 
-    <div id="listaCarrinho">
-      <p class="carrinho-vazio">Seu carrinho está vazio 🐶</p>
+    <div id="listaCarrinho"></div>
+
+    <div class="total-box">
+        <h2>Total: R$ <span id="totalCarrinho">0,00</span></h2>
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
+</section>
 
-    <div class="total-carrinho">
-      <span>Total da compra:</span>
-      <strong>R$ <span id="totalCarrinho">0,00</span></strong>
-    </div>
-
-    <div class="pagamento-carrinho">
-      <h3>Forma de pagamento</h3>
-
-      <label>
-        <input type="radio" name="formaPagamento" value="Pix">
-        Pix
-      </label>
-
-      <label>
-        <input type="radio" name="formaPagamento" value="Debito">
-        Cartão de Débito
-      </label>
-
-      <label>
-        <input type="radio" name="formaPagamento" value="Credito">
-        Cartão de Crédito
-      </label>
-    </div>
-
-    <div id="pixBox" class="box-pagamento">
-      <p>Chave Pix:</p>
-      <strong>aumigo@pet.com</strong>
-    </div>
-
-    <div id="cartaoBox" class="box-pagamento">
-      <input type="text" placeholder="Nome impresso no cartão">
-      <input type="text" placeholder="Número do cartão">
-
-      <div class="linha-cartao">
-        <input type="text" placeholder="Validade MM/AA">
-        <input type="text" placeholder="CVC">
-      </div>
-    </div>
-
-    <button class="btn-finalizar" onclick="finalizarCompra()">
-      Finalizar compra
-    </button>
-
-  </section>
-
-  <script src="script.js"></script>
-
+<script src="carrinho.js"></script>
 </body>
 </html>
