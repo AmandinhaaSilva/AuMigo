@@ -10,12 +10,15 @@ $cpf = $_POST['cpf'];
 $senha = $_POST['senha'];
 
 $sql = "INSERT INTO usuarios
-(Nome, Endereco, Telefone, Email, CPF, Senha, Data_cadastrada)
+(Nome, Telefone, Endereco, Email, CPF, Senha, Data_cadastrada)
 VALUES
-('$nome', '$endereco', '$telefone', '$email', '$cpf', '$senha', NOW())";
+('$nome', '$telefone', '$endereco', '$email', '$cpf', '$senha', NOW())";
 
-if(mysqli_query($conexao, $sql)){
+if (mysqli_query($conexao, $sql)) {
     echo "Cadastro realizado com sucesso!";
-}else{
+} else {
     echo "Erro: " . mysqli_error($conexao);
 }
+
+mysqli_close($conexao);
+?>
