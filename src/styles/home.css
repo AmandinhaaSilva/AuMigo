@@ -47,14 +47,15 @@
 
 #banner {
     display: flex;
-    align-items: start;
-    justify-content: end;
-    width: 70%;
+    align-items: center;
+    justify-content: center;
+    width: 65%;
 }
 
 #banner img {
-    height: 100%;
-    width: fit-content;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
 }
 
 .shape {
