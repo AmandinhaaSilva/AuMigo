@@ -1,4 +1,4 @@
-.jade-page{
+.boby-page{
     padding: 50px 8%;
 }
 
@@ -8,19 +8,18 @@
     font-weight: 600;
 }
 
-.jade-container{
+.boby-container{
     display: flex;
     gap: 40px;
     margin-top: 30px;
-    align-items: flex-start;
 }
 
-.jade-imagens{
+.boby-imagens{
     width: 55%;
 }
 
 .imagem-principal{
-    width: 40%;
+    width: 100%;
     border-radius: 10px;
 }
 
@@ -38,11 +37,11 @@
     cursor: pointer;
 }
 
-.jade-info{
+.boby-info{
     width: 45%;
 }
 
-.jade-info h1{
+.boby-info h1{
     font-size: 32px;
     color: #3b0010;
 }
@@ -51,20 +50,15 @@
     color: #888;
 }
 
-.jade-info h3{
-    margin-top: 20px;
-}
-
-.jade-info p{
+.boby-info p{
     margin-top: 10px;
-    line-height: 1.6;
 }
 
 .btn-adotar{
     display: inline-block;
     margin-top: 20px;
     color: #16b5a6;
-    font-weight: 700;
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -72,17 +66,8 @@
     margin-top: 20px;
 }
 
-.infos p{
-    margin-top: 5px;
-}
-
 @media (max-width: 900px){
-    .jade-container{
+    .boby-container{
         flex-direction: column;
-    }
-
-    .jade-imagens,
-    .jade-info{
-        width: 100%;
     }
 }
