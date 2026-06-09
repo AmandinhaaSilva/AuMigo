@@ -45,33 +45,62 @@
 
     <main id="adocoes-page">
         <aside class="filtros">
-            <h2>Animais</h2>
+            <h2>🐶 Animais</h2>
             <ul>
                 <li>Cães</li>
                 <li>Filhotes</li>
                 <li>Adultos</li>
             </ul>
 
-            <h2>Sexo</h2>
-            <label><input type="checkbox"> Fêmea</label>
-            <label><input type="checkbox"> Macho</label>
+            <h2>⚥ Sexo</h2>
+            <label>
+                <input type="checkbox" class="filtro-sexo" value="Fêmea">
+                Fêmea
+            </label>
 
-            <h2>Porte</h2>
-            <label><input type="checkbox"> Pequeno</label>
-            <label><input type="checkbox"> Médio</label>
-            <label><input type="checkbox"> Grande</label>
+            <label>
+                <input type="checkbox" class="filtro-sexo" value="Macho">
+                Macho
+            </label>
+
+            <h2>📏 Porte</h2>
+            <label>
+                <input type="checkbox" class="filtro-porte" value="pequeno">
+                Pequeno
+            </label>
+
+            <label>
+                <input type="checkbox" class="filtro-porte" value="médio">
+                Médio
+            </label>
+
+            <label>
+                <input type="checkbox" class="filtro-porte" value="grande">
+                Grande
+            </label>
 
             <h2>Idade</h2>
-            <label><input type="checkbox"> Até 1 ano</label>
-            <label><input type="checkbox"> Até 5 anos</label>
-            <label><input type="checkbox"> Mais de 5 anos</label>
+            <label>
+                <input type="checkbox" class="filtro-idade" value="1">
+                Até 1 ano
+            </label>
+
+            <label>
+                <input type="checkbox" class="filtro-idade" value="5">
+                Até 5 anos
+            </label>
+
+            <label>
+                <input type="checkbox" class="filtro-idade" value="6">
+                Mais de 5 anos
+            </label>
         </aside>
 
         <section class="animais-section">
             <h1>Conheça os animais</h1>
 
             <div class="animais-grid">
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Macho" data-porte="médio" data-idade="2">
                     <img src="img/thor.png" alt="Thor">
                     <h3>Adote o thor</h3>
                     <p>Macho</p>
@@ -80,7 +109,7 @@
                     <a href="./cachorro/thor.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Fêmea" data-porte="pequeno" data-idade="1">
                     <img src="img/luna.png" alt="Luna">
                     <h3>Adote a Luna</h3>
                     <p>Fêmea</p>
@@ -89,7 +118,7 @@
                     <a href="./cachorro/luna.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Macho" data-porte="grande" data-idade="4">
                     <img src="img/pingo.png" alt="Pingo">
                     <h3>Adote o Pingo</h3>
                     <p>Macho</p>
@@ -98,7 +127,7 @@
                     <a href="./cachorro/pingo.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Fêmea" data-porte="grande" data-idade="3">
                     <img src="img/jade.png" alt="Jade">
                     <h3>Adote a Jade</h3>
                     <p>Fêmea</p>
@@ -107,7 +136,7 @@
                     <a href="./cachorro/jade.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Fêmea" data-porte="pequeno" data-idade="3">
                     <img src="img/kiara.png" alt="Kiara">
                     <h3>Adote a Kiara</h3>
                     <p>Fêmea</p>
@@ -116,7 +145,7 @@
                     <a href="./cachorro/kiara.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Macho" data-porte="médio" data-idade="3">
                     <img src="img/max.png" alt="Max">
                     <h3>Adote o Max</h3>
                     <p>Macho</p>
@@ -125,7 +154,7 @@
                     <a href="./cachorro/max.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Fêmea" data-porte="pequeno" data-idade="2">
                     <img src="img/mel.png" alt="Mel">
                     <h3>Adote a Mel</h3>
                     <p>Fêmea</p>
@@ -134,7 +163,7 @@
                     <a href="./cachorro/mel.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Fêmea" data-porte="médio" data-idade="1">
                     <img src="img/nina.png" alt="Nina">
                     <h3>Adote a Nina</h3>
                     <p>Fêmea</p>
@@ -143,7 +172,7 @@
                     <a href="./cachorro/nina.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Macho" data-porte="pequeno" data-idade="4">
                     <img src="img/simba.png" alt="Simba">
                     <h3>Adote o Simba</h3>
                     <p>Macho</p>
@@ -152,7 +181,7 @@
                     <a href="./cachorro/simba.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Macho" data-porte="pequeno" data-idade="2">
                     <img src="img/toby.png" alt="toby">
                     <h3>Adote o Toby</h3>
                     <p>Macho</p>
@@ -161,7 +190,7 @@
                     <a href="./cachorro/toby.html" class="btn-historia">Conheça minha história</a>
                 </div>
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Macho" data-porte="grande" data-idade="4">
                     <img src="img/zeus.png" alt="Zeus">
                     <h3>Adote o Zeus</h3>
                     <p>Macho</p>
@@ -171,7 +200,7 @@
                 </div>
 
 
-                <div class="animal-card">
+                <div class="animal-card" data-sexo="Macho" data-porte="médio" data-idade="3">
                     <img src="img/boby.png" alt="Boby">
                     <h3>Adote o Boby</h3>
                     <p>Macho</p>
@@ -183,7 +212,7 @@
             </div>
         </section>
     </main>
-
+    <script src="src/javascript/adocoes.js"></script>
 </body>
 
 </html>
