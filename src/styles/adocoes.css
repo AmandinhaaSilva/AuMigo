@@ -5,28 +5,93 @@
 }
 
 .filtros {
-    width: 220px;
+    width: 270px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
 }
 
 .filtros h2 {
     color: #f28c28;
     font-size: 22px;
-    margin-bottom: 12px;
+    font-weight: 700;
     margin-top: 25px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.filtros h2:first-child {
+    margin-top: 0;
 }
 
 .filtros ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-.filtros ul li,
-.filtros label {
-    display: block;
-    margin-bottom: 12px;
-    font-size: 18px;
+.filtros ul li {
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border-radius: 12px;
     color: #5a2c2c;
+    font-size: 17px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filtros ul li:hover {
+    background: #fff4e8;
+    color: #f28c28;
+    transform: translateX(5px);
+}
+
+.filtros label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #5a2c2c;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+.filtros label:hover {
+    background: #fff4e8;
+}
+
+.filtros input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #f28c28;
+    cursor: pointer;
+}
+
+.btn-limpar {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: #f28c28;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-limpar:hover {
+    background: #dd7d22;
+    transform: translateY(-2px);
 }
 
 .animais-section {
@@ -97,6 +162,7 @@
 
     .filtros {
         width: 100%;
+        position: static;
     }
 
     .animais-grid {
