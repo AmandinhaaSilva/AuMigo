@@ -22,13 +22,9 @@
             <button onclick="finalizarCompra()">Finalizar Compra</button>
         </div>
 
-        <div id="listaCarrinho"></div>
-
-        <h2>Total: R$ <span id="totalCarrinho">0,00</span></h2>
-
     </section>
 
-    <script src="carrinho.js"></script>
+    <script src="src/javascript/carrinho.js"></script>
 </body>
 
 </html>
