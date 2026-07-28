@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -20,23 +24,29 @@
 
             <ul id="nav_list">
                 <li class="nav-item">
-                    <a href="index.html">Início</a>
+                    <a href="index.php">Início</a>
                 </li>
                 <li class="nav-item">
-                    <a href="sobre.html">Sobre</a>
+                    <a href="sobre.php">Sobre</a>
                 </li>
                 <li class="nav-item active">
-                    <a href="doações.html">Doações</a>
+                    <a href="doações.php">Doações</a>
                 </li>
                 <li class="nav-item">
-                    <a href="adoções.html">Adoções</a>
+                    <a href="adoções.php">Adoções</a>
                 </li>
                 <li class="nav-item">
-                    <a href="loja.html">Loja</a>
+                    <a href="loja.php">Loja</a>
                 </li>
             </ul>
 
-            <a href="./login.html" class="btn-default">Login</a>
+            <?php if(isset($_SESSION['nome'])){ ?>
+                <a href="logout.php" class="btn-default">
+                    Olá, <?php echo $_SESSION['nome']; ?> | Sair
+                </a>
+            <?php } else { ?>
+                <a href="entrar.html" class="btn-default">Login</a>
+            <?php } ?>
 
             <a href="carrinho.html" class="btn-carrinho">
                 🛒

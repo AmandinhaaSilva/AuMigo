@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['id'])){
+    header("Location: entrar.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,26 +38,32 @@
             <img src="logo.png" alt="logo" />
             <ul id="nav_list">
                 <li class="nav-item">
-                    <a href="sobre.html">Sobre</a>
+                    <a href="sobre.php">Sobre</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="doações.html">Doações</a>
+                    <a href="doações.php">Doações</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="adoções.html">Adoções</a>
+                    <a href="adoções.php">Adoções</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="loja.html">Loja</a>
+                    <a href="loja.php">Loja</a>
                 </li>
 
 
             </ul>
 
-            <a href="./login.html" class="btn-default">Login</a>
-            <a href="carrinho.html" class="btn-carrinho">
+            <?php if(isset($_SESSION['nome'])){ ?>
+                <a href="logout.php" class="btn-default">
+                    Olá, <?php echo $_SESSION['nome']; ?> | Sair
+                </a>
+            <?php } else { ?>
+                <a href="entrar.html" class="btn-default">Login</a>
+            <?php } ?>
+            <a href="carrinho.php" class="btn-carrinho">
                 🛒
             </a>
 
@@ -61,27 +76,33 @@
         <div id="mobile_menu">
             <ul id="nav_list">
                 <li class="nav-item">
-                    <a href="sobre.html">Sobre</a>
+                    <a href="sobre.php">Sobre</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="doações.html">Doações</a>
+                    <a href="doações.php">Doações</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="adoções.html">Adoções</a>
+                    <a href="adoções.php">Adoções</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="loja.html">Loja</a>
+                    <a href="loja.php">Loja</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="carrinho/carrinho.html">Carrinho</a>
+                    <a href="carrinho/carrinho.php">Carrinho</a>
                 </li>
             </ul>
 
-            <a href="./login.html" class="btn-default">Login</a>
+            <?php if(isset($_SESSION['nome'])){ ?>
+                <a href="logout.php" class="btn-default">
+                    Olá, <?php echo $_SESSION['nome']; ?> | Sair
+                </a>
+            <?php } else { ?>
+                <a href="entrar.html" class="btn-default">Login</a>
+            <?php } ?>
 
         </div>
     </header>
