@@ -1,0 +1,169 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#F8F0C9;
+}
+
+/* MENU */
+
+.sidebar{
+    position:fixed;
+    width:250px;
+    height:100vh;
+    background:#FFF8E6;
+    border-right:3px solid #F89A17;
+    padding-top:30px;
+}
+
+.sidebar h2{
+    text-align:center;
+    color:#8B5A2B;
+    margin-bottom:40px;
+}
+
+.sidebar a{
+    display:block;
+    padding:15px 25px;
+    text-decoration:none;
+    color:#333;
+    font-size:17px;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:#F89A17;
+    color:white;
+}
+
+/* CONTEÚDO */
+
+.content{
+    margin-left:250px;
+    padding:35px;
+}
+
+.titulo{
+    font-size:32px;
+    color:#8B5A2B;
+    margin-bottom:30px;
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo img{
+    width:140px;
+}
+
+/* LINHA */
+
+.sidebar hr{
+    margin:20px;
+    border:1px solid #F89A17;
+}
+
+/* CARDS */
+
+.cards{
+    display:flex;
+    gap:25px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:white;
+    width:220px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    border-top:6px solid #F89A17;
+}
+
+.card h3{
+    color:#8B5A2B;
+    margin-bottom:15px;
+}
+
+.card p{
+    font-size:35px;
+    font-weight:bold;
+    color:#F89A17;
+}
+
+.btn{
+    background:#F89A17;
+    color:white;
+    padding:12px 18px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#d97d00;
+}
+
+.tabela{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.tabela th{
+    background:#F89A17;
+    color:white;
+    padding:15px;
+}
+
+.tabela td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+.tabela tr:hover{
+    background:#FFF8E6;
+}
+
+.formulario{
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    max-width:700px;
+}
+
+.formulario label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:bold;
+    color:#8B5A2B;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.formulario textarea{
+    height:120px;
+    resize:vertical;
+}
