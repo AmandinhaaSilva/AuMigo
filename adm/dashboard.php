@@ -8,34 +8,65 @@ require_once("includes/verifica_login.php");
 
 <div class="content">
 
-    <h1 class="titulo">Dashboard</h1>
+    <?php
 
-    <h2>Olá, <?php echo $_SESSION["admin_nome"]; ?> 👋</h2>
+if (!isset($_SESSION["admin_id"])) {
+    header("Location: login.php");
+    exit();
+}
 
-    <br>
+require_once("../conexao.php");
 
-    <div class="cards">
+$sql_animais = "SELECT COUNT(*) AS total FROM animais";
+$resultado_animais = $conn->query($sql_animais);
+$dados_animais = $resultado_animais->fetch_assoc();
 
-        <div class="card">
-            <h3>🐶 Animais</h3>
-            <p>0</p>
-        </div>
+$total_animais = $dados_animais["total"];
 
-        <div class="card">
-            <h3>🛒 Produtos</h3>
-            <p>0</p>
-        </div>
+?>
 
-        <div class="card">
-            <h3>👥 Usuários</h3>
-            <p>0</p>
-        </div>
+<h1 class="titulo">Dashboard</h1>
 
-        <div class="card">
-            <h3>❤️ Doações</h3>
-            <p>0</p>
-        </div>
+<h2>Olá, <?php echo $_SESSION["admin_nome"]; ?> 👋</h2>
 
+<br>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>🐶 Animais</h3>
+        <p><?php echo $total_animais; ?></p>
+    </div>
+
+   <div class="card">
+    <h3>🛒 Produtos</h3>
+    <p>
+        <?php
+        $sql_produtos = "SELECT COUNT(*) AS total FROM produtos";
+        $resultado_produtos = $conn->query($sql_produtos);
+        $dados_produtos = $resultado_produtos->fetch_assoc();
+
+        echo $dados_produtos["total"];
+        ?>
+    </p>
+    </div>
+    
+    <div class="card">
+    <h3>👥 Usuários</h3>
+    <p>
+        <?php
+        $sql_usuarios = "SELECT COUNT(*) AS total FROM usuarios";
+        $resultado_usuarios = $conn->query($sql_usuarios);
+        $dados_usuarios = $resultado_usuarios->fetch_assoc();
+
+        echo $dados_usuarios["total"];
+        ?>
+    </p>
+    </div>
+
+    <div class="card">
+        <h3>❤️ Doações</h3>
+        <p>0</p>
     </div>
 
 </div>
