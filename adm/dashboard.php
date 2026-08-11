@@ -65,8 +65,16 @@ $total_animais = $dados_animais["total"];
     </div>
 
     <div class="card">
-        <h3>❤️ Doações</h3>
-        <p>0</p>
+    <h3>❤️ Doações</h3>
+    <p>
+        <?php
+        $sql_doacoes = "SELECT COUNT(*) AS total FROM doacoes";
+        $resultado_doacoes = $conn->query($sql_doacoes);
+        $dados_doacoes = $resultado_doacoes->fetch_assoc();
+
+        echo $dados_doacoes["total"];
+        ?>
+    </p>
     </div>
 
 </div>
