@@ -18,41 +18,7 @@ session_start();
 
 <body>
 
-    <header>
-        <nav id="navbar">
-            <img width="50" height="50" src="logo.png" alt="logo" />
-
-            <ul id="nav_list">
-                <li class="nav-item">
-                    <a href="index.php">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a href="sobre.php">Sobre</a>
-                </li>
-                <li class="nav-item">
-                    <a href="doações.php">Doações</a>
-                </li>
-                <li class="nav-item active">
-                    <a href="adoções.php">Adoções</a>
-                </li>
-                <li class="nav-item">
-                    <a href="loja.php">Loja</a>
-                </li>
-            </ul>
-
-            <?php if(isset($_SESSION['nome'])){ ?>
-                <a href="logout.php" class="btn-default">
-                    Olá, <?php echo $_SESSION['nome']; ?> | Sair
-                </a>
-            <?php } else { ?>
-                <a href="entrar.html" class="btn-default">Login</a>
-            <?php } ?>
-
-            <a href="carrinho.php" class="btn-carrinho">
-                🛒 Carrinho <span id="contadorCarrinho">0</span>
-            </a>
-        </nav>
-    </header>
+    <?php include("header.php"); ?>
 
     <main id="adocoes-page">
         <aside class="filtros">
