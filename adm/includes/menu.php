@@ -14,7 +14,7 @@
 
     <a href="doacoes/listar.php">❤️ Doações</a>
 
-    <a href="#">⚙ Configurações</a>
+    <a href="configuracoes/listar.php">⚙ Configurações</a>
 
     <hr>
 
