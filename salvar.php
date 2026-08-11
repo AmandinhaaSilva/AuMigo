@@ -13,6 +13,24 @@ $email = $_POST['email'];
 $cpf = $_POST['cpf'];
 $senha = $_POST['senha'];
 
+// =====================
+// VALIDAÇÃO DA SENHA
+// =====================
+if (
+    strlen($senha) < 8 ||
+    !preg_match('/[A-Z]/', $senha) ||
+    !preg_match('/[a-z]/', $senha) ||
+    !preg_match('/[0-9]/', $senha) ||
+    !preg_match('/[\W_]/', $senha)
+) {
+    echo "<script>
+        alert('A senha deve ter no mínimo 8 caracteres, uma letra maiúscula, uma minúscula, um número e um símbolo.');
+        window.history.back();
+    </script>";
+    exit();
+}
+
+
 $sql = "INSERT INTO usuarios
 (nome,endereco,telefone,email,cpf,senha)
 VALUES

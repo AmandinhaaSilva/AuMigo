@@ -189,3 +189,72 @@ small {
         font-size: 14px;
     }
 }
+
+/* Campo da senha */
+.senha-box{
+    position: relative;
+}
+
+.senha-box input{
+    padding-right: 45px;
+}
+
+/* Botão do olho */
+#mostrarSenha{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #a18572;
+    font-size: 15px;
+    transition: .3s;
+}
+
+#mostrarSenha:hover{
+    color: #a18572;
+}
+
+/* Requisitos da senha */
+.senha-requisitos{
+    margin-top: 10px;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+/* Texto "Sua senha deve conter:" */
+.titulo-requisitos{
+    font-size: 12px;
+    font-weight: 500;
+    color: #a18572;
+    margin-bottom: 8px;
+}
+
+/* Cada requisito */
+.item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0;
+    color: #a18572;
+    font-size: 12px;
+    font-weight: 400;
+    transition: .3s;
+}
+
+/* Ícones */
+.item i{
+    font-size: 11px;
+    color: #a18572;
+}
+
+/* Quando o requisito for cumprido */
+.item.ok{
+    color: #56a76a;
+    font-weight: 500;
+}
+
+.item.ok i{
+    color: #56a76a;
+}

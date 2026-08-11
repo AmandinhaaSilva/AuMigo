@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>AuMigo - Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="src/styles/login.css">
 </head>
 
@@ -47,9 +48,63 @@
             </div>
 
             <div class="mb-3">
-                <label>Senha</label>
-                <input type="password" name="senha" class="form-control" placeholder="Crie uma senha">
-            </div>
+
+
+    <div class="mb-3">
+
+    <label for="senha" class="form-label">Senha</label>
+
+    <div class="senha-box">
+
+        <input
+            type="password"
+            class="form-control"
+            id="senha"
+            name="senha"
+            placeholder="Digite sua senha"
+            required
+        >
+
+        <span id="mostrarSenha">
+            <i class="fa-solid fa-eye"></i>
+        </span>
+
+    </div>
+
+    <div class="senha-requisitos">
+
+        <p class="titulo-requisitos">
+            Sua senha deve conter:
+        </p>
+
+        <div class="item" id="r1">
+            <i class="fa-regular fa-circle"></i>
+            <span>Pelo menos 8 caracteres</span>
+        </div>
+
+        <div class="item" id="r2">
+            <i class="fa-regular fa-circle"></i>
+            <span>Uma letra maiúscula</span>
+        </div>
+
+        <div class="item" id="r3">
+            <i class="fa-regular fa-circle"></i>
+            <span>Uma letra minúscula</span>
+        </div>
+
+        <div class="item" id="r4">
+            <i class="fa-regular fa-circle"></i>
+            <span>Um número</span>
+        </div>
+
+        <div class="item" id="r5">
+            <i class="fa-regular fa-circle"></i>
+            <span>Um caractere especial</span>
+        </div>
+
+    </div>
+
+</div>
 
             <button type="submit" class="btn btn-custom w-100">
                 Criar Conta
@@ -64,6 +119,59 @@
     </div>
 
 </div>
+    <script>
+
+const senha = document.getElementById("senha");
+
+function validarSenha(){
+
+    const regras = [
+        senha.value.length >= 8,
+        /[A-Z]/.test(senha.value),
+        /[a-z]/.test(senha.value),
+        /[0-9]/.test(senha.value),
+        /[^A-Za-z0-9]/.test(senha.value)
+    ];
+
+    regras.forEach((ok,index)=>{
+
+        let item = document.getElementById("r"+(index+1));
+
+        if(ok){
+
+            item.classList.add("ok");
+            item.querySelector("i").className="fa-solid fa-circle-check";
+
+        }else{
+
+            item.classList.remove("ok");
+            item.querySelector("i").className="fa-regular fa-circle";
+
+        }
+
+    });
+
+}
+
+senha.addEventListener("input", validarSenha);
+
+document.getElementById("mostrarSenha").onclick=function(){
+
+    if(senha.type=="password"){
+
+        senha.type="text";
+        this.innerHTML='<i class="fa-solid fa-eye-slash"></i>';
+
+    }else{
+
+        senha.type="password";
+        this.innerHTML='<i class="fa-solid fa-eye"></i>';
+
+    }
+
+}
+
+</script>
 
 </body>
 </html>
