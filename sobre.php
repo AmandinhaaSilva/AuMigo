@@ -77,7 +77,7 @@ session_start();
             </div>
 
             <div class="membro">
-                <img src="img/integrante2.jpg" alt="Foto da integrante 2">
+                <img src="img/integrante02.jpg" alt="Foto da integrante 2">
                 <h3>Amanda do Carmo Silva</h3>
             </div>
 
