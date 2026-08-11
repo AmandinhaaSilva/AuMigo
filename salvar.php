@@ -19,9 +19,23 @@ VALUES
 ('$nome','$endereco','$telefone','$email','$cpf','$senha')";
 
 if($conn->query($sql)){
-    echo "Cadastro realizado com sucesso!";
-} else {
-    echo "Erro ao cadastrar!";
+
+    session_start();
+
+    $_SESSION['id'] = $conn->insert_id;
+    $_SESSION['nome'] = $nome;
+    $_SESSION['email'] = $email;
+
+    header("Location: index.php");
+    exit();
+
+}else{
+
+    echo "<script>
+        alert('Erro ao cadastrar!');
+        window.history.back();
+    </script>";
+
 }
 
 $conn->close();
