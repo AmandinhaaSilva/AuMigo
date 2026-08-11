@@ -23,7 +23,7 @@ if (isset($_POST["salvar"])) {
 
         $foto = time() . "." . $extensao;
 
-        $destino = "../img/animais/" . $foto;
+        $destino = "../../img/animais/" . $foto;
 
         if (move_uploaded_file($_FILES["foto"]["tmp_name"], $destino)) {
     echo "<script>alert('Imagem enviada com sucesso!');</script>";
