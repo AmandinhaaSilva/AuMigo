@@ -1,77 +1,93 @@
 <?php
-require_once("../includes/verifica_login.php");
+
 require_once("../../conexao.php");
 
 $sql = "SELECT * FROM animais ORDER BY id DESC";
+
 $resultado = $conn->query($sql);
 
-include("../includes/header.php");
-include("../includes/menu.php");
+if (!$resultado) {
+    die("Erro ao buscar animais: " . $conn->error);
+}
+
 ?>
 
-<div class="content">
+<h1 class="titulo">🐶 Animais</h1>
 
-    <h1 class="titulo">🐶 Animais</h1>
+<a href="adicionar.php" class="btn">+ Novo Animal</a>
 
-    <a href="adicionar.php" class="btn">+ Novo Animal</a>
+<br><br>
 
-    <br><br>
+<table class="tabela">
 
-    <table class="tabela">
+    <tr>
+        <th>Foto</th>
+        <th>Nome</th>
+        <th>Espécie</th>
+        <th>Raça</th>
+        <th>Status</th>
+        <th>Ações</th>
+    </tr>
 
-        <tr>
-            <th>Foto</th>
-            <th>Nome</th>
-            <th>Espécie</th>
-            <th>Raça</th>
-            <th>Status</th>
-            <th>Ações</th>
-        </tr>
-
-        <?php while($animal = $resultado->fetch_assoc()){ ?>
+    <?php while ($animal = $resultado->fetch_assoc()) { ?>
 
         <tr>
 
             <td>
 
-                <?php
-                if(!empty($animal["foto"]) && file_exists("../../img/animais/" . $animal["foto"])){
+                <?php if (!empty($animal["foto"])) { ?>
 
-    echo "<img src='../img/animais/".$animal["foto"]."' width='70' height='70' style='object-fit:cover;border-radius:10px;'>";
+    <img
+    src="../../img/<?= htmlspecialchars($animal["foto"]) ?>"
+    alt="<?= htmlspecialchars($animal["nome"]) ?>"
+    width="80"
+    height="80"
+    style="object-fit: cover; border-radius: 10px;"
+    >
 
-}else{
+                <?php } else { ?>
 
-    echo "Sem foto";
+                    Sem foto
 
-}
-                ?>
+                <?php } ?>
 
             </td>
 
-            <td><?= $animal["nome"] ?></td>
+            <td>
+                <?= htmlspecialchars($animal["nome"]) ?>
+            </td>
 
-            <td><?= $animal["especie"] ?></td>
+            <td>
+                <?= htmlspecialchars($animal["especie"]) ?>
+            </td>
 
-            <td><?= $animal["raca"] ?></td>
+            <td>
+                <?= htmlspecialchars($animal["raca"]) ?>
+            </td>
 
-            <td><?= $animal["status_adocao"] ?></td>
+            <td>
+                <?= htmlspecialchars($animal["status_adocao"]) ?>
+            </td>
 
             <td>
 
-                <a href="editar.php?id=<?= $animal['id'] ?>">✏ Editar</a>
+                <a href="editar.php?id=<?= $animal["id"] ?>">
+                    ✏ Editar
+                </a>
 
                 |
 
-                <a href="excluir.php?id=<?= $animal['id'] ?>">🗑 Excluir</a>
+                <a
+                    href="excluir.php?id=<?= $animal["id"] ?>"
+                    onclick="return confirm('Tem certeza que deseja excluir este animal?');"
+                >
+                    🗑 Excluir
+                </a>
 
             </td>
 
         </tr>
 
-        <?php } ?>
+    <?php } ?>
 
-    </table>
-
-</div>
-
-<?php include("../includes/footer.php"); ?>
+</table>

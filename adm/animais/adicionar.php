@@ -17,20 +17,34 @@ if (isset($_POST["salvar"])) {
     // Upload da foto
     $foto = "";
 
-    if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] == 0) {
+if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] === UPLOAD_ERR_OK) {
 
-        $extensao = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
+    $destino = "../../img/" . $foto;
 
-        $foto = time() . "." . $extensao;
-
-        $destino = "../../img/animais/" . $foto;
-
-        if (move_uploaded_file($_FILES["foto"]["tmp_name"], $destino)) {
-    echo "<script>alert('Imagem enviada com sucesso!');</script>";
-} else {
-    echo "<script>alert('Erro ao enviar a imagem!');</script>";
-}
+    // Cria a pasta caso ela não exista
+    if (!is_dir($pasta)) {
+        mkdir($pasta, 0777, true);
     }
+
+    $nome_original = $_FILES["foto"]["name"];
+    $extensao = strtolower(pathinfo($nome_original, PATHINFO_EXTENSION));
+
+    $extensoes_permitidas = ["jpg", "jpeg", "png", "webp"];
+
+    if (in_array($extensao, $extensoes_permitidas)) {
+
+        $foto = time() . "_" . uniqid() . "." . $extensao;
+
+        $destino = $pasta . $foto;
+
+        if (!move_uploaded_file($_FILES["foto"]["tmp_name"], $destino)) {
+            $foto = "";
+        }
+
+    } else {
+        $foto = "";
+    }
+}
 
     $sql = "INSERT INTO animais
     (nome, especie, raca, idade, sexo, porte, cor, descricao, status_adocao, foto)
