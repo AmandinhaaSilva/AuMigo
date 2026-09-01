@@ -322,3 +322,27 @@
         width: 100%;
     }
 }
+
+.mensagem-carrinho{
+
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    background: white;
+    color: #5b3b22;
+    padding: 18px 22px;
+    border-left: 6px solid #ff9800;
+    border-radius: 15px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateX(120px);
+    transition: .35s;
+    z-index: 9999;
+}
+
+.mensagem-carrinho.mostrar{
+    opacity: 1;
+    transform: translateX(0);
+}
