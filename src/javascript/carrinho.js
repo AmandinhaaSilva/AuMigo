@@ -5,7 +5,9 @@ function adicionarCarrinho(nome, preco) {
     const produtoExistente = carrinho.find(item => item.nome === nome);
 
     if (produtoExistente) {
+
         produtoExistente.quantidade++;
+
     } else {
 
         carrinho.push({
@@ -19,8 +21,37 @@ function adicionarCarrinho(nome, preco) {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
 
     atualizarContador();
+    console.log("Função mostrarMensagem foi chamada!");
 
-    alert("Produto adicionado ao carrinho 🐾");
+    mostrarMensagem(nome);
+}
+
+function mostrarMensagem(produto) {
+
+    const aviso = document.createElement("div");
+
+    aviso.className = "mensagem-carrinho";
+
+    aviso.innerHTML = `
+        🐾 <strong>${produto}</strong><br>
+        foi adicionado ao carrinho!
+    `;
+
+    document.body.appendChild(aviso);
+
+    setTimeout(() => {
+        aviso.classList.add("mostrar");
+    }, 50);
+
+    setTimeout(() => {
+        aviso.classList.remove("mostrar");
+
+        setTimeout(() => {
+            aviso.remove();
+        }, 300);
+
+    }, 2200);
+
 }
 
 function carregarCarrinho() {
@@ -78,7 +109,7 @@ function carregarCarrinho() {
                     <div class="acoes">
 
                         <button onclick="diminuirQuantidade(${index})">
-                            -
+                            −
                         </button>
 
                         <button onclick="aumentarQuantidade(${index})">
@@ -86,7 +117,7 @@ function carregarCarrinho() {
                         </button>
 
                         <button onclick="removerItem(${index})">
-                            Remover
+                            🗑 Remover
                         </button>
 
                     </div>
@@ -103,7 +134,7 @@ function carregarCarrinho() {
 
 }
 
-function aumentarQuantidade(index){
+function aumentarQuantidade(index) {
 
     let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
@@ -117,15 +148,15 @@ function aumentarQuantidade(index){
 
 }
 
-function diminuirQuantidade(index){
+function diminuirQuantidade(index) {
 
     let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
     carrinho[index].quantidade--;
 
-    if(carrinho[index].quantidade <= 0){
+    if (carrinho[index].quantidade <= 0) {
 
-        carrinho.splice(index,1);
+        carrinho.splice(index, 1);
 
     }
 
@@ -137,11 +168,11 @@ function diminuirQuantidade(index){
 
 }
 
-function removerItem(index){
+function removerItem(index) {
 
     let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
-    carrinho.splice(index,1);
+    carrinho.splice(index, 1);
 
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
 
@@ -151,13 +182,13 @@ function removerItem(index){
 
 }
 
-function atualizarContador(){
+function atualizarContador() {
 
     let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
     let contador = document.getElementById("contadorCarrinho");
 
-    if(!contador) return;
+    if (!contador) return;
 
     let quantidade = 0;
 
@@ -171,9 +202,9 @@ function atualizarContador(){
 
 }
 
-function finalizarCompra(){
+function finalizarCompra() {
 
-    alert("Compra finalizada! Obrigada por ajudar a AuMigo 🐶💗");
+    mostrarMensagem("Compra finalizada! 🐶");
 
     localStorage.removeItem("carrinho");
 
@@ -183,7 +214,7 @@ function finalizarCompra(){
 
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
     carregarCarrinho();
 

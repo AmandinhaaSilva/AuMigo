@@ -3,28 +3,69 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Carrinho AuMigo</title>
-    <link rel="stylesheet" href="carrinho.css">
+    <title>Meu Carrinho | AuMigo</title>
+
+    <link rel="stylesheet" href="src/styles/carrinho.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
-    <section class="carrinho-container">
-        <img src="img/logo.png" alt="AuMigo" class="logo-carrinho">
+<div class="fundo">
 
-        <h1>Meu Carrinho 🐾</h1>
-        <p class="subtitulo">Confira seus produtos e ajude nossos doguinhos 💗</p>
+<div class="carrinho-container">
 
-        <div id="listaCarrinho"></div>
+<img src="logo.png" class="logo-carrinho">
 
-        <div class="total-box">
-            <h2>Total: R$ <span id="totalCarrinho">0,00</span></h2>
-            <button onclick="finalizarCompra()">Finalizar Compra</button>
-        </div>
+<h1>Meu Carrinho</h1>
 
-    </section>
+<p class="subtitulo">
+Confira seus produtos antes de finalizar sua compra 🐾
+</p>
 
-    <script src="src/javascript/carrinho.js"></script>
+<hr>
+
+<div id="listaCarrinho"></div>
+
+<div class="resumo">
+
+<div class="total-box">
+
+<span>Total</span>
+
+<h2>
+
+R$
+<span id="totalCarrinho">0,00</span>
+
+</h2>
+
+</div>
+
+<button onclick="finalizarCompra()">
+
+<i class="fa-solid fa-credit-card"></i>
+
+Finalizar Compra
+
+</button>
+
+<a href="loja.php" class="voltar">
+
+← Continuar comprando
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="src/javascript/carrinho.js"></script>
+
 </body>
-
 </html>

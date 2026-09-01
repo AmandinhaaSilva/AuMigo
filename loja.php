@@ -87,9 +87,9 @@ session_start();
                                 <span class="preco-antigo">R$ 99,90</span>
                                 <span class="preco">R$ 89,90</span>
                                 <span class="parcelamento">ou 3x de R$ 29,97</span>
-                                <a href="#" class="btn-default">Comprar</a>
-                                <button onclick="adicionarCarrinho('Ração para cachorro', 29.90)">
-                                    Adicionar ao Carrinho
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    Comprar
                                 </button>
                             </div>
                         </div>
@@ -104,9 +104,9 @@ session_start();
                                 <span class="preco-antigo">R$ 34,90</span>
                                 <span class="preco">R$ 24,90</span>
                                 <span class="parcelamento">ou 2x de R$ 12,45</span>
-                                <a href="#" class="btn-default">Comprar</a>
-                                <button onclick="adicionarCarrinho('Brinquedo Mordedor', 24.90)">
-                                    Adicionar ao Carrinho
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    Comprar
                                 </button>
                             </div>
                         </div>
@@ -121,9 +121,9 @@ session_start();
                                 <span class="preco-antigo">R$ 45,90</span>
                                 <span class="preco">R$ 35,90</span>
                                 <span class="parcelamento">ou 2x de R$ 17,95</span>
-                                <a href="#" class="btn-default">Comprar</a>
-                                <button onclick="adicionarCarrinho('Coleira Ajustável', 35.90)">
-                                    Adicionar ao Carrinho
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    Comprar
                                 </button>
                             </div>
                         </div>
@@ -138,9 +138,9 @@ session_start();
                                 <span class="preco-antigo">R$ 29,90</span>
                                 <span class="preco">R$ 19,90</span>
                                 <span class="parcelamento">ou 2x de R$ 9,95</span>
-                                <a href="#" class="btn-default">Comprar</a>
-                                <button onclick="adicionarCarrinho('Shampoo Pet', 19.90)">
-                                    Adicionar ao Carrinho
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    Comprar
                                 </button>
                             </div>
                         </div>
@@ -155,9 +155,9 @@ session_start();
                                 <span class="preco-antigo">R$ 139,90</span>
                                 <span class="preco">R$ 119,90</span>
                                 <span class="parcelamento">ou 4x de R$ 29,97</span>
-                                <a href="#" class="btn-default">Comprar</a>
-                                <button onclick="adicionarCarrinho('Caminha Fofinha', 119.90)">
-                                    Adicionar ao Carrinho
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    Comprar
                                 </button>
                             </div>
                         </div>
@@ -172,9 +172,9 @@ session_start();
                                 <span class="preco-antigo">R$ 22,90</span>
                                 <span class="preco">R$ 16,90</span>
                                 <span class="parcelamento">ou 2x de R$ 8,45</span>
-                                <a href="#" class="btn-default">Comprar</a>
-                                <button onclick="adicionarCarrinho('Petisco Natural', 16.90)">
-                                    Adicionar ao Carrinho
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    Comprar
                                 </button>
                             </div>
                         </div>
@@ -189,7 +189,10 @@ session_start();
                                 <span class="preco-antigo">R$ 59,90</span>
                                 <span class="preco">R$ 49,90</span>
                                 <span class="parcelamento">ou 2x de R$ 24,95</span>
-                                <a href="#" class="btn-default">Comprar</a>
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                     Comprar
+                                </button>
                             </div>
                         </div>
                     </div>
