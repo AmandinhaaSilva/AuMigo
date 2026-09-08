@@ -12,82 +12,111 @@ if (!$resultado) {
 
 ?>
 
-<h1 class="titulo">🐶 Animais</h1>
+<div class="pagina-animais">
 
-<a href="adicionar.php" class="btn">+ Novo Animal</a>
+    <div class="cabecalho-pagina">
 
-<br><br>
+        <div>
+            <h1 class="titulo">🐶 Animais</h1>
+            <p class="subtitulo">
+                Gerencie os animais cadastrados no AuMigo
+            </p>
+        </div>
 
-<table class="tabela">
+        <a href="adicionar.php" class="btn">
+            + Novo Animal
+        </a>
 
-    <tr>
-        <th>Foto</th>
-        <th>Nome</th>
-        <th>Espécie</th>
-        <th>Raça</th>
-        <th>Status</th>
-        <th>Ações</th>
-    </tr>
+    </div>
 
-    <?php while ($animal = $resultado->fetch_assoc()) { ?>
+    <div class="tabela-container">
 
-        <tr>
+        <table class="tabela">
 
-            <td>
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Espécie</th>
+                    <th>Raça</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
 
-                <?php if (!empty($animal["foto"])) { ?>
+            <tbody>
 
-    <img
-    src="../../img/<?= htmlspecialchars($animal["foto"]) ?>"
-    alt="<?= htmlspecialchars($animal["nome"]) ?>"
-    width="80"
-    height="80"
-    style="object-fit: cover; border-radius: 10px;"
-    >
+                <?php while ($animal = $resultado->fetch_assoc()) { ?>
 
-                <?php } else { ?>
+                    <tr>
 
-                    Sem foto
+                        <td>
+
+                            <?php if (!empty($animal["foto"])) { ?>
+
+                                <img
+                                    src="../../img/animais/<?= htmlspecialchars($animal["foto"]) ?>"
+                                    alt="<?= htmlspecialchars($animal["nome"]) ?>"
+                                    class="foto-animal"
+                                >
+
+                            <?php } else { ?>
+
+                                <div class="sem-foto">
+                                    🐶
+                                </div>
+
+                            <?php } ?>
+
+                        </td>
+
+                        <td>
+                            <strong>
+                                <?= htmlspecialchars($animal["nome"]) ?>
+                            </strong>
+                        </td>
+
+                        <td>
+                            <?= htmlspecialchars($animal["especie"]) ?>
+                        </td>
+
+                        <td>
+                            <?= htmlspecialchars($animal["raca"]) ?>
+                        </td>
+
+                        <td>
+                            <span class="status">
+                                <?= htmlspecialchars($animal["status_adocao"]) ?>
+                            </span>
+                        </td>
+
+                        <td class="acoes">
+
+                            <a
+                                href="editar.php?id=<?= $animal["id"] ?>"
+                                class="btn-editar"
+                            >
+                                ✏️ Editar
+                            </a>
+
+                            <a
+                                href="excluir.php?id=<?= $animal["id"] ?>"
+                                class="btn-excluir"
+                                onclick="return confirm('Tem certeza que deseja excluir este animal?');"
+                            >
+                                🗑️ Excluir
+                            </a>
+
+                        </td>
+
+                    </tr>
 
                 <?php } ?>
 
-            </td>
+            </tbody>
 
-            <td>
-                <?= htmlspecialchars($animal["nome"]) ?>
-            </td>
+        </table>
 
-            <td>
-                <?= htmlspecialchars($animal["especie"]) ?>
-            </td>
+    </div>
 
-            <td>
-                <?= htmlspecialchars($animal["raca"]) ?>
-            </td>
-
-            <td>
-                <?= htmlspecialchars($animal["status_adocao"]) ?>
-            </td>
-
-            <td>
-
-                <a href="editar.php?id=<?= $animal["id"] ?>">
-                    ✏ Editar
-                </a>
-
-                |
-
-                <a
-                    href="excluir.php?id=<?= $animal["id"] ?>"
-                    onclick="return confirm('Tem certeza que deseja excluir este animal?');"
-                >
-                    🗑 Excluir
-                </a>
-
-            </td>
-
-        </tr>
-
-    <?php } ?>
-
-</table>
+</div>
