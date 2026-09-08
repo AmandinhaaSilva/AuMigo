@@ -129,28 +129,25 @@ hr{
 
 }
 
-.item-carrinho button{
-
-    background:#d9534f;
-
-    color:white;
-
+.acoes button{
+    width:100%;
+    height:38px;
+    padding:0;
     border:none;
-
-    padding:10px 18px;
-
-    border-radius:12px;
-
+    border-radius:10px;
+    background:#e35b52;
+    color:#fff;
+    font-size:18px;
+    font-weight:600;
     cursor:pointer;
-
+    
     transition:.3s;
 
 }
 
-.item-carrinho button:hover{
-
-    background:#bb2d3b;
-
+.acoes button:hover{
+    background:#cf433b;
+    transform:translateY(-2px);
 }
 
 .resumo{
@@ -189,36 +186,22 @@ hr{
 
 }
 
-button{
-
-    width:100%;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:18px;
-
-    background:linear-gradient(90deg,#ff9f1c,#ff7b00);
-
-    color:white;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.finalizar-compra{
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 18px;
+    background: linear-gradient(90deg, #ff9f1c, #ff7b00);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
 }
 
-button:hover{
-
-    transform:scale(1.02);
-
-    box-shadow:0 10px 25px rgba(255,145,0,.35);
-
+.finalizar-compra:hover{
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(255,145,0,.35);
 }
 
 .voltar{
@@ -258,3 +241,4 @@ button:hover{
     font-size:20px;
 
 }
+

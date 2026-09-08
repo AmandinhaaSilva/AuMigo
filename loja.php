@@ -16,8 +16,9 @@ session_start();
         rel="stylesheet">
 
     <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/lojaa.css">
     <link rel="stylesheet" href="src/styles/header.css">
-    <link rel="stylesheet" href="src/styles/loja.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -104,7 +105,7 @@ session_start();
                                 <span class="preco-antigo">R$ 34,90</span>
                                 <span class="preco">R$ 24,90</span>
                                 <span class="parcelamento">ou 2x de R$ 12,45</span>
-                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Brinquedo Mordedor', 24.90)">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     Comprar
                                 </button>
@@ -121,7 +122,7 @@ session_start();
                                 <span class="preco-antigo">R$ 45,90</span>
                                 <span class="preco">R$ 35,90</span>
                                 <span class="parcelamento">ou 2x de R$ 17,95</span>
-                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Coleira Ajustável', 35.90)">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     Comprar
                                 </button>
@@ -138,7 +139,7 @@ session_start();
                                 <span class="preco-antigo">R$ 29,90</span>
                                 <span class="preco">R$ 19,90</span>
                                 <span class="parcelamento">ou 2x de R$ 9,95</span>
-                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Shampoo Pet', 19.90)">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     Comprar
                                 </button>
@@ -155,7 +156,7 @@ session_start();
                                 <span class="preco-antigo">R$ 139,90</span>
                                 <span class="preco">R$ 119,90</span>
                                 <span class="parcelamento">ou 4x de R$ 29,97</span>
-                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Caminha Fofinha', 119.90)">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     Comprar
                                 </button>
@@ -172,7 +173,7 @@ session_start();
                                 <span class="preco-antigo">R$ 22,90</span>
                                 <span class="preco">R$ 16,90</span>
                                 <span class="parcelamento">ou 2x de R$ 8,45</span>
-                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Petisco Natural', 16.90)">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     Comprar
                                 </button>
@@ -189,7 +190,7 @@ session_start();
                                 <span class="preco-antigo">R$ 59,90</span>
                                 <span class="preco">R$ 49,90</span>
                                 <span class="parcelamento">ou 2x de R$ 24,95</span>
-                                <button class="btn-comprar" onclick="adicionarCarrinho('Ração Premium', 89.90)">
+                                <button class="btn-comprar" onclick="adicionarCarrinho('Roupinha', 49.90)">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                      Comprar
                                 </button>
@@ -206,6 +207,7 @@ session_start();
     <script src="src/javascript/script.js"></script>
     <script src="src/javascript/carrinho.js"></script>
 
+    <?php include 'includes/footer.php'; ?>
 </body>
 
 </html>

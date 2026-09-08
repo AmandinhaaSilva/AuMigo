@@ -6,6 +6,7 @@
     <title>Meu Carrinho | AuMigo</title>
 
     <link rel="stylesheet" href="src/styles/carrinho.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
 
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -45,17 +46,13 @@ R$
 
 </div>
 
-<button onclick="finalizarCompra()">
-
-<i class="fa-solid fa-credit-card"></i>
-
-Finalizar Compra
-
+<button class="finalizar-compra" onclick="finalizarCompra()">
+    Finalizar Compra
 </button>
 
 <a href="loja.php" class="voltar">
 
-← Continuar comprando
+Continuar comprando
 
 </a>
 
@@ -66,6 +63,6 @@ Finalizar Compra
 </div>
 
 <script src="src/javascript/carrinho.js"></script>
-
+<?php include 'includes/footer.php'; ?>
 </body>
 </html>

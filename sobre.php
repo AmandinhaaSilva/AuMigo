@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="src/styles/header.css">
     <link rel="stylesheet" href="src/styles/home.css">
     <link rel="stylesheet" href="src/styles/doacoes.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
 
     <script src="src/javascript/carrinho.js"></script>
 
@@ -156,6 +157,7 @@ session_start();
 
     </section>
 
+    <?php include 'includes/footer.php'; ?>
 </body>
 
 </html>

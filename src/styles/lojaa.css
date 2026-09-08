@@ -1,65 +1,13 @@
-.btn-comprar{
-    width: 100%;
-    height: 50px;
-
-    margin-top: 15px;
-
-    border: none;
-    border-radius: 15px;
-
-    background: linear-gradient(135deg,#ff9a00,#fc8106);
-    color: #fff;
-
-    font-size: 16px;
-    font-weight: 700;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    cursor: pointer;
-
-    transition: all .3s ease;
-
-    box-shadow: 0 8px 20px rgba(252,129,6,.35);
-}
-
-.btn-comprar i{
-    font-size:18px;
-    transition:.3s;
-}
-
-.btn-comprar:hover{
-
-    background: linear-gradient(135deg,#ffb300,#ff8500);
-
-    transform: translateY(-4px);
-
-    box-shadow: 0 15px 30px rgba(252,129,6,.45);
-
-}
-
-.btn-comprar:hover i{
-
-    transform: rotate(-10deg) scale(1.15);
-
-}
-
-.btn-comprar:active{
-
-    transform: scale(.96);
-
-}
-
 #loja_page {
     padding: 70px 8%;
 }
+
 
 /* TOPO */
 .loja-topo {
     margin-bottom: 45px;
 }
+
 
 .loja-topo .title {
     font-size: 56px;
@@ -68,9 +16,11 @@
     line-height: 1.15;
 }
 
+
 .loja-topo .title span {
     color: #fc8106;
 }
+
 
 .loja-topo .description {
     font-size: 22px;
@@ -79,12 +29,14 @@
     line-height: 1.5;
 }
 
+
 /* LAYOUT GERAL */
 .loja-container {
     display: flex;
     gap: 45px;
     align-items: flex-start;
 }
+
 
 /* FILTROS */
 .filtros {
@@ -96,11 +48,13 @@
     border: 1px solid rgba(252, 129, 6, 0.10);
 }
 
+
 .filtros h3 {
     font-size: 24px;
     color: #3b2416;
     margin-bottom: 24px;
 }
+
 
 /* BOTÃO MOSTRAR TODOS */
 #mostrar-todos {
@@ -117,10 +71,12 @@
     transition: 0.3s ease;
 }
 
+
 #mostrar-todos:hover {
     opacity: 0.85;
     transform: translateY(-2px);
 }
+
 
 .filtro-bloco {
     margin-bottom: 30px;
@@ -128,11 +84,13 @@
     border-bottom: 1px solid #eadccc;
 }
 
+
 .filtro-bloco:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
 }
+
 
 .filtro-bloco h4 {
     font-size: 18px;
@@ -140,15 +98,18 @@
     margin-bottom: 16px;
 }
 
+
 .filtro-bloco ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+
 .filtro-bloco ul li {
     margin-bottom: 12px;
 }
+
 
 /* BOTÕES DOS FILTROS */
 .filtro-bloco ul li button {
@@ -163,15 +124,18 @@
     padding: 0;
 }
 
+
 .filtro-bloco ul li button:hover {
     color: #fc8106;
     transform: translateX(4px);
 }
 
+
 /* ÁREA PRODUTOS */
 .produtos-area {
     flex: 1;
 }
+
 
 /* BARRA SUPERIOR */
 .barra-produtos {
@@ -185,11 +149,13 @@
     gap: 14px;
 }
 
+
 .barra-produtos h2 {
     font-size: 28px;
     color: #3b2416;
     margin: 0;
 }
+
 
 .ordenar {
     display: flex;
@@ -197,11 +163,13 @@
     gap: 12px;
 }
 
+
 .ordenar span {
     font-size: 18px;
     color: #3b2416;
     font-weight: 500;
 }
+
 
 .ordenar select {
     padding: 12px 18px;
@@ -215,12 +183,14 @@
     min-width: 180px;
 }
 
+
 /* PRODUTOS */
 .produtos-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
 }
+
 
 .produto-card {
     background-color: #fffaf0;
@@ -233,15 +203,18 @@
     position: relative;
 }
 
+
 .produto-card:hover {
     transform: translateY(-8px);
 }
+
 
 .produto-card img {
     width: 100%;
     height: 220px;
     object-fit: cover;
 }
+
 
 .tag-produto {
     position: absolute;
@@ -256,6 +229,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
+
 .produto-info {
     padding: 20px;
     display: flex;
@@ -263,11 +237,13 @@
     flex: 1;
 }
 
+
 .marca {
     font-size: 14px;
     color: #8b6b55;
     margin-bottom: 8px;
 }
+
 
 .produto-info h3 {
     font-size: 24px;
@@ -275,6 +251,7 @@
     margin-bottom: 10px;
     line-height: 1.3;
 }
+
 
 .produto-info p {
     font-size: 15px;
@@ -284,12 +261,14 @@
     flex-grow: 1;
 }
 
+
 .preco-antigo {
     font-size: 14px;
     color: #9c8d82;
     text-decoration: line-through;
     margin-bottom: 4px;
 }
+
 
 .preco {
     font-size: 28px;
@@ -298,11 +277,13 @@
     margin-bottom: 8px;
 }
 
+
 .parcelamento {
     font-size: 14px;
     color: #5c4033;
     margin-bottom: 18px;
 }
+
 
 .produto-card .btn-default {
     width: 100%;
@@ -310,33 +291,41 @@
 }
 
 
+/* MENU ATIVO */
 .nav-item.active a {
     color: #fc8106;
     font-weight: 700;
 }
 
+
+/* RESPONSIVO */
 @media screen and (max-width: 1170px) {
     .produtos-container {
         grid-template-columns: repeat(2, 1fr);
     }
+
 
     .loja-topo .title {
         font-size: 46px;
     }
 }
 
+
 @media screen and (max-width: 900px) {
     .loja-container {
         flex-direction: column;
     }
 
+
     .filtros {
         width: 100%;
     }
 
+
     .produtos-container {
         grid-template-columns: repeat(2, 1fr);
     }
+
 
     .barra-produtos {
         flex-direction: column;
@@ -344,26 +333,32 @@
     }
 }
 
+
 @media screen and (max-width: 600px) {
     #loja_page {
         padding: 45px 5%;
     }
 
+
     .loja-topo .title {
         font-size: 34px;
     }
+
 
     .loja-topo .description {
         font-size: 18px;
     }
 
+
     .produtos-container {
         grid-template-columns: 1fr;
     }
 
+
     .produto-card img {
         height: 200px;
     }
+
 
     .ordenar {
         width: 100%;
@@ -371,13 +366,13 @@
         align-items: flex-start;
     }
 
+
     .ordenar select {
         width: 100%;
     }
 }
 
 .mensagem-carrinho{
-
     position: fixed;
     top: 25px;
     right: 25px;
@@ -400,3 +395,45 @@
     transform: translateX(0);
 }
 
+.btn-comprar{
+    width:100%;
+    margin-top:18px;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(135deg,#ff9800,#ff6f00);
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    transition:all .3s ease;
+    box-shadow:0 6px 18px rgba(255,140,0,.35);
+}
+
+.btn-comprar i{
+    font-size:18px;
+}
+
+.btn-comprar:hover{
+    transform:translateY(-4px);
+    background:linear-gradient(135deg,#ffb300,#ff7b00);
+    box-shadow:0 12px 25px rgba(255,140,0,.45);
+}
+
+.btn-comprar:active{
+    transform:scale(.97);
+}
+
+.btn-comprar::after{
+    content:"➜";
+    margin-left:5px;
+    transition:.3s;
+}
+
+.btn-comprar:hover::after{
+    transform:translateX(5px);
+}

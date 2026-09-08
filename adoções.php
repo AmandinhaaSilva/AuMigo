@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="src/styles/header.css">
     <link rel="stylesheet" href="src/styles/home.css">
     <link rel="stylesheet" href="src/styles/adocoes.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
 </head>
 
 <body>
@@ -194,6 +195,7 @@ session_start();
         </section>
     </main>
     <script src="src/javascript/adocoes.js"></script>
+    <?php include 'includes/footer.php'; ?>
 </body>
 
 </html>

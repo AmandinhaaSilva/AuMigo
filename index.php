@@ -23,6 +23,7 @@ if(!isset($_SESSION['id'])){
     <link rel="stylesheet" href="src/styles/style.css">
     <link rel="stylesheet" href="src/styles/header.css">
     <link rel="stylesheet" href="src/styles/home.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -75,6 +76,7 @@ if(!isset($_SESSION['id'])){
     <script src="src/javascript/script.js"></script>
     <script src="src/javascript/carrinho.js"></script>
 
+    <?php include 'includes/footer.php'; ?>
 </body>
 
 </html>
