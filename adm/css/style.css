@@ -187,10 +187,11 @@ body {
 ========================= */
 
 .tabela img {
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
     object-fit: cover;
     border-radius: 10px;
+    border: 2px solid #F8D8A8;
 }
 
 /* =========================
@@ -269,7 +270,6 @@ body {
     .cards {
         gap: 15px;
     }
-
 }
 
 @media (max-width: 700px) {
@@ -303,4 +303,149 @@ body {
     .tabela td {
         padding: 8px;
     }
+}
+
+/* =========================
+   PÁGINA DE ANIMAIS
+========================= */
+
+.pagina-animais {
+    width: 100%;
+}
+
+.cabecalho-pagina {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.subtitulo {
+    color: #777;
+    font-size: 15px;
+    margin-top: -15px;
+}
+
+/* TABELA */
+
+.tabela-container {
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
+    overflow-x: auto;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+    box-shadow: none;
+}
+
+.tabela th {
+    background: #F89A17;
+    color: white;
+    padding: 16px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.tabela td {
+    padding: 14px;
+    border-bottom: 1px solid #eeeeee;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tabela tbody tr {
+    transition: 0.2s;
+}
+
+.tabela tbody tr:hover {
+    background: #FFF8E6;
+}
+
+/* FOTO DO ANIMAL */
+
+.foto-animal {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #F8D8A8;
+    display: block;
+    margin: auto;
+}
+
+.sem-foto {
+    width: 75px;
+    height: 75px;
+    background: #FFF8E6;
+    border: 2px dashed #F89A17;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    margin: auto;
+}
+
+/* STATUS */
+
+.status {
+    display: inline-block;
+    background: #E5F5E8;
+    color: #32804A;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* AÇÕES */
+
+.acoes {
+    white-space: nowrap;
+}
+
+.btn-editar,
+.btn-excluir {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    transition: 0.2s;
+    margin: 2px;
+}
+
+.btn-editar {
+    background: #FFF0D9;
+    color: #A86200 !important;
+}
+
+.btn-editar:hover {
+    background: #F89A17;
+    color: white !important;
+}
+
+.btn-excluir {
+    background: #FFE5E5;
+    color: #B83A3A !important;
+}
+
+.btn-excluir:hover {
+    background: #D95353;
+    color: white !important;
+}
+
+/* BOTÃO NOVO ANIMAL */
+
+.cabecalho-pagina .btn {
+    padding: 13px 20px;
+    box-shadow: 0 3px 8px rgba(248, 154, 23, 0.25);
 }
