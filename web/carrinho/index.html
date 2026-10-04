@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Carrinho de produtos AuFriends." />
+    <title>Meu Carrinho | AuFriends</title>
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="conteudo" class="cart-page">
+      <section class="cart-card" aria-labelledby="cart-title">
+        <div class="brand-lockup cart-card__brand" aria-label="AuFriends">
+          <span class="brand-lockup__icon" aria-hidden="true">🐶</span>
+          <span class="brand-lockup__name">Au<span>Friends</span></span>
+        </div>
+        <h1 id="cart-title">Meu Carrinho</h1>
+        <p class="cart-card__subtitle">Confira seus produtos e quantidades 🐾</p>
+        <p class="placeholder-note cart-status" role="status" aria-live="polite" data-cart-status>
+          Carregando os preços atuais do catálogo…
+        </p>
+
+        <div class="cart-empty" data-cart-empty hidden>
+          <div>
+            <div class="cart-empty__icon" aria-hidden="true">🛒</div>
+            <h2>Seu carrinho está vazio</h2>
+            <p>Escolha produtos na loja; os itens ficam somente neste navegador.</p>
+          </div>
+        </div>
+
+        <div class="cart-list" aria-busy="true" data-cart-list></div>
+        <button class="button button--secondary cart-retry" type="button" data-cart-retry hidden>
+          Tentar novamente
+        </button>
+
+        <div class="cart-summary" data-cart-summary hidden>
+          <span>Total</span>
+          <strong data-cart-total>R$ 0,00</strong>
+        </div>
+
+        <section class="cart-checkout-preview" aria-labelledby="checkout-preview-title" data-checkout-preview hidden>
+          <h2 id="checkout-preview-title">Mensagem para o WhatsApp</h2>
+          <p>Confira abaixo o texto exato que será aberto no WhatsApp.</p>
+          <pre data-checkout-message></pre>
+        </section>
+
+        <div class="cart-actions">
+          <button
+            class="button"
+            type="button"
+            data-cart-checkout
+            disabled
+            aria-describedby="checkout-guidance checkout-status"
+          >
+            Finalizar pelo WhatsApp
+          </button>
+          <button class="button button--secondary" type="button" data-cart-clear hidden>Esvaziar carrinho</button>
+          <a href="/loja">Continuar comprando</a>
+          <p class="placeholder-note" id="checkout-guidance">
+            O WhatsApp será aberto somente ao acionar o botão. Combine a entrega e o Pix diretamente com a equipe; nenhum pagamento é processado aqui e o carrinho será mantido.
+          </p>
+          <p
+            class="placeholder-note cart-checkout-status"
+            id="checkout-status"
+            role="status"
+            aria-live="polite"
+            data-checkout-status
+          >Carregando a configuração pública do WhatsApp…</p>
+          <button
+            class="button button--secondary cart-retry"
+            type="button"
+            data-checkout-retry
+            hidden
+          >Carregar configuração novamente</button>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/features/cart-page.js"></script>
+  </body>
+</html>

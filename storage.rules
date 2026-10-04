@@ -1,0 +1,58 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAdmin() {
+      return request.auth != null
+        && firestore.exists(
+          /databases/(default)/documents/admins/$(request.auth.uid)
+        )
+        && firestore.get(
+          /databases/(default)/documents/admins/$(request.auth.uid)
+        ).data.active == true;
+    }
+
+    function isSafeDocumentId(value) {
+      return value.matches('^[A-Za-z0-9_-]{1,128}$');
+    }
+
+    function isGeneratedImageName(fileName) {
+      return fileName.matches(
+        '^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}'
+          + '-[0-9a-f]{12}[.](jpg|jpeg|png|webp)$'
+      );
+    }
+
+    function isValidImageUpload(fileName) {
+      return request.resource != null
+        && isGeneratedImageName(fileName)
+        && request.resource.size > 0
+        && request.resource.size <= 5 * 1024 * 1024
+        && request.resource.contentType in [
+          'image/jpeg',
+          'image/png',
+          'image/webp'
+        ];
+    }
+
+    match /public/animals/{animalId}/{fileName} {
+      allow read: if isSafeDocumentId(animalId) && isGeneratedImageName(fileName);
+      allow write: if isAdmin()
+        && isSafeDocumentId(animalId)
+        && isGeneratedImageName(fileName)
+        && (request.resource == null || isValidImageUpload(fileName));
+    }
+
+    match /public/products/{productId}/{fileName} {
+      allow read: if isSafeDocumentId(productId) && isGeneratedImageName(fileName);
+      allow write: if isAdmin()
+        && isSafeDocumentId(productId)
+        && isGeneratedImageName(fileName)
+        && (request.resource == null || isValidImageUpload(fileName));
+    }
+
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}

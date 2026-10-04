@@ -1,0 +1,24 @@
+# Dependências e build
+node_modules/
+dist/
+
+# Firebase Local Emulator Suite
+.firebase/
+.firebase-emulator-data/
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+
+# Cloudflare Wrangler
+workers/media-api/.wrangler/
+
+# Configuração local; o exemplo fictício permanece versionado
+.env
+.env.*
+!.env.example
+
+# Metadados locais do Maestri e do sistema/editor
+.maestri/
+.DS_Store
+Thumbs.db
+*.local

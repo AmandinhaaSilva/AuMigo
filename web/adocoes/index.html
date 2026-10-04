@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Conheça os animais acolhidos pelo AuFriends que aguardam adoção responsável." />
+    <title>Adoções | AuFriends</title>
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="conteudo" class="page-shell page-section">
+      <div class="catalog-layout">
+        <aside class="filter-card" aria-labelledby="animal-filters-title">
+          <h2 id="animal-filters-title">🐶 Filtrar animais</h2>
+          <form data-animal-filters>
+            <fieldset>
+              <legend>Sexo</legend>
+              <label><input type="radio" name="sex" value="all" checked /> Todos</label>
+              <label><input type="radio" name="sex" value="female" /> Fêmea</label>
+              <label><input type="radio" name="sex" value="male" /> Macho</label>
+            </fieldset>
+            <fieldset>
+              <legend>Porte</legend>
+              <label><input type="radio" name="size" value="all" checked /> Todos</label>
+              <label><input type="radio" name="size" value="small" /> Pequeno</label>
+              <label><input type="radio" name="size" value="medium" /> Médio</label>
+              <label><input type="radio" name="size" value="large" /> Grande</label>
+            </fieldset>
+            <fieldset>
+              <legend>Faixa etária</legend>
+              <label><input type="radio" name="age" value="all" checked /> Todas</label>
+              <label><input type="radio" name="age" value="puppy" /> Até 1 ano</label>
+              <label><input type="radio" name="age" value="adult" /> De 1 a 5 anos</label>
+              <label><input type="radio" name="age" value="senior" /> Mais de 5 anos</label>
+            </fieldset>
+            <button class="button button--secondary button--compact" type="reset">Limpar filtros</button>
+          </form>
+        </aside>
+
+        <section class="catalog-main" aria-labelledby="animals-title">
+          <span class="eyebrow">Adoção responsável</span>
+          <h1 class="section-heading" id="animals-title">Conheça os animais</h1>
+          <p class="section-intro">Perfis publicados e disponíveis para encontrar uma família responsável.</p>
+
+          <p class="catalog-status" role="status" aria-live="polite" data-animal-status>
+            Carregando animais disponíveis…
+          </p>
+          <div class="animal-grid" data-animal-grid aria-busy="true"></div>
+          <button class="button button--secondary catalog-retry" type="button" data-animal-retry hidden>
+            Tentar novamente
+          </button>
+        </section>
+      </div>
+    </main>
+
+    <div data-site-footer></div>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/features/adoptions-catalog.js"></script>
+  </body>
+</html>

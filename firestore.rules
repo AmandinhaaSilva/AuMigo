@@ -1,0 +1,277 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function hasExactFields(data, fields) {
+      return data.keys().hasAll(fields) && data.keys().hasOnly(fields);
+    }
+
+    function isTextBetween(value, minimum, maximum) {
+      return value is string && value.size() >= minimum && value.size() <= maximum;
+    }
+
+    function isSafeDocumentId(value) {
+      return value is string && value.matches('^[A-Za-z0-9_-]{1,128}$');
+    }
+
+    function isEmail(value) {
+      return isTextBetween(value, 5, 254) && value.matches('^[^@ ]+@[^@ ]+[.][^@ ]+$');
+    }
+
+    function isPhoneE164(value) {
+      return value is string && value.matches('^[+]?[0-9]{10,15}$') && value.size() <= 16;
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.active == true;
+    }
+
+    function isCatalogImagePath(value, collectionName, documentId) {
+      return isTextBetween(value, 1, 220)
+        && isSafeDocumentId(documentId)
+        && value.matches(
+          '^public/' + collectionName + '/' + documentId
+            + '/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}'
+            + '-[0-9a-f]{12}[.](jpg|jpeg|png|webp)$'
+        );
+    }
+
+    function validAnimalDocument(data, animalId) {
+      return hasExactFields(data, [
+          'schemaVersion', 'name', 'species', 'breed', 'ageMonths', 'sex', 'size',
+          'color', 'description', 'adoptionStatus', 'published', 'sortOrder',
+          'imagePath', 'imageAlt', 'createdAt', 'updatedAt', 'updatedBy'
+        ])
+        && data.schemaVersion == 1
+        && isTextBetween(data.name, 1, 80)
+        && data.species in ['dog', 'cat', 'other']
+        && isTextBetween(data.breed, 0, 80)
+        && data.ageMonths is int && data.ageMonths >= 0 && data.ageMonths <= 360
+        && data.sex in ['male', 'female']
+        && data.size in ['small', 'medium', 'large']
+        && isTextBetween(data.color, 0, 60)
+        && isTextBetween(data.description, 1, 2000)
+        && data.adoptionStatus in ['available', 'in_process', 'adopted']
+        && data.published is bool
+        && data.sortOrder is int
+        && isCatalogImagePath(data.imagePath, 'animals', animalId)
+        && isTextBetween(data.imageAlt, 1, 140)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp
+        && isTextBetween(data.updatedBy, 1, 128);
+    }
+
+    function validAnimalTransition(before, after) {
+      return before == after
+        || (before == 'available' && after == 'in_process')
+        || (before == 'in_process' && after in ['available', 'adopted'])
+        || (before == 'adopted' && after == 'available');
+    }
+
+    function validProductDocument(data, productId) {
+      return hasExactFields(data, [
+          'schemaVersion', 'name', 'description', 'category', 'priceCents',
+          'compareAtPriceCents', 'badge', 'active', 'sortOrder', 'imagePath',
+          'imageAlt', 'createdAt', 'updatedAt', 'updatedBy'
+        ])
+        && data.schemaVersion == 1
+        && isTextBetween(data.name, 1, 120)
+        && isTextBetween(data.description, 1, 1500)
+        && data.category in ['food', 'treats', 'accessories', 'hygiene', 'clothing', 'toys']
+        && data.priceCents is int && data.priceCents >= 0
+        && (data.compareAtPriceCents == null
+          || (data.compareAtPriceCents is int && data.compareAtPriceCents >= 0))
+        && isTextBetween(data.badge, 0, 40)
+        && data.active is bool
+        && data.sortOrder is int
+        && isCatalogImagePath(data.imagePath, 'products', productId)
+        && isTextBetween(data.imageAlt, 1, 140)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp
+        && isTextBetween(data.updatedBy, 1, 128);
+    }
+
+    function validAdoptionDocument(data) {
+      return hasExactFields(data, [
+          'schemaVersion', 'animalId', 'fullName', 'email', 'phoneE164', 'city',
+          'state', 'message', 'privacyConsent', 'status', 'adminNotes',
+          'handledBy', 'createdAt', 'updatedAt'
+        ])
+        && data.schemaVersion == 1
+        && isSafeDocumentId(data.animalId)
+        && isTextBetween(data.fullName, 2, 120)
+        && isEmail(data.email)
+        && isPhoneE164(data.phoneE164)
+        && isTextBetween(data.city, 2, 100)
+        && data.state is string && data.state.matches('^[A-Z]{2}$')
+        && isTextBetween(data.message, 0, 1500)
+        && data.privacyConsent == true
+        && data.status in ['pending', 'contacting', 'approved', 'rejected']
+        && isTextBetween(data.adminNotes, 0, 2000)
+        && (data.handledBy == null || isTextBetween(data.handledBy, 1, 128))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function animalIsAdoptable(animalId) {
+      return exists(/databases/$(database)/documents/animals/$(animalId))
+        && get(/databases/$(database)/documents/animals/$(animalId)).data.published == true
+        && get(/databases/$(database)/documents/animals/$(animalId)).data.adoptionStatus == 'available';
+    }
+
+    function validAdoptionCreate(data) {
+      return validAdoptionDocument(data)
+        && data.status == 'pending'
+        && data.adminNotes == ''
+        && data.handledBy == null
+        && data.createdAt == request.time
+        && data.updatedAt == request.time
+        && animalIsAdoptable(data.animalId);
+    }
+
+    function validAdoptionTransition(before, after) {
+      return before == after
+        || (before == 'pending' && after == 'contacting')
+        || (before == 'contacting' && after in ['approved', 'rejected'])
+        || (before in ['approved', 'rejected'] && after == 'contacting');
+    }
+
+    function validDonationDocument(data) {
+      return hasExactFields(data, [
+          'schemaVersion', 'fullName', 'email', 'phoneE164', 'type',
+          'amountOrQuantity', 'deliveryMethod', 'message', 'privacyConsent',
+          'status', 'adminNotes', 'handledBy', 'createdAt', 'updatedAt'
+        ])
+        && data.schemaVersion == 1
+        && isTextBetween(data.fullName, 2, 120)
+        && isEmail(data.email)
+        && (data.phoneE164 == '' || isPhoneE164(data.phoneE164))
+        && data.type in ['money', 'food', 'hygiene', 'clothing', 'blanket', 'other']
+        && isTextBetween(data.amountOrQuantity, 1, 160)
+        && data.deliveryMethod in ['dropoff', 'pickup', 'arrange']
+        && isTextBetween(data.message, 0, 1500)
+        && data.privacyConsent == true
+        && data.status in ['received', 'contacting', 'completed']
+        && isTextBetween(data.adminNotes, 0, 2000)
+        && (data.handledBy == null || isTextBetween(data.handledBy, 1, 128))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function validDonationCreate(data) {
+      return validDonationDocument(data)
+        && data.status == 'received'
+        && data.adminNotes == ''
+        && data.handledBy == null
+        && data.createdAt == request.time
+        && data.updatedAt == request.time;
+    }
+
+    function validDonationTransition(before, after) {
+      return before == after
+        || (before == 'received' && after == 'contacting')
+        || (before == 'contacting' && after == 'completed')
+        || (before == 'completed' && after == 'contacting');
+    }
+
+    function validSiteSettings(data) {
+      return hasExactFields(data, [
+          'schemaVersion', 'brandName', 'whatsappDigits', 'whatsappGreeting',
+          'updatedAt', 'updatedBy'
+        ])
+        && data.schemaVersion == 1
+        && isTextBetween(data.brandName, 1, 80)
+        && data.whatsappDigits is string
+        && data.whatsappDigits.matches('^[0-9]{10,15}$')
+        && isTextBetween(data.whatsappGreeting, 1, 300)
+        && data.updatedAt is timestamp
+        && isTextBetween(data.updatedBy, 1, 128);
+    }
+
+    match /animals/{animalId} {
+      allow read: if isAdmin() || resource.data.published == true;
+      allow create: if isAdmin()
+        && validAnimalDocument(request.resource.data, animalId)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedBy == request.auth.uid;
+      allow update: if isAdmin()
+        && validAnimalDocument(request.resource.data, animalId)
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedBy == request.auth.uid
+        && validAnimalTransition(
+          resource.data.adoptionStatus,
+          request.resource.data.adoptionStatus
+        );
+      allow delete: if isAdmin();
+    }
+
+    match /products/{productId} {
+      allow read: if isAdmin() || resource.data.active == true;
+      allow create: if isAdmin()
+        && validProductDocument(request.resource.data, productId)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedBy == request.auth.uid;
+      allow update: if isAdmin()
+        && validProductDocument(request.resource.data, productId)
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedBy == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    match /adoptionRequests/{requestId} {
+      allow create: if isSafeDocumentId(requestId)
+        && validAdoptionCreate(request.resource.data);
+      allow read: if isAdmin();
+      allow update: if isAdmin()
+        && validAdoptionDocument(request.resource.data)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'status', 'adminNotes', 'handledBy', 'updatedAt'
+        ])
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.handledBy == request.auth.uid
+        && validAdoptionTransition(resource.data.status, request.resource.data.status);
+      allow delete: if isAdmin();
+    }
+
+    match /donations/{donationId} {
+      allow create: if isSafeDocumentId(donationId)
+        && validDonationCreate(request.resource.data);
+      allow read: if isAdmin();
+      allow update: if isAdmin()
+        && validDonationDocument(request.resource.data)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'status', 'adminNotes', 'handledBy', 'updatedAt'
+        ])
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.handledBy == request.auth.uid
+        && validDonationTransition(resource.data.status, request.resource.data.status);
+      allow delete: if isAdmin();
+    }
+
+    match /admins/{uid} {
+      allow read: if isAdmin();
+      allow create, update, delete: if false;
+    }
+
+    match /siteSettings/public {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && validSiteSettings(request.resource.data)
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.updatedBy == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

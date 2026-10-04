@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Produtos AuFriends para cuidar e divertir o seu melhor amigo." />
+    <title>Loja | AuFriends</title>
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="conteudo" class="page-shell page-section">
+      <header class="shop-heading">
+        <span class="eyebrow">AuFriends Pet</span>
+        <h1 class="section-heading">Produtos para <span class="accent">cachorros 🐶</span></h1>
+        <p class="section-intro">Encontre itens especiais para cuidar, divertir e deixar seu melhor amigo ainda mais feliz.</p>
+      </header>
+
+      <div class="catalog-layout">
+        <aside class="filter-card" aria-labelledby="shop-filters-title">
+          <h2 id="shop-filters-title">Filtros</h2>
+          <form data-product-filters>
+            <fieldset data-product-filter-fieldset disabled aria-describedby="shop-filter-status">
+              <button class="button" type="button" data-product-filter-reset>Mostrar todos</button>
+              <h3 id="shop-categories-title">Categorias</h3>
+              <div role="group" aria-labelledby="shop-categories-title">
+                <button type="button" data-product-category="food" aria-pressed="false">🍖 Ração</button>
+                <button type="button" data-product-category="treats" aria-pressed="false">🦴 Petiscos</button>
+                <button type="button" data-product-category="accessories" aria-pressed="false">🦮 Acessórios</button>
+                <button type="button" data-product-category="hygiene" aria-pressed="false">🛁 Higiene</button>
+                <button type="button" data-product-category="clothing" aria-pressed="false">👕 Roupinhas</button>
+                <button type="button" data-product-category="toys" aria-pressed="false">🎾 Brinquedos</button>
+              </div>
+              <h3 id="shop-prices-title">Faixa de preço</h3>
+              <div role="group" aria-labelledby="shop-prices-title">
+                <button type="button" data-product-price="up-to-3000" aria-pressed="false">Até R$ 30,00</button>
+                <button type="button" data-product-price="3001-8000" aria-pressed="false">De R$ 30,01 a R$ 80,00</button>
+                <button type="button" data-product-price="over-8000" aria-pressed="false">Acima de R$ 80,00</button>
+              </div>
+            </fieldset>
+          </form>
+          <p class="placeholder-note" id="shop-filter-status" role="status" aria-live="polite" data-product-filter-status>
+            Carregando filtros.
+          </p>
+        </aside>
+
+        <section class="catalog-main" aria-labelledby="products-title">
+          <h2 class="section-heading" id="products-title">Ofertas para cão</h2>
+          <p class="catalog-status" role="status" aria-live="polite" data-products-status>
+            Carregando produtos…
+          </p>
+          <button class="button button--secondary catalog-retry" type="button" data-products-retry hidden>
+            Tentar novamente
+          </button>
+          <div class="product-grid" aria-busy="true" data-product-grid></div>
+        </section>
+      </div>
+    </main>
+
+    <div data-site-footer></div>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/features/products-catalog.js"></script>
+  </body>
+</html>

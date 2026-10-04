@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Entrada administrativa | AuFriends</title>
+  </head>
+  <body class="admin-page">
+    <main class="admin-entry" id="conteudo">
+      <section class="admin-entry__card" aria-labelledby="admin-login-title">
+        <div class="brand-lockup admin-entry__logo" aria-label="AuFriends">
+          <span class="brand-lockup__icon" aria-hidden="true">🐶</span>
+          <span class="brand-lockup__name">Au<span>Friends</span></span>
+        </div>
+        <h1 id="admin-login-title">Administrador AuFriends</h1>
+        <p>Acesso exclusivo da equipe responsável.</p>
+
+        <form class="admin-entry__form" data-admin-login aria-describedby="admin-login-status" aria-busy="true">
+          <div class="form-field">
+            <label for="admin-email">E-mail</label>
+            <input id="admin-email" name="email" type="email" autocomplete="username" inputmode="email" maxlength="254" placeholder="equipe@aufriends.local" data-admin-email required disabled />
+          </div>
+          <div class="form-field">
+            <label for="admin-password">Senha</label>
+            <input id="admin-password" name="password" type="password" autocomplete="current-password" placeholder="Digite sua senha" data-admin-password required disabled />
+          </div>
+          <button class="button" type="submit" data-admin-submit disabled>Entrar</button>
+          <button class="admin-entry__recovery" type="button" data-password-reset disabled>Esqueci minha senha</button>
+          <p class="placeholder-note" id="admin-login-status" role="status" aria-live="polite" data-admin-status>
+            Verificando a sessão…
+          </p>
+        </form>
+
+        <nav class="admin-entry__links" aria-label="Navegação administrativa">
+          <a href="/">Voltar ao site</a>
+        </nav>
+      </section>
+    </main>
+    <script type="module" src="/src/features/admin-login.js"></script>
+  </body>
+</html>

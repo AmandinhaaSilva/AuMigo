@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AuFriends: adoção responsável, doações e cuidado para animais que procuram um novo lar." />
+    <link rel="preconnect" href="https://aufriends-media-api.aufriends.workers.dev" crossorigin />
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/img/banner-1024.webp"
+      imagesrcset="/assets/img/banner-640.webp 640w, /assets/img/banner-1024.webp 1024w, /assets/img/banner-1536.webp 1536w"
+      imagesizes="(max-width: 900px) 100vw, 50vw"
+      fetchpriority="high"
+    />
+    <title>AuFriends — Um amigo de verdade</title>
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="conteudo">
+      <section class="home-hero" aria-labelledby="home-title">
+        <div class="home-hero__copy">
+          <span class="eyebrow">🐾 Instituto AuFriends</span>
+          <h1 id="home-title">Um novo lar começa com um gesto de <span class="accent">amor</span></h1>
+          <p>AuFriends: porque cada bicho merece um amigo de verdade!</p>
+          <div class="home-hero__actions">
+            <a class="button" href="/doacoes">Faça uma doação</a>
+            <a class="button button--secondary" href="tel:+5517991529090">📞 (17) 99152-9090</a>
+          </div>
+        </div>
+
+        <div class="home-hero__image">
+          <picture>
+            <source
+              type="image/webp"
+              srcset="/assets/img/banner-640.webp 640w, /assets/img/banner-1024.webp 1024w, /assets/img/banner-1536.webp 1536w"
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
+            <img
+              src="/assets/img/banner-1024.webp"
+              width="1537"
+              height="1023"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              alt="Cães acolhidos pelo Instituto AuFriends"
+            />
+          </picture>
+        </div>
+      </section>
+
+      <section class="home-paths" aria-labelledby="help-title">
+        <div class="page-shell">
+          <span class="eyebrow">Faça parte</span>
+          <h2 class="section-heading" id="help-title">Há muitas formas de ajudar</h2>
+          <p class="section-intro">
+            Conheça os animais, contribua com os cuidados ou escolha produtos especiais para o seu melhor amigo.
+          </p>
+
+          <div class="home-paths__grid">
+            <article class="path-card">
+              <span class="path-card__icon" aria-hidden="true">🐶</span>
+              <h2>Adote um animal</h2>
+              <p>Conheça histórias de animais que aguardam uma família responsável e cheia de amor.</p>
+              <a href="/adocoes">Conhecer os animais →</a>
+            </article>
+            <article class="path-card">
+              <span class="path-card__icon" aria-hidden="true">❤️</span>
+              <h2>Faça uma doação</h2>
+              <p>Ração, itens de higiene, cobertores e outras contribuições ajudam a manter o cuidado diário.</p>
+              <a href="/doacoes">Ver como contribuir →</a>
+            </article>
+            <article class="path-card">
+              <span class="path-card__icon" aria-hidden="true">🛍️</span>
+              <h2>Visite a loja</h2>
+              <p>Encontre itens para cuidar, divertir e deixar o seu melhor amigo ainda mais feliz.</p>
+              <a href="/loja">Conhecer os produtos →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

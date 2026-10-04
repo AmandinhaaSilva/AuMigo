@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Painel administrativo | AuFriends</title>
+  </head>
+  <body class="admin-page admin-dashboard-page">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <main class="admin-auth-loader" data-admin-loading aria-live="polite">
+      <section class="admin-entry__card" role="status">
+        <div class="brand-lockup admin-entry__logo" aria-label="AuFriends">
+          <span class="brand-lockup__icon" aria-hidden="true">🐶</span>
+          <span class="brand-lockup__name">Au<span>Friends</span></span>
+        </div>
+        <h1>Verificando acesso</h1>
+        <p>Aguarde enquanto validamos sua sessão administrativa.</p>
+      </section>
+    </main>
+
+    <div class="admin-shell" data-admin-protected hidden>
+      <aside class="admin-sidebar">
+        <a href="/" aria-label="Voltar para o site AuFriends">
+          <span class="brand-lockup" aria-hidden="true"><span class="brand-lockup__icon">🐶</span><span class="brand-lockup__name">Au<span>Friends</span></span></span>
+        </a>
+        <nav aria-label="Navegação administrativa">
+          <a href="#visao-geral" data-admin-nav aria-current="location">🏠 Visão geral</a>
+          <a href="#indicadores" data-admin-nav>📊 Indicadores</a>
+          <a href="#animais" data-admin-nav>🐶 Animais</a>
+          <a href="#produtos" data-admin-nav>🛍️ Produtos</a>
+          <a href="#solicitacoes-adocao" data-admin-nav>📋 Adoções</a>
+          <a href="#doacoes-admin" data-admin-nav>💝 Doações</a>
+          <a href="#seguranca" data-admin-nav>🔐 Segurança</a>
+          <a href="#configuracoes" data-admin-nav>⚙ Configurações</a>
+          <button class="admin-sidebar__logout" type="button" data-admin-logout>🚪 Encerrar sessão</button>
+        </nav>
+      </aside>
+
+      <main class="admin-content" id="conteudo">
+        <header class="admin-topbar" id="visao-geral">
+          <div>
+            <span class="eyebrow">Painel administrativo</span>
+            <h1>Visão geral</h1>
+            <p>Área reservada à equipe responsável pelo AuFriends.</p>
+          </div>
+          <span class="admin-status" data-admin-identity>Administrador ativo</span>
+        </header>
+
+        <p class="placeholder-note" role="status" data-admin-panel-status>
+          Sessão autenticada e acesso administrativo ativo. Carregando os dados do painel.
+        </p>
+
+        <section class="admin-dashboard-section" id="indicadores" aria-labelledby="metrics-title">
+          <div class="admin-section-heading">
+            <div>
+              <h2 id="metrics-title">Indicadores</h2>
+              <p>Totais atuais das coleções administrativas.</p>
+            </div>
+            <button class="button button--compact button--secondary" type="button" data-metrics-refresh>
+              Atualizar indicadores
+            </button>
+          </div>
+          <p class="sr-only" role="status" aria-live="polite" data-metrics-status>
+            Carregando indicadores.
+          </p>
+          <div class="admin-metrics" aria-busy="true" data-admin-metrics>
+            <article class="admin-metric" data-admin-metric="animals" aria-busy="true">
+              <h3>🐶 Animais</h3>
+              <strong data-metric-value>…</strong>
+              <small data-metric-status>Carregando…</small>
+            </article>
+            <article class="admin-metric" data-admin-metric="products" aria-busy="true">
+              <h3>🛒 Produtos</h3>
+              <strong data-metric-value>…</strong>
+              <small data-metric-status>Carregando…</small>
+            </article>
+            <article class="admin-metric" data-admin-metric="adoptionRequests" aria-busy="true">
+              <h3>📋 Pedidos de adoção</h3>
+              <strong data-metric-value>…</strong>
+              <small data-metric-status>Carregando…</small>
+            </article>
+            <article class="admin-metric" data-admin-metric="donations" aria-busy="true">
+              <h3>❤️ Doações</h3>
+              <strong data-metric-value>…</strong>
+              <small data-metric-status>Carregando…</small>
+            </article>
+          </div>
+        </section>
+
+        <section class="admin-panel" id="animais" aria-labelledby="animals-admin-title">
+          <div class="admin-panel__header">
+            <div>
+              <h2 id="animals-admin-title">Animais</h2>
+              <p>Cadastre perfis, controle a publicação e acompanhe o status de adoção.</p>
+            </div>
+            <button class="button button--compact" type="button" data-animal-new>Novo animal</button>
+          </div>
+
+          <p class="placeholder-note" role="status" aria-live="polite" data-admin-animals-status>
+            Carregando animais…
+          </p>
+
+          <form class="admin-resource-form" data-animal-form hidden novalidate>
+            <fieldset data-animal-fieldset>
+              <legend data-animal-form-title>Novo animal</legend>
+              <div class="admin-resource-grid">
+                <div class="form-field">
+                  <label for="animal-name">Nome</label>
+                  <input id="animal-name" name="name" type="text" maxlength="80" required />
+                </div>
+                <div class="form-field">
+                  <label for="animal-species">Espécie</label>
+                  <select id="animal-species" name="species" required>
+                    <option value="dog">Cão</option>
+                    <option value="cat">Gato</option>
+                    <option value="other">Outro</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="animal-breed">Raça</label>
+                  <input id="animal-breed" name="breed" type="text" maxlength="80" />
+                </div>
+                <div class="form-field">
+                  <label for="animal-age">Idade em meses</label>
+                  <input id="animal-age" name="ageMonths" type="number" min="0" max="360" step="1" required />
+                </div>
+                <div class="form-field">
+                  <label for="animal-sex-admin">Sexo</label>
+                  <select id="animal-sex-admin" name="sex" required>
+                    <option value="female">Fêmea</option>
+                    <option value="male">Macho</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="animal-size-admin">Porte</label>
+                  <select id="animal-size-admin" name="size" required>
+                    <option value="small">Pequeno</option>
+                    <option value="medium">Médio</option>
+                    <option value="large">Grande</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="animal-color">Cor</label>
+                  <input id="animal-color" name="color" type="text" maxlength="60" />
+                </div>
+                <div class="form-field">
+                  <label for="animal-order">Ordem de exibição</label>
+                  <input id="animal-order" name="sortOrder" type="number" step="1" value="0" required />
+                </div>
+                <div class="form-field">
+                  <label for="animal-status-admin">Status</label>
+                  <select id="animal-status-admin" name="adoptionStatus" required></select>
+                </div>
+                <div class="form-field admin-resource-grid__toggle">
+                  <label><input name="published" type="checkbox" /> Publicado no site</label>
+                </div>
+                <div class="form-field admin-resource-grid__full">
+                  <label for="animal-description">Descrição</label>
+                  <textarea id="animal-description" name="description" rows="5" maxlength="2000" required></textarea>
+                </div>
+                <div class="form-field">
+                  <label for="animal-image">Imagem</label>
+                  <input id="animal-image" name="image" type="file" accept="image/jpeg,image/png,image/webp" />
+                  <small data-animal-image-note>Obrigatória no cadastro. JPEG, PNG ou WebP de até 5 MiB.</small>
+                </div>
+                <div class="form-field">
+                  <label for="animal-image-alt">Texto alternativo</label>
+                  <input id="animal-image-alt" name="imageAlt" type="text" maxlength="140" required />
+                </div>
+              </div>
+              <div class="admin-resource-actions">
+                <button class="button" type="submit" data-animal-save>Salvar animal</button>
+                <button class="button button--secondary" type="button" data-animal-cancel>Cancelar</button>
+              </div>
+            </fieldset>
+          </form>
+
+          <div class="admin-resource-list" data-admin-animals-list aria-busy="true"></div>
+        </section>
+
+        <section class="admin-panel" id="produtos" aria-labelledby="products-admin-title">
+          <div class="admin-panel__header">
+            <div>
+              <h2 id="products-admin-title">Produtos</h2>
+              <p>Gerencie o catálogo, os preços, a disponibilidade e as imagens públicas.</p>
+            </div>
+            <button class="button button--compact" type="button" data-product-new>Novo produto</button>
+          </div>
+
+          <p class="placeholder-note" role="status" aria-live="polite" data-admin-products-status>
+            Carregando produtos…
+          </p>
+
+          <form class="admin-resource-form" data-product-form hidden novalidate>
+            <fieldset data-product-fieldset>
+              <legend data-product-form-title>Novo produto</legend>
+              <div class="admin-resource-grid">
+                <div class="form-field">
+                  <label for="product-name">Nome</label>
+                  <input id="product-name" name="name" type="text" maxlength="120" required />
+                </div>
+                <div class="form-field">
+                  <label for="product-category">Categoria</label>
+                  <select id="product-category" name="category" required>
+                    <option value="food">Ração</option>
+                    <option value="treats">Petiscos</option>
+                    <option value="accessories">Acessórios</option>
+                    <option value="hygiene">Higiene</option>
+                    <option value="clothing">Roupinhas</option>
+                    <option value="toys">Brinquedos</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="product-price">Preço em reais</label>
+                  <input id="product-price" name="priceReais" type="text" inputmode="decimal" maxlength="18" placeholder="89,90" required />
+                  <small>Sem separador de milhar e com até duas casas decimais.</small>
+                </div>
+                <div class="form-field">
+                  <label for="product-compare-price">Preço comparativo <span>(opcional)</span></label>
+                  <input id="product-compare-price" name="compareAtPriceReais" type="text" inputmode="decimal" maxlength="18" placeholder="99,90" />
+                </div>
+                <div class="form-field">
+                  <label for="product-badge">Selo <span>(opcional)</span></label>
+                  <input id="product-badge" name="badge" type="text" maxlength="40" placeholder="Mais vendido" />
+                </div>
+                <div class="form-field">
+                  <label for="product-order">Ordem de exibição</label>
+                  <input id="product-order" name="sortOrder" type="number" step="1" value="0" required />
+                </div>
+                <div class="form-field admin-resource-grid__toggle">
+                  <label><input name="active" type="checkbox" checked /> Ativo na loja</label>
+                </div>
+                <div class="form-field admin-resource-grid__full">
+                  <label for="product-description">Descrição</label>
+                  <textarea id="product-description" name="description" rows="5" maxlength="1500" required></textarea>
+                </div>
+                <div class="form-field">
+                  <label for="product-image">Imagem</label>
+                  <input id="product-image" name="image" type="file" accept="image/jpeg,image/png,image/webp" />
+                  <small data-product-image-note>Obrigatória no cadastro. JPEG, PNG ou WebP de até 5 MiB.</small>
+                </div>
+                <div class="form-field">
+                  <label for="product-image-alt">Texto alternativo</label>
+                  <input id="product-image-alt" name="imageAlt" type="text" maxlength="140" required />
+                </div>
+              </div>
+              <div class="admin-resource-actions">
+                <button class="button" type="submit" data-product-save>Salvar produto</button>
+                <button class="button button--secondary" type="button" data-product-cancel>Cancelar</button>
+              </div>
+            </fieldset>
+          </form>
+
+          <div class="admin-resource-list" data-admin-products-list aria-busy="true"></div>
+        </section>
+
+        <section class="admin-panel" id="solicitacoes-adocao" aria-labelledby="requests-admin-title">
+          <div class="admin-panel__header">
+            <div>
+              <h2 id="requests-admin-title">Solicitações de adoção</h2>
+              <p>Consulte os dados enviados e registre somente o andamento e as observações internas.</p>
+            </div>
+            <div class="admin-request-filter">
+              <label for="request-status-filter">Status</label>
+              <select id="request-status-filter" data-request-filter>
+                <option value="all">Todos</option>
+                <option value="pending">Pendente</option>
+                <option value="contacting">Em contato</option>
+                <option value="approved">Aprovada</option>
+                <option value="rejected">Rejeitada</option>
+              </select>
+              <button class="button button--compact button--secondary" type="button" data-requests-refresh>Atualizar</button>
+            </div>
+          </div>
+          <p class="placeholder-note" role="status" aria-live="polite" data-admin-requests-status>
+            Carregando solicitações…
+          </p>
+          <div class="admin-request-list" data-admin-requests-list aria-busy="true"></div>
+        </section>
+
+        <section class="admin-panel" id="doacoes-admin" aria-labelledby="donations-admin-title">
+          <div class="admin-panel__header">
+            <div>
+              <h2 id="donations-admin-title">Doações</h2>
+              <p>Consulte as intenções recebidas e registre o andamento do contato.</p>
+            </div>
+            <div class="admin-request-filter">
+              <label for="donation-status-filter">Status</label>
+              <select id="donation-status-filter" data-donation-filter>
+                <option value="all">Todos</option>
+                <option value="received">Recebida</option>
+                <option value="contacting">Em contato</option>
+                <option value="completed">Concluída</option>
+              </select>
+              <button class="button button--compact button--secondary" type="button" data-donations-refresh>Atualizar</button>
+            </div>
+          </div>
+          <p class="placeholder-note" role="status" aria-live="polite" data-admin-donations-status>
+            Carregando doações…
+          </p>
+          <div class="admin-request-list" data-admin-donations-list aria-busy="true"></div>
+        </section>
+
+        <section class="admin-panel" id="seguranca" aria-labelledby="security-title">
+          <div class="admin-panel__header">
+            <div>
+              <h2 id="security-title">Segurança da conta</h2>
+              <p id="password-help">Altere a senha desta conta administrativa sempre que necessário.</p>
+            </div>
+          </div>
+
+          <form class="admin-settings-form" data-password-form aria-describedby="password-help password-status" novalidate>
+            <fieldset data-password-fieldset>
+              <legend class="sr-only">Alterar senha administrativa</legend>
+              <div class="admin-settings-grid">
+                <div class="form-field admin-settings-grid__full">
+                  <label for="password-current">Senha atual</label>
+                  <input id="password-current" name="currentPassword" type="password" autocomplete="current-password" minlength="6" required data-password-field="current" />
+                </div>
+                <div class="form-field">
+                  <label for="password-new">Nova senha</label>
+                  <input id="password-new" name="newPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" required data-password-field="new" />
+                  <small>Use pelo menos 12 caracteres.</small>
+                </div>
+                <div class="form-field">
+                  <label for="password-confirm">Confirmar nova senha</label>
+                  <input id="password-confirm" name="confirmPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" required data-password-field="confirm" />
+                </div>
+              </div>
+              <div class="admin-settings-actions">
+                <button class="button" type="submit" data-password-submit>Alterar senha</button>
+                <span>A senha não é armazenada no Firestore nem no código do site.</span>
+              </div>
+            </fieldset>
+            <p class="placeholder-note admin-settings-status" id="password-status" role="status" aria-live="polite" data-password-status>
+              Informe a senha atual e escolha uma nova senha.
+            </p>
+          </form>
+        </section>
+
+        <section class="admin-panel" id="configuracoes" aria-labelledby="settings-title">
+          <div class="admin-panel__header">
+            <div>
+              <h2 id="settings-title">Configurações públicas</h2>
+              <p id="settings-help">Esses dados alimentam a marca e o contato público do AuFriends.</p>
+            </div>
+          </div>
+
+          <form class="admin-settings-form" data-settings-form aria-describedby="settings-help settings-status" novalidate>
+            <fieldset data-settings-fieldset disabled>
+              <legend class="sr-only">Editar configurações públicas</legend>
+              <div class="admin-settings-grid">
+                <div class="form-field">
+                  <label for="settings-brand-name">Nome da marca</label>
+                  <input id="settings-brand-name" name="brandName" type="text" autocomplete="organization" maxlength="80" required data-settings-field="brandName" />
+                  <small>De 1 a 80 caracteres.</small>
+                </div>
+                <div class="form-field">
+                  <label for="settings-whatsapp">WhatsApp</label>
+                  <input id="settings-whatsapp" name="whatsappDigits" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="55 17 99152-9090" required data-settings-field="whatsappDigits" />
+                  <small>Use de 10 a 15 dígitos; espaços e pontuação serão removidos.</small>
+                </div>
+                <div class="form-field admin-settings-grid__full">
+                  <label for="settings-greeting">Saudação do WhatsApp</label>
+                  <textarea id="settings-greeting" name="whatsappGreeting" rows="4" maxlength="300" required data-settings-field="whatsappGreeting"></textarea>
+                  <small>De 1 a 300 caracteres.</small>
+                </div>
+              </div>
+              <div class="admin-settings-actions">
+                <button class="button" type="submit" data-settings-submit>Salvar configurações</button>
+                <span>Os campos são públicos; não inclua chaves ou dados privados.</span>
+              </div>
+            </fieldset>
+            <button class="button button--secondary admin-settings-retry" type="button" data-settings-retry hidden>
+              Carregar novamente
+            </button>
+            <p class="placeholder-note admin-settings-status" id="settings-status" role="status" aria-live="polite" data-settings-status>
+              Carregando a configuração atual.
+            </p>
+          </form>
+        </section>
+
+      </main>
+    </div>
+    <script type="module" src="/src/features/admin-guard.js"></script>
+  </body>
+</html>

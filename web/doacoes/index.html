@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Conheça as formas de contribuir com os animais acolhidos pelo AuFriends." />
+    <title>Doações | AuFriends</title>
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="conteudo" class="page-shell page-section">
+      <header class="form-page-header">
+        <span class="eyebrow">Sua ajuda transforma</span>
+        <h1 class="section-heading">Ajude com uma <span class="accent">doação ❤️</span></h1>
+        <p class="section-intro">
+          Sua contribuição ajuda a garantir cuidado aos animais. Registre sua intenção de doar e a equipe
+          entrará em contato para combinar os próximos passos; nenhum pagamento é processado neste site.
+        </p>
+      </header>
+
+      <form class="form-card" data-donation-form aria-describedby="donation-status" novalidate>
+        <fieldset data-donation-fieldset>
+          <legend>Quero doar</legend>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="donor-name">Nome completo</label>
+              <input id="donor-name" name="fullName" type="text" autocomplete="name" minlength="2" maxlength="120" placeholder="Digite seu nome" required />
+            </div>
+            <div class="form-field">
+              <label for="donor-email">Endereço de e-mail</label>
+              <input id="donor-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="Digite o e-mail" required />
+              <small>Usaremos o endereço somente para conversar sobre esta doação.</small>
+            </div>
+            <div class="form-field">
+              <label for="donor-phone">Telefone <span>(opcional)</span></label>
+              <input id="donor-phone" name="phoneE164" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(17) 99999-9999" />
+            </div>
+            <div class="form-field">
+              <label for="donation-type">Tipo de doação</label>
+              <select id="donation-type" name="type" required>
+                <option value="">Selecione</option>
+                <option value="money">Dinheiro</option>
+                <option value="food">Ração e alimentos</option>
+                <option value="hygiene">Produtos de higiene</option>
+                <option value="clothing">Roupinhas</option>
+                <option value="blanket">Cobertores</option>
+                <option value="other">Outros</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="donation-amount">Quantidade ou valor</label>
+              <input id="donation-amount" name="amountOrQuantity" type="text" maxlength="160" placeholder="Ex.: R$ 50 ou 2 sacos de ração" required />
+            </div>
+            <div class="form-field">
+              <label for="delivery-method">Forma de entrega</label>
+              <select id="delivery-method" name="deliveryMethod" required>
+                <option value="">Selecione</option>
+                <option value="dropoff">Entregar no local</option>
+                <option value="pickup">Solicitar retirada</option>
+                <option value="arrange">A combinar</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label for="donation-message">Mensagem <span>(opcional)</span></label>
+              <textarea id="donation-message" name="message" rows="5" maxlength="1500" placeholder="Conte como você gostaria de ajudar"></textarea>
+            </div>
+          </div>
+
+          <div class="form-trap" aria-hidden="true">
+            <label for="donation-website">Deixe este campo vazio</label>
+            <input id="donation-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <label class="checkbox-field consent-field">
+            <input type="checkbox" name="privacyConsent" required />
+            <span>Concordo em fornecer estes dados para que a equipe AuFriends entre em contato sobre esta doação.</span>
+          </label>
+
+          <div class="form-actions">
+            <button class="button" type="submit" data-donation-submit>Enviar intenção de doação</button>
+            <p class="placeholder-note" id="donation-status" role="status" aria-live="polite" data-donation-status>
+              Confira seus dados antes de enviar.
+            </p>
+          </div>
+        </fieldset>
+      </form>
+    </main>
+
+    <div data-site-footer></div>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/features/donations-form.js"></script>
+  </body>
+</html>

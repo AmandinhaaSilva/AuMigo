@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Conheça a história de um animal acolhido pelo AuFriends." />
+    <title>Perfil para adoção | AuFriends</title>
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="conteudo" class="page-shell page-section">
+      <a class="detail-back" href="/adocoes">← Voltar para adoções</a>
+
+      <p class="detail-state" role="status" aria-live="polite" data-animal-detail-status>
+        Carregando o perfil do animal…
+      </p>
+
+      <article class="animal-detail" data-animal-detail hidden>
+        <div class="animal-detail__media" data-animal-media>
+          <img id="animal-image" alt="" />
+        </div>
+
+        <div class="animal-detail__copy">
+          <span class="eyebrow">Perfil para adoção</span>
+          <h1 id="animal-title"></h1>
+          <span class="animal-detail__meta" id="animal-sex"></span>
+          <h2 id="animal-greeting"></h2>
+          <p id="animal-description"></p>
+
+          <ul class="animal-detail__facts" aria-label="Informações do animal">
+            <li><strong>Idade</strong><br /><span id="animal-age"></span></li>
+            <li><strong>Porte</strong><br /><span id="animal-size"></span></li>
+            <li><strong>Raça</strong><br /><span id="animal-breed"></span></li>
+          </ul>
+
+          <section class="request-preview" id="solicitacao" aria-labelledby="request-title">
+            <h2 id="request-title">Quero adotar <span id="animal-request-name"></span></h2>
+            <p>Envie seus dados para a equipe entrar em contato. Nenhuma conta será criada.</p>
+
+            <form data-adoption-form novalidate>
+              <fieldset data-adoption-fieldset>
+                <legend class="sr-only">Solicitação de adoção</legend>
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="adoption-name">Nome completo</label>
+                    <input id="adoption-name" name="fullName" type="text" autocomplete="name" minlength="2" maxlength="120" required />
+                  </div>
+                  <div class="form-field">
+                    <label for="adoption-email">E-mail</label>
+                    <input id="adoption-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+                  </div>
+                  <div class="form-field">
+                    <label for="adoption-phone">Telefone com DDD</label>
+                    <input id="adoption-phone" name="phoneE164" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(17) 99999-9999" required />
+                  </div>
+                  <div class="form-field">
+                    <label for="adoption-city">Cidade</label>
+                    <input id="adoption-city" name="city" type="text" autocomplete="address-level2" minlength="2" maxlength="100" required />
+                  </div>
+                  <div class="form-field form-field--state">
+                    <label for="adoption-state">UF</label>
+                    <input id="adoption-state" name="state" type="text" autocomplete="address-level1" minlength="2" maxlength="2" pattern="[A-Za-z]{2}" required />
+                  </div>
+                  <div class="form-field form-field--full">
+                    <label for="adoption-message">Mensagem <span>(opcional)</span></label>
+                    <textarea id="adoption-message" name="message" rows="4" maxlength="1500"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-trap" aria-hidden="true">
+                  <label for="adoption-website">Deixe este campo vazio</label>
+                  <input id="adoption-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <label class="consent-field">
+                  <input name="privacyConsent" type="checkbox" required />
+                  Autorizo o uso destes dados somente para contato sobre esta adoção.
+                </label>
+
+                <div class="form-actions">
+                  <button class="button" type="submit" data-adoption-submit>Enviar solicitação</button>
+                  <p class="placeholder-note adoption-form-status" role="status" aria-live="polite" data-adoption-status>
+                    Confira seus dados antes de enviar.
+                  </p>
+                </div>
+              </fieldset>
+            </form>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <div data-site-footer></div>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/features/animal-detail.js"></script>
+  </body>
+</html>
