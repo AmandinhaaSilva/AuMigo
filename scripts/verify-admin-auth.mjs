@@ -1,6 +1,15 @@
+import { generateKeyPairSync } from "node:crypto";
 import { globSync, readFileSync } from "node:fs";
 import { deleteApp, initializeApp } from "firebase/app";
 import {
+  cert,
+  deleteApp as deleteAdminApp,
+  initializeApp as initializeAdminApp
+} from "firebase-admin/app";
+import { getAuth as getAdminAuth } from "firebase-admin/auth";
+import { getFirestore as getAdminFirestore } from "firebase-admin/firestore";
+import {
+  confirmPasswordReset,
   connectAuthEmulator,
   EmailAuthProvider,
   getAuth,
@@ -18,6 +27,7 @@ import {
   getDocFromServer,
   getFirestore
 } from "firebase/firestore";
+import { createAdminManagementService } from "../web/src/services/admin-management.js";
 
 const PROJECT_ID = "demo-aufriends-local";
 const ROOT_URL = "http://127.0.0.1:5000";
@@ -72,6 +82,36 @@ async function client(label) {
 
 async function deleteClient(app) {
   await deleteApp(app);
+}
+
+function localEmulatorCredential() {
+  const { privateKey } = generateKeyPairSync("rsa", { modulusLength: 2_048 });
+  return cert({
+    projectId: PROJECT_ID,
+    clientEmail: `verify-local@${PROJECT_ID}.iam.gserviceaccount.com`,
+    privateKey: privateKey.export({ type: "pkcs8", format: "pem" })
+  });
+}
+
+async function cleanupInvitedAdmin(uid) {
+  process.env.FIREBASE_AUTH_EMULATOR_HOST = "127.0.0.1:9099";
+  process.env.FIRESTORE_EMULATOR_HOST = "127.0.0.1:8080";
+  process.env.GCLOUD_PROJECT = PROJECT_ID;
+  process.env.GOOGLE_CLOUD_PROJECT = PROJECT_ID;
+
+  const adminApp = initializeAdminApp(
+    { projectId: PROJECT_ID, credential: localEmulatorCredential() },
+    `t07-cleanup-${crypto.randomUUID()}`
+  );
+
+  try {
+    await getAdminFirestore(adminApp).doc(`admins/${uid}`).delete().catch(() => {});
+    await getAdminAuth(adminApp).deleteUser(uid).catch((error) => {
+      if (error?.code !== "auth/user-not-found") throw error;
+    });
+  } finally {
+    await deleteAdminApp(adminApp);
+  }
 }
 
 async function oobCodes() {
@@ -174,6 +214,70 @@ await scenario("recuperação gera ação no Auth Emulator", async () => {
   assert(generated, "Nenhum novo código PASSWORD_RESET foi encontrado.");
 });
 
+await scenario("admin convida outro e-mail sem perder a própria sessão", async () => {
+  const inviter = await client("admin-inviter");
+  const invited = await client("admin-invited");
+  const invitedEmail = `convite-${crypto.randomUUID()}@aufriends.local`;
+  const chosenPassword = "NovaSenhaConvite!2026";
+  let invitedUid = null;
+
+  try {
+    const inviterCredential = await signInWithEmailAndPassword(
+      inviter.auth,
+      CREDENTIALS.admin.email,
+      CREDENTIALS.admin.password
+    );
+    const before = await oobCodes();
+    const management = createAdminManagementService({
+      app: inviter.app,
+      auth: inviter.auth,
+      firestore: inviter.firestore,
+      authEmulatorUrl: AUTH_URL
+    });
+
+    const invitation = await management.inviteAdmin(inviterCredential.user.uid, {
+      displayName: "Admin convidado local",
+      email: invitedEmail
+    });
+    invitedUid = invitation.uid;
+    assert(
+      inviter.auth.currentUser?.uid === inviterCredential.user.uid,
+      "A sessão do administrador atual foi substituída."
+    );
+
+    const after = await oobCodes();
+    const reset = after.find(
+      (entry) =>
+        entry.email === invitedEmail
+        && entry.requestType === "PASSWORD_RESET"
+        && !before.some((existing) => existing.oobCode === entry.oobCode)
+    );
+    assert(reset?.oobCode, "O convite não gerou um link para definição de senha.");
+
+    await confirmPasswordReset(invited.auth, reset.oobCode, chosenPassword);
+    const invitedCredential = await signInWithEmailAndPassword(
+      invited.auth,
+      invitedEmail,
+      chosenPassword
+    );
+    assert(invitedCredential.user.uid === invitedUid, "O convite ativou outro UID.");
+    const authorization = await getDocFromServer(
+      doc(invited.firestore, "admins", invitedUid)
+    );
+    assert(
+      authorization.exists() && authorization.get("active") === true,
+      "O administrador convidado não recebeu autorização ativa."
+    );
+    assert(
+      authorization.get("createdBy") === inviterCredential.user.uid,
+      "A origem do convite não foi registrada."
+    );
+  } finally {
+    if (invitedUid) await cleanupInvitedAdmin(invitedUid);
+    await Promise.all([deleteClient(inviter.app), deleteClient(invited.app)]);
+  }
+});
+
 await scenario("administrador altera a própria senha e consegue reutilizá-la", async () => {
   const current = await client("password-change");
   const temporaryPassword = "NovaSenhaLocal!2026";
@@ -234,18 +338,30 @@ await scenario("entrada direta permanece oculta até o guard", async () => {
   assert(panelSource.includes('/src/features/admin-guard.js'), "Entrypoint do guard ausente na fonte.");
 });
 
-await scenario("persistência declarada e nenhum cadastro público", async () => {
+await scenario("persistência declarada e cadastro restrito ao painel protegido", async () => {
   const sourceFiles = globSync("web/**/*.{html,js}");
   const sources = sourceFiles.map((file) => readFileSync(file, "utf8")).join("\n");
   const authService = readFileSync("web/src/services/admin-auth.js", "utf8");
+  const managementService = readFileSync("web/src/services/admin-management.js", "utf8");
   const loginPage = readFileSync("web/admin/index.html", "utf8");
+  const loginScript = readFileSync("web/src/features/admin-login.js", "utf8");
   const panelPage = readFileSync("web/admin/painel/index.html", "utf8");
 
   assert(authService.includes("browserLocalPersistence"), "Persistência local não configurada.");
   assert(authService.includes("reauthenticateWithCredential"), "Reautenticação para troca de senha ausente.");
   assert(authService.includes("updatePassword"), "Atualização autenticada de senha ausente.");
   assert(panelPage.includes("data-password-form"), "Formulário de troca de senha ausente do painel.");
-  assert(!sources.includes("createUserWithEmailAndPassword"), "Cadastro público encontrado.");
+  assert(panelPage.includes("data-admin-invite-form"), "Formulário de convite administrativo ausente.");
+  assert(
+    managementService.includes("createUserWithEmailAndPassword")
+      && managementService.includes("inMemoryPersistence"),
+    "Criação isolada de administrador ausente."
+  );
+  assert(
+    !`${loginPage}\n${loginScript}`.includes("createUserWithEmailAndPassword"),
+    "Cadastro foi exposto na entrada pública."
+  );
+  assert(sources.includes("reauthenticateAdmin"), "Reautenticação do convite ausente.");
   assert(!loginPage.includes('href="/admin/painel"'), "Link público de prévia ainda existe.");
 });
 

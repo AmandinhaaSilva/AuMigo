@@ -31,6 +31,7 @@
           <a href="#produtos" data-admin-nav>🛍️ Produtos</a>
           <a href="#solicitacoes-adocao" data-admin-nav>📋 Adoções</a>
           <a href="#doacoes-admin" data-admin-nav>💝 Doações</a>
+          <a href="#administradores" data-admin-nav>👥 Administradores</a>
           <a href="#seguranca" data-admin-nav>🔐 Segurança</a>
           <a href="#configuracoes" data-admin-nav>⚙ Configurações</a>
           <button class="admin-sidebar__logout" type="button" data-admin-logout>🚪 Encerrar sessão</button>
@@ -300,6 +301,56 @@
             Carregando doações…
           </p>
           <div class="admin-request-list" data-admin-donations-list aria-busy="true"></div>
+        </section>
+
+        <section class="admin-panel" id="administradores" aria-labelledby="admins-title">
+          <div class="admin-panel__header">
+            <div>
+              <h2 id="admins-title">Administradores</h2>
+              <p id="admin-invite-help">Convide outra pessoa por e-mail para acessar este painel.</p>
+            </div>
+          </div>
+
+          <div class="admin-access-layout">
+            <form class="admin-settings-form admin-access-invite" data-admin-invite-form aria-describedby="admin-invite-help admin-invite-status" novalidate>
+              <fieldset data-admin-invite-fieldset>
+                <legend>Adicionar administrador</legend>
+                <div class="admin-settings-grid">
+                  <div class="form-field">
+                    <label for="admin-invite-name">Nome</label>
+                    <input id="admin-invite-name" name="displayName" type="text" autocomplete="name" minlength="2" maxlength="120" required data-admin-invite-field="displayName" />
+                  </div>
+                  <div class="form-field">
+                    <label for="admin-invite-email">E-mail</label>
+                    <input id="admin-invite-email" name="email" type="email" autocomplete="email" maxlength="254" required data-admin-invite-field="email" />
+                  </div>
+                  <div class="form-field admin-settings-grid__full">
+                    <label for="admin-invite-password">Sua senha atual</label>
+                    <input id="admin-invite-password" name="currentPassword" type="password" autocomplete="current-password" minlength="6" required data-admin-invite-password />
+                    <small>Confirme sua senha para autorizar a concessão de acesso.</small>
+                  </div>
+                </div>
+                <div class="admin-settings-actions">
+                  <button class="button" type="submit" data-admin-invite-submit>Enviar convite</button>
+                  <span>A pessoa receberá um link para definir a própria senha. Nenhuma senha temporária é exibida ou armazenada.</span>
+                </div>
+              </fieldset>
+              <p class="placeholder-note admin-settings-status" id="admin-invite-status" role="status" aria-live="polite" data-admin-invite-status>
+                Informe os dados da pessoa que receberá o acesso.
+              </p>
+            </form>
+
+            <section class="admin-access-directory" aria-labelledby="admin-access-list-title">
+              <div class="admin-access-directory__header">
+                <h3 id="admin-access-list-title">Quem possui acesso</h3>
+                <button class="button button--compact button--secondary" type="button" data-admin-list-refresh>Atualizar</button>
+              </div>
+              <p class="placeholder-note" role="status" aria-live="polite" data-admin-list-status>
+                Carregando administradores…
+              </p>
+              <div class="admin-access-list" data-admin-list aria-busy="true"></div>
+            </section>
+          </div>
         </section>
 
         <section class="admin-panel" id="seguranca" aria-labelledby="security-title">

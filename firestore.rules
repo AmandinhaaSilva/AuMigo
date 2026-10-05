@@ -190,6 +190,23 @@ service cloud.firestore {
         && isTextBetween(data.updatedBy, 1, 128);
     }
 
+    function validInvitedAdmin(data, uid) {
+      return hasExactFields(data, [
+          'schemaVersion', 'displayName', 'email', 'active', 'createdAt',
+          'updatedAt', 'createdBy', 'updatedBy'
+        ])
+        && isSafeDocumentId(uid)
+        && uid != request.auth.uid
+        && data.schemaVersion == 1
+        && isTextBetween(data.displayName, 2, 120)
+        && isEmail(data.email)
+        && data.active == true
+        && data.createdAt == request.time
+        && data.updatedAt == request.time
+        && data.createdBy == request.auth.uid
+        && data.updatedBy == request.auth.uid;
+    }
+
     match /animals/{animalId} {
       allow read: if isAdmin() || resource.data.published == true;
       allow create: if isAdmin()
@@ -258,7 +275,8 @@ service cloud.firestore {
 
     match /admins/{uid} {
       allow read: if isAdmin();
-      allow create, update, delete: if false;
+      allow create: if isAdmin() && validInvitedAdmin(request.resource.data, uid);
+      allow update, delete: if false;
     }
 
     match /siteSettings/public {

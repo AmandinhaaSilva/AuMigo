@@ -130,8 +130,10 @@ Transições: `received → contacting → completed`; `completed` pode reabrir 
 | `active` | boolean |
 | `createdAt` | timestamp |
 | `updatedAt` | timestamp |
+| `createdBy` | UID do administrador que enviou o convite; obrigatório em convites pelo painel |
+| `updatedBy` | UID do administrador que enviou o convite; obrigatório em convites pelo painel |
 
-Somente administrador ativo lê. Toda escrita pelo Web SDK é negada, inclusive para o próprio administrador.
+Somente administrador ativo lê. Um administrador ativo pode criar pelo Web SDK exclusivamente um novo documento ativo, com esquema exato, timestamps do servidor e `createdBy`/`updatedBy` iguais ao próprio UID. O painel cria a conta Auth em uma instância secundária e envia recuperação de senha sem substituir a sessão atual. Atualizar ou excluir documentos de `admins` pelo Web SDK continua negado, inclusive para o próprio administrador; revogação permanece uma operação privilegiada.
 
 ### `siteSettings/public`
 

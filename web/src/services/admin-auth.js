@@ -90,7 +90,7 @@ export function requestPasswordReset(email) {
   return sendPasswordResetEmail(auth, email);
 }
 
-export async function changeAdminPassword(currentPassword, newPassword) {
+export async function reauthenticateAdmin(currentPassword) {
   await prepareAdminAuth();
   const user = auth.currentUser;
 
@@ -102,6 +102,11 @@ export async function changeAdminPassword(currentPassword, newPassword) {
 
   const credential = EmailAuthProvider.credential(user.email, currentPassword);
   await reauthenticateWithCredential(user, credential);
+  return user;
+}
+
+export async function changeAdminPassword(currentPassword, newPassword) {
+  const user = await reauthenticateAdmin(currentPassword);
   await updatePassword(user, newPassword);
 }
 

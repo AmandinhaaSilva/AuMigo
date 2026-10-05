@@ -23,6 +23,12 @@ try {
 
 Se o e-mail já existir com outra senha, o script interrompe sem substituir a credencial. Se uma conta acabou de ser criada e a autorização no Firestore falhar, ele tenta remover essa conta nova para não deixar um acesso incompleto.
 
+## Convidar outro administrador pelo painel
+
+Um administrador ativo pode abrir **Administradores**, informar nome e e-mail e confirmar a própria senha. O navegador cria a nova conta em uma instância Auth secundária, preserva a sessão atual, envia ao convidado o link para definir a senha e somente então grava `admins/{uid}` como ativo, com a origem do convite registrada em `createdBy` e `updatedBy`.
+
+O formulário cria apenas endereços que ainda não possuem conta no Firebase Auth. Promover uma conta preexistente continua exigindo o procedimento privilegiado, pois o Web SDK não pode consultar UID por e-mail. Se a concessão no Firestore falhar, o fluxo tenta excluir a conta Auth recém-criada para não deixar um cadastro incompleto.
+
 ## Alterar ou recuperar a senha
 
 - Com a sessão aberta: entrar em `/admin/painel`, abrir **Segurança**, informar a senha atual e cadastrar uma nova senha com pelo menos 12 caracteres. O Firebase exige reautenticação antes de aplicar a alteração.

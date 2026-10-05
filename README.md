@@ -1,6 +1,6 @@
 # AuFriends
 
-Base local reproduzível do AuFriends para reconstruir o site legado sobre Firebase. A aplicação nova já possui nove páginas em Vite, regras testadas de Firestore/Storage, autenticação administrativa, painel protegido e os fluxos funcionais de adoção, doação, catálogo de produtos, carrinho local e finalização assistida pelo WhatsApp; o PHP recebido permanece apenas como referência histórica.
+Base local reproduzível do AuFriends para reconstruir o site legado sobre Firebase. A aplicação nova já possui nove páginas em Vite, regras testadas de Firestore/Storage, autenticação administrativa, painel protegido com convite de novos administradores e os fluxos funcionais de adoção, doação, catálogo de produtos, carrinho local e finalização assistida pelo WhatsApp; o PHP recebido permanece apenas como referência histórica.
 
 ## Pré-requisitos
 

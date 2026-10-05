@@ -1,5 +1,10 @@
 import { firebaseClient } from "../config/firebase-client.js";
-import { changeAdminPassword } from "../services/admin-auth.js";
+import { changeAdminPassword, reauthenticateAdmin } from "../services/admin-auth.js";
+import {
+  adminInvitationErrorMessage,
+  createAdminManagementService,
+  normalizeAdminInvitation
+} from "../services/admin-management.js";
 import {
   ADMIN_METRICS,
   SiteSettingsValidationError,
@@ -10,6 +15,14 @@ import {
 } from "../services/admin-panel-data.js";
 
 const dataService = createAdminPanelDataService(firebaseClient.firestore);
+const adminManagementService = createAdminManagementService({
+  app: firebaseClient.app,
+  auth: firebaseClient.auth,
+  firestore: firebaseClient.firestore,
+  authEmulatorUrl: firebaseClient.useEmulators
+    ? `http://${firebaseClient.emulatorHost}:${firebaseClient.ports.auth}`
+    : null
+});
 const metricsContainer = document.querySelector("[data-admin-metrics]");
 const metricsStatus = document.querySelector("[data-metrics-status]");
 const metricsRefresh = document.querySelector("[data-metrics-refresh]");
@@ -32,6 +45,18 @@ const passwordFields = Object.freeze({
   next: document.querySelector('[data-password-field="new"]'),
   confirm: document.querySelector('[data-password-field="confirm"]')
 });
+const adminInviteForm = document.querySelector("[data-admin-invite-form]");
+const adminInviteFieldset = document.querySelector("[data-admin-invite-fieldset]");
+const adminInviteStatus = document.querySelector("[data-admin-invite-status]");
+const adminInviteSubmit = document.querySelector("[data-admin-invite-submit]");
+const adminInvitePassword = document.querySelector("[data-admin-invite-password]");
+const adminInviteFields = Object.freeze({
+  displayName: document.querySelector('[data-admin-invite-field="displayName"]'),
+  email: document.querySelector('[data-admin-invite-field="email"]')
+});
+const adminList = document.querySelector("[data-admin-list]");
+const adminListStatus = document.querySelector("[data-admin-list-status]");
+const adminListRefresh = document.querySelector("[data-admin-list-refresh]");
 
 let initialized = false;
 let settingsLoaded = false;
@@ -245,6 +270,162 @@ function setupSettingsForm() {
   });
 }
 
+function setAdminInviteStatus(message, kind = "info") {
+  adminInviteStatus.textContent = message;
+  adminInviteStatus.setAttribute("role", kind === "error" ? "alert" : "status");
+  adminInviteStatus.classList.toggle("placeholder-note--error", kind === "error");
+  adminInviteStatus.classList.toggle("placeholder-note--success", kind === "success");
+}
+
+function setAdminInviteBusy(busy) {
+  adminInviteForm.setAttribute("aria-busy", String(busy));
+  adminInviteFieldset.disabled = busy;
+  adminInviteSubmit.textContent = busy ? "Enviando…" : "Enviar convite";
+}
+
+function clearAdminInviteValidity() {
+  Object.values(adminInviteFields).forEach((field) => field.setCustomValidity(""));
+  adminInvitePassword.setCustomValidity("");
+}
+
+function reportAdminInviteErrors(errors) {
+  clearAdminInviteValidity();
+  let firstInvalid;
+
+  for (const [name, message] of Object.entries(errors)) {
+    const field = adminInviteFields[name];
+    field.setCustomValidity(message);
+    firstInvalid ??= field;
+  }
+
+  setAdminInviteStatus("Revise os campos indicados antes de enviar.", "error");
+  firstInvalid?.reportValidity();
+  firstInvalid?.focus();
+}
+
+function renderAdminList(admins) {
+  const fragment = document.createDocumentFragment();
+
+  if (admins.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "admin-access-list__empty";
+    empty.textContent = "Nenhum administrador foi encontrado.";
+    fragment.append(empty);
+  }
+
+  for (const administrator of admins) {
+    const card = document.createElement("article");
+    card.className = "admin-access-card";
+
+    const identity = document.createElement("div");
+    identity.className = "admin-access-card__identity";
+    const name = document.createElement("strong");
+    name.textContent = administrator.displayName;
+    const email = document.createElement("span");
+    email.textContent = administrator.email || "E-mail não informado";
+    identity.append(name, email);
+
+    const badges = document.createElement("div");
+    badges.className = "admin-access-card__badges";
+    const access = document.createElement("span");
+    access.className = administrator.active
+      ? "admin-access-badge"
+      : "admin-access-badge admin-access-badge--inactive";
+    access.textContent = administrator.active ? "Acesso ativo" : "Acesso inativo";
+    badges.append(access);
+
+    if (administrator.uid === activeUser.uid) {
+      const current = document.createElement("span");
+      current.className = "admin-access-badge admin-access-badge--current";
+      current.textContent = "Você";
+      badges.append(current);
+    }
+
+    card.append(identity, badges);
+    fragment.append(card);
+  }
+
+  adminList.replaceChildren(fragment);
+}
+
+async function loadAdmins() {
+  adminListRefresh.disabled = true;
+  adminList.setAttribute("aria-busy", "true");
+  adminListStatus.textContent = "Carregando administradores…";
+  adminListStatus.classList.remove("placeholder-note--error");
+  adminListStatus.setAttribute("role", "status");
+
+  try {
+    const administrators = await adminManagementService.listAdmins();
+    renderAdminList(administrators);
+    adminListStatus.textContent = `${administrators.length} ${
+      administrators.length === 1 ? "administrador encontrado" : "administradores encontrados"
+    }.`;
+  } catch (error) {
+    adminListStatus.textContent = adminInvitationErrorMessage(error);
+    adminListStatus.classList.add("placeholder-note--error");
+    adminListStatus.setAttribute("role", "alert");
+  } finally {
+    adminList.setAttribute("aria-busy", "false");
+    adminListRefresh.disabled = false;
+  }
+}
+
+async function inviteAdministrator(event) {
+  event.preventDefault();
+  clearAdminInviteValidity();
+  let focusTarget = null;
+
+  if (!adminInviteForm.reportValidity()) return;
+
+  const normalized = normalizeAdminInvitation({
+    displayName: adminInviteFields.displayName.value,
+    email: adminInviteFields.email.value
+  });
+
+  if (!normalized.valid) {
+    reportAdminInviteErrors(normalized.errors);
+    return;
+  }
+
+  setAdminInviteBusy(true);
+  setAdminInviteStatus("Confirmando sua identidade e preparando o convite…");
+
+  try {
+    await reauthenticateAdmin(adminInvitePassword.value);
+    const invited = await adminManagementService.inviteAdmin(activeUser.uid, normalized.values);
+    adminInviteForm.reset();
+    setAdminInviteStatus(
+      `Acesso concedido a ${invited.email}. O link para definir a senha foi enviado.`,
+      "success"
+    );
+    await loadAdmins();
+  } catch (error) {
+    setAdminInviteStatus(adminInvitationErrorMessage(error), "error");
+    adminInvitePassword.value = "";
+
+    if (["auth/invalid-credential", "auth/wrong-password"].includes(error?.code)) {
+      focusTarget = adminInvitePassword;
+    } else if (error?.code === "auth/email-already-in-use") {
+      focusTarget = adminInviteFields.email;
+    }
+  } finally {
+    setAdminInviteBusy(false);
+    focusTarget?.focus();
+  }
+}
+
+function setupAdminManagement() {
+  adminInviteForm.addEventListener("submit", inviteAdministrator);
+  adminListRefresh.addEventListener("click", loadAdmins);
+  Object.values(adminInviteFields).forEach((field) => {
+    field.addEventListener("input", () => field.setCustomValidity(""));
+  });
+  adminInvitePassword.addEventListener("input", () => {
+    adminInvitePassword.setCustomValidity("");
+  });
+}
+
 function setPasswordStatus(message, kind = "info") {
   passwordStatus.textContent = message;
   passwordStatus.setAttribute("role", kind === "error" ? "alert" : "status");
@@ -336,12 +517,14 @@ export async function initializeAdminPanel(user) {
   activeUser = user;
   setupNavigation();
   setupSettingsForm();
+  setupAdminManagement();
   setupPasswordForm();
   metricsRefresh.addEventListener("click", refreshMetrics);
   document.addEventListener("aufriends:metrics-refresh", refreshMetrics);
   await Promise.all([
     refreshMetrics(),
     loadSettings(),
+    loadAdmins(),
     initializeAdoptions(user),
     initializeDonations(user),
     initializeProducts(user)

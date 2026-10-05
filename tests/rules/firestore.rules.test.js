@@ -36,6 +36,20 @@ function storedAdmin(uid, active) {
   };
 }
 
+function writableInvitedAdmin(uid, inviterUid = ACTIVE_ADMIN_UID, overrides = {}) {
+  return {
+    schemaVersion: 1,
+    displayName: `Admin convidado ${uid}`,
+    email: `${uid}@aufriends.local`,
+    active: true,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+    createdBy: inviterUid,
+    updatedBy: inviterUid,
+    ...overrides
+  };
+}
+
 function storedAnimal(animalId = "animal-one", overrides = {}) {
   return {
     schemaVersion: 1,
@@ -352,6 +366,12 @@ test("usuário autenticado sem registro admin não recebe privilégios", async (
   await assertFails(
     setDoc(doc(database, "siteSettings/public"), settingsData(NON_ADMIN_UID))
   );
+  await assertFails(
+    setDoc(
+      doc(database, "admins/non-admin-invite"),
+      writableInvitedAdmin("non-admin-invite", NON_ADMIN_UID)
+    )
+  );
 });
 
 test("administrador inativo continua sem privilégios", async () => {
@@ -368,6 +388,12 @@ test("administrador inativo continua sem privilégios", async () => {
     setDoc(
       doc(database, "products/inactive-admin-write"),
       writableProduct("inactive-admin-write", INACTIVE_ADMIN_UID)
+    )
+  );
+  await assertFails(
+    setDoc(
+      doc(database, "admins/inactive-admin-invite"),
+      writableInvitedAdmin("inactive-admin-invite", INACTIVE_ADMIN_UID)
     )
   );
 });
@@ -484,7 +510,7 @@ test("administrador ativo trata e exclui submissões apenas por transições vá
   await assertSucceeds(deleteDoc(donationReference));
 });
 
-test("nem administrador ativo escreve a coleção admins pelo Web SDK", async () => {
+test("administrador ativo convida outro admin com esquema estrito sem alterar acessos existentes", async () => {
   await seedFirestore(testEnvironment, {
     [`admins/${ACTIVE_ADMIN_UID}`]: storedAdmin(ACTIVE_ADMIN_UID, true),
     "admins/another-admin": storedAdmin("another-admin", true)
@@ -494,11 +520,38 @@ test("nem administrador ativo escreve a coleção admins pelo Web SDK", async ()
   await assertSucceeds(getDoc(doc(database, `admins/${ACTIVE_ADMIN_UID}`)));
   const listSnapshot = await assertSucceeds(getDocs(collection(database, "admins")));
   assert.equal(listSnapshot.size, 2);
+  await assertSucceeds(
+    setDoc(
+      doc(database, "admins/invited-admin"),
+      writableInvitedAdmin("invited-admin")
+    )
+  );
   await assertFails(
     updateDoc(doc(database, `admins/${ACTIVE_ADMIN_UID}`), { active: false })
   );
   await assertFails(
-    setDoc(doc(database, "admins/new-admin"), storedAdmin("new-admin", true))
+    setDoc(
+      doc(database, "admins/inactive-invite"),
+      writableInvitedAdmin("inactive-invite", ACTIVE_ADMIN_UID, { active: false })
+    )
+  );
+  await assertFails(
+    setDoc(
+      doc(database, "admins/forged-inviter"),
+      writableInvitedAdmin("forged-inviter", "another-admin")
+    )
+  );
+  await assertFails(
+    setDoc(
+      doc(database, "admins/extra-field"),
+      writableInvitedAdmin("extra-field", ACTIVE_ADMIN_UID, { unexpected: true })
+    )
+  );
+  await assertFails(
+    setDoc(
+      doc(database, "admins/invalid-email"),
+      writableInvitedAdmin("invalid-email", ACTIVE_ADMIN_UID, { email: "inválido" })
+    )
   );
   await assertFails(deleteDoc(doc(database, "admins/another-admin")));
 });
