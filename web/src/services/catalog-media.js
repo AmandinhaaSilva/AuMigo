@@ -20,7 +20,15 @@ function mediaError(message, status) {
     ? "storage/object-not-found"
     : status === 401 || status === 403
       ? "storage/unauthorized"
-      : "storage/retry-limit-exceeded";
+      : status === 413
+        ? "storage/quota-exceeded"
+        : status === 415
+          ? "storage/invalid-format"
+          : status >= 500
+            ? "storage/unavailable"
+            : "storage/unknown";
+  error.service = "media";
+  error.status = status;
   return error;
 }
 

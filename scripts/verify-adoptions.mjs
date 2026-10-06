@@ -28,6 +28,7 @@ import {
 import { createAdoptionAttemptStore } from "../web/src/services/adoption-attempt.js";
 import {
   AdoptionDataValidationError,
+  adoptionDataErrorMessage,
   createAdoptionsDataService,
   filterPublicAnimals,
   normalizeAdoptionRequest,
@@ -35,6 +36,7 @@ import {
   validateImageFile,
   validateSubmissionGate
 } from "../web/src/services/adoptions-data.js";
+import { createCatalogMediaGateway } from "../web/src/services/catalog-media.js";
 
 const PROJECT_ID = "demo-aufriends-local";
 const HOST = "127.0.0.1";
@@ -232,6 +234,33 @@ try {
     assert.equal(normalizeAnimalInput(validAnimalInput({ name: "" })).valid, false);
     assert.equal(validateImageFile(testFile("image/svg+xml", "animal.svg", [1])).valid, false);
     assert.equal(validateImageFile({ type: "image/png", size: 5 * 1024 * 1024 + 1 }).valid, false);
+  });
+
+  await scenario("preserva no painel o motivo devolvido pelo serviço de imagens", async () => {
+    const originalFetch = globalThis.fetch;
+    globalThis.fetch = async () => new Response(
+      JSON.stringify({ error: "A imagem deve ter no máximo 5 MB." }),
+      { status: 413, headers: { "Content-Type": "application/json" } }
+    );
+    try {
+      const gateway = createCatalogMediaGateway({
+        auth: { currentUser: { getIdToken: async () => "token-local-ficticio" } },
+        storage: {},
+        useEmulators: false
+      });
+      await assert.rejects(
+        gateway.upload("public/animals/t09-rejected/image.png", Uint8Array.of(1), "image/png"),
+        (error) => {
+          assert.equal(error.code, "storage/quota-exceeded");
+          assert.equal(error.service, "media");
+          assert.equal(error.status, 413);
+          assert.equal(adoptionDataErrorMessage(error, "save"), "A imagem deve ter no máximo 5 MB.");
+          return true;
+        }
+      );
+    } finally {
+      globalThis.fetch = originalFetch;
+    }
   });
 
   await scenario("administrador cria animal com documento e imagem válidos", async () => {

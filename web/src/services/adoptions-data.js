@@ -330,8 +330,11 @@ export function adoptionDataErrorMessage(error, action = "load") {
   if (code === "permission-denied" || code === "unauthorized") {
     return "A operação não foi autorizada. Seu acesso ou a disponibilidade do animal pode ter mudado.";
   }
+  if (error?.service === "media" && typeof error.message === "string" && error.message.trim()) {
+    return error.message.trim();
+  }
   if (["unavailable", "deadline-exceeded", "network-request-failed", "retry-limit-exceeded"].includes(code)) {
-    return "O serviço local está indisponível no momento. Tente novamente.";
+    return "O serviço está temporariamente indisponível. Tente novamente.";
   }
   if (action === "save") return "Não foi possível salvar. Os valores preenchidos foram mantidos.";
   return "Não foi possível carregar estes dados. Tente novamente.";
