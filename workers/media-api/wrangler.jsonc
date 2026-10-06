@@ -6,7 +6,7 @@
   "vars": {
     "FIREBASE_PROJECT_ID": "memberverse-sfhf9",
     "FIREBASE_WEB_API_KEY": "AIzaSyAKy-05uW7C6VLQBSPjli8R7EAR1QCxvqo",
-    "ALLOWED_ORIGINS": "https://memberverse-sfhf9.web.app,https://memberverse-sfhf9.firebaseapp.com,http://127.0.0.1:5000,http://localhost:5000,http://127.0.0.1:5173,http://localhost:5173"
+    "ALLOWED_ORIGINS": "https://aufriends.vercel.app,https://memberverse-sfhf9.web.app,https://memberverse-sfhf9.firebaseapp.com,http://127.0.0.1:5000,http://localhost:5000,http://127.0.0.1:5173,http://localhost:5173"
   },
   "r2_buckets": [
     {
