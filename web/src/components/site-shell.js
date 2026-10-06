@@ -40,7 +40,7 @@ function headerMarkup() {
       <nav class="site-header__inner" aria-label="Navegação principal">
         <a class="site-brand" href="/" aria-label="AuFriends — página inicial">
           <span class="brand-lockup" aria-hidden="true">
-            <img class="brand-lockup__image" src="${officialLogoUrl}" alt="" width="1276" height="530" />
+            <img class="brand-lockup__image" src="${officialLogoUrl}" alt="" width="1425" height="652" />
           </span>
         </a>
 
