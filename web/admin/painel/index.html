@@ -26,6 +26,7 @@
         <nav aria-label="Navegação administrativa">
           <a href="#visao-geral" data-admin-nav aria-current="location">🏠 Visão geral</a>
           <a href="#indicadores" data-admin-nav>📊 Indicadores</a>
+          <a href="#dados-sistema" data-admin-nav>🗄️ Dados do sistema</a>
           <a href="#animais" data-admin-nav>🐶 Animais</a>
           <a href="#produtos" data-admin-nav>🛍️ Produtos</a>
           <a href="#solicitacoes-adocao" data-admin-nav>📋 Adoções</a>
@@ -86,6 +87,29 @@
               <small data-metric-status>Carregando…</small>
             </article>
           </div>
+        </section>
+
+        <section class="admin-dashboard-section" id="dados-sistema" aria-labelledby="system-data-title">
+          <div class="admin-section-heading">
+            <div>
+              <h2 id="system-data-title">Dados do sistema</h2>
+              <p>Consulte os registros armazenados no Firestore. A lista inclui contas administrativas e solicitações recebidas.</p>
+            </div>
+          </div>
+          <div class="admin-inline-controls">
+            <label for="system-data-collection">Coleção</label>
+            <select id="system-data-collection" data-system-data-collection>
+              <option value="admins">Contas administrativas</option>
+              <option value="animals">Animais</option>
+              <option value="products">Produtos</option>
+              <option value="adoptionRequests">Solicitações de adoção</option>
+              <option value="donations">Doações</option>
+              <option value="siteSettings">Configurações do site</option>
+            </select>
+            <button class="button button--compact button--secondary" type="button" data-system-data-refresh>Atualizar</button>
+          </div>
+          <p class="placeholder-note" role="status" aria-live="polite" data-system-data-status>Carregando registros.</p>
+          <div class="admin-database-list" data-system-data-list aria-busy="true"></div>
         </section>
 
         <section class="admin-panel" id="animais" aria-labelledby="animals-admin-title">

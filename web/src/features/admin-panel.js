@@ -57,6 +57,10 @@ const adminInviteFields = Object.freeze({
 const adminList = document.querySelector("[data-admin-list]");
 const adminListStatus = document.querySelector("[data-admin-list-status]");
 const adminListRefresh = document.querySelector("[data-admin-list-refresh]");
+const systemDataCollection = document.querySelector("[data-system-data-collection]");
+const systemDataRefresh = document.querySelector("[data-system-data-refresh]");
+const systemDataStatus = document.querySelector("[data-system-data-status]");
+const systemDataList = document.querySelector("[data-system-data-list]");
 
 let initialized = false;
 let settingsLoaded = false;
@@ -371,6 +375,56 @@ async function loadAdmins() {
   }
 }
 
+function renderSystemData(documents) {
+  const fragment = document.createDocumentFragment();
+
+  if (documents.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "admin-database-list__empty";
+    empty.textContent = "Nenhum registro nesta coleção.";
+    fragment.append(empty);
+  }
+
+  for (const record of documents) {
+    const details = document.createElement("details");
+    details.className = "admin-database-record";
+    const summary = document.createElement("summary");
+    summary.textContent = `Registro ${record.id}`;
+    const content = document.createElement("pre");
+    content.className = "admin-database-record__content";
+    content.textContent = JSON.stringify(record.data, (_key, value) => {
+      if (value && typeof value.toDate === "function") return value.toDate().toISOString();
+      return value;
+    }, 2);
+    details.append(summary, content);
+    fragment.append(details);
+  }
+
+  systemDataList.replaceChildren(fragment);
+}
+
+async function loadSystemData() {
+  systemDataRefresh.disabled = true;
+  systemDataList.setAttribute("aria-busy", "true");
+  systemDataStatus.classList.remove("placeholder-note--error");
+  systemDataStatus.setAttribute("role", "status");
+  systemDataStatus.textContent = "Carregando registros…";
+
+  try {
+    const documents = await dataService.listDocuments(systemDataCollection.value);
+    renderSystemData(documents);
+    systemDataStatus.textContent = `${documents.length} ${documents.length === 1 ? "registro encontrado" : "registros encontrados"}.`;
+  } catch (error) {
+    systemDataList.replaceChildren();
+    systemDataStatus.textContent = adminPanelErrorMessage(error);
+    systemDataStatus.classList.add("placeholder-note--error");
+    systemDataStatus.setAttribute("role", "alert");
+  } finally {
+    systemDataList.setAttribute("aria-busy", "false");
+    systemDataRefresh.disabled = false;
+  }
+}
+
 async function inviteAdministrator(event) {
   event.preventDefault();
   clearAdminInviteValidity();
@@ -520,9 +574,12 @@ export async function initializeAdminPanel(user) {
   setupAdminManagement();
   setupPasswordForm();
   metricsRefresh.addEventListener("click", refreshMetrics);
+  systemDataCollection.addEventListener("change", loadSystemData);
+  systemDataRefresh.addEventListener("click", loadSystemData);
   document.addEventListener("aufriends:metrics-refresh", refreshMetrics);
   await Promise.all([
     refreshMetrics(),
+    loadSystemData(),
     loadSettings(),
     loadAdmins(),
     initializeAdoptions(user),

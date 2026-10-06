@@ -1901,6 +1901,45 @@ p {
   min-width: 10rem;
 }
 
+.admin-database-list {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.admin-database-record {
+  overflow: hidden;
+  border: 1px solid #e5e0da;
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.admin-database-record summary {
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.admin-database-record__content {
+  max-height: 30rem;
+  overflow: auto;
+  margin: 0;
+  padding: 1rem;
+  border-top: 1px solid #e5e0da;
+  background: #f8f6f3;
+  font-size: 0.82rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.admin-database-list__empty {
+  margin: 0;
+  padding: 1rem;
+  border: 1px dashed #e5e0da;
+  border-radius: 0.75rem;
+}
+
 .admin-button--danger {
   border-color: #a63c3c;
   background: #fff;

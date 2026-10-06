@@ -3,6 +3,7 @@ import {
   doc,
   getCountFromServer,
   getDocFromServer,
+  getDocs,
   serverTimestamp,
   setDoc
 } from "firebase/firestore";
@@ -32,6 +33,15 @@ export const ADMIN_METRICS = Object.freeze([
     plural: "doações registradas",
     empty: "Nenhuma doação registrada"
   })
+]);
+
+export const ADMIN_DATA_COLLECTIONS = Object.freeze([
+  "admins",
+  "animals",
+  "products",
+  "adoptionRequests",
+  "donations",
+  "siteSettings"
 ]);
 
 const METRICS_BY_KEY = new Map(ADMIN_METRICS.map((metric) => [metric.key, metric]));
@@ -142,6 +152,18 @@ export function createAdminPanelDataService(database) {
 
       const snapshot = await getCountFromServer(collection(database, collectionName));
       return snapshot.data().count;
+    },
+
+    async listDocuments(collectionName) {
+      if (!ADMIN_DATA_COLLECTIONS.includes(collectionName)) {
+        throw new TypeError("Coleção administrativa não permitida.");
+      }
+
+      const snapshot = await getDocs(collection(database, collectionName));
+      return snapshot.docs.map((document) => ({
+        id: document.id,
+        data: document.data()
+      }));
     },
 
     async readSiteSettings() {
