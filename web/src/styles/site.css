@@ -259,6 +259,11 @@ p {
 .brand-lockup {
   display: inline-flex;
   align-items: center;
+  padding: 0.35rem 0.55rem;
+  border: 2px solid var(--color-orange);
+  border-radius: 0.9rem;
+  background: #000;
+  box-shadow: 0 8px 18px rgb(59 0 16 / 12%);
 }
 
 .brand-lockup__image {
