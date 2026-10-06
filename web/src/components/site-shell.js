@@ -1,4 +1,5 @@
 import { cartStore } from "../services/cart-store.js";
+import officialLogoUrl from "../../assets/img/aufriends-logo-oficial.png";
 
 const navigationItems = [
   { href: "/", label: "Início" },
@@ -39,8 +40,7 @@ function headerMarkup() {
       <nav class="site-header__inner" aria-label="Navegação principal">
         <a class="site-brand" href="/" aria-label="AuFriends — página inicial">
           <span class="brand-lockup" aria-hidden="true">
-            <span class="brand-lockup__icon">🐶</span>
-            <span class="brand-lockup__name">Au<span>Friends</span></span>
+            <img class="brand-lockup__image" src="${officialLogoUrl}" alt="" width="1276" height="530" />
           </span>
         </a>
 

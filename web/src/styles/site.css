@@ -259,19 +259,11 @@ p {
 .brand-lockup {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  color: var(--color-brown);
-  font-size: 1.65rem;
-  font-weight: 900;
-  line-height: 1;
 }
 
-.brand-lockup__icon {
-  font-size: 1.55em;
-}
-
-.brand-lockup__name span {
-  color: var(--color-orange);
+.brand-lockup__image {
+  width: 210px;
+  height: auto;
 }
 
 .site-brand .brand-lockup {
@@ -1164,6 +1156,10 @@ p {
   margin: 0 auto 1.5rem;
 }
 
+.cart-card__brand .brand-lockup__image {
+  width: min(260px, 72vw);
+}
+
 .cart-card h1,
 .cart-card__subtitle {
   text-align: center;
@@ -1393,6 +1389,10 @@ p {
   margin: 0 auto 1rem;
 }
 
+.admin-entry__logo .brand-lockup__image {
+  width: min(250px, 72vw);
+}
+
 .admin-entry__card h1,
 .admin-entry__card > p {
   text-align: center;
@@ -1488,6 +1488,11 @@ p {
   display: flex;
   width: max-content;
   margin: 0 auto 1.5rem;
+}
+
+.admin-sidebar .brand-lockup__image {
+  width: 190px;
+  max-width: 100%;
 }
 
 .admin-sidebar nav {
@@ -2091,7 +2096,7 @@ p {
   }
 
   .site-brand .brand-lockup {
-    font-size: 1.45rem;
+    max-width: 180px;
   }
 
   .nav-toggle {
@@ -2371,7 +2376,11 @@ p {
   }
 
   .site-brand .brand-lockup {
-    font-size: 1.3rem;
+    max-width: 160px;
+  }
+
+  .site-brand .brand-lockup__image {
+    width: 160px;
   }
 
   .nav-toggle {
